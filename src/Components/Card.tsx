@@ -1,30 +1,40 @@
-import React from "react";
+import React, { FC } from "react";
 
-let quantity:number = 1;
+let quantity:number = 0;
+interface CardProps {
+  cardData: any
+}
 
-const Card = () => {
+interface CardDataProps {
+  id: number;
+  name: string;
+  availability: number,
+  price: 40
+}
+
+const Card: FC<CardProps> = ({cardData}) => {
   return (
-    <div className="card w-1/6 gap-4 border-2 border-[#C8D2D0] rounded p-2 flex flex-col justify-center items-center">
+    <div className="card gap-4 border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
       <img
-        className="mt-10"
+        className="mt-5 m-auto"
         src="/assets/images/pear.svg"
         alt="fruit"
-        width={100}
-        height={100}
+        width={130}
+        height={130}
       />
       <div className="name">
         <p className="text-base mt-4 font-semibold">
-          Fresh Pear - Indian: 4 Pieces
+          {cardData.name}
         </p>
       </div>
 
       <div className="flex w-full flex-row justify-between">
-        <p className="text-sm ml-3 text-[#656565]">MRP : ₹ 40</p>
-        <p className="text-sm mr-3 text-[#656565]">(4 pieces)</p>
+        <p className="text-sm text-[#656565]">MRP : ₹ {cardData.price}</p>
+        <p className="text-sm text-[#656565]">({cardData.availability} pieces)</p>
       </div>
 
-      <div className="w-[90%] mb-2 jus flex flex-row justify-between p-1 rounded bg-[#4DBD7A]">
-        {quantity <= 1 && (
+      <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A]">
+        {quantity >= 1 && (
           <button className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
             <img
               width={15}
@@ -34,10 +44,10 @@ const Card = () => {
             />
           </button>
         )}
-        <p className="middle font-semibold text-white flex items-center justify-center">
+        <p className="middle m-auto font-semibold text-white text-center">
           {quantity > 0 ? quantity : "Add"}
         </p>
-        <button className="end w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
+        <button className="end float-right w-8 h-8 flex items-center justify-center bg-[#268462] rounded">
           <img
             width={15}
             height={15}
