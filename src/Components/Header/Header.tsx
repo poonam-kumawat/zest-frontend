@@ -1,8 +1,11 @@
-import "./Navbar.css";
+import "./Header.css";
+import dropdownArrow from "../../../public/assets/icons/dropdown-arrow-icon.svg";
+import searchIcon from "../../../public/assets/icons/search-icon.svg";
+import cartIcon from "../../../public/assets/icons/cart-icon.svg";
 
-const Navbar = () => {
+const Header = () => {
   return (
-    <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between">
+    <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between  mx-auto flex flex-wrap">
       <div className="flex">
         <div className="text-2xl font-semibold text-[#4DBD7A] px-10  verticalLine ">
           Zest
@@ -11,7 +14,7 @@ const Navbar = () => {
           Location
           <img
             className="mx-4 my-1"
-            src="/assets/icons/dropdown-arrow-icon.svg"
+            src={dropdownArrow}
             alt="fruit"
             width={15}
             height={15}
@@ -21,12 +24,12 @@ const Navbar = () => {
       <div className="relative">
         <input
           type="text"
-          className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 "
+          className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#B8C6C3] rounded"
           placeholder="Search Vegetables and Fruits"
         ></input>
         <img
           className="mx-4 my-1 absolute right-0 top-0 mt-2"
-          src="/assets/icons/search-icon.svg"
+          src={searchIcon}
           alt="fruit"
           width={20}
           height={20}
@@ -35,7 +38,7 @@ const Navbar = () => {
       <div className="flex">
         <img
           className="mx-10 my-1"
-          src="/assets/icons/cart-icon.svg"
+          src={cartIcon}
           alt="fruit"
           width={30}
           height={30}
@@ -47,4 +50,4 @@ const Navbar = () => {
     </div>
   );
 };
-export default Navbar;
+export default Header;
