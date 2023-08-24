@@ -1,7 +1,7 @@
 import "./Header.css";
-import dropdownArrow from "../../../public/assets/icons/dropdown-arrow-icon.svg";
-import searchIcon from "../../../public/assets/icons/search-icon.svg";
-import cartIcon from "../../../public/assets/icons/cart-icon.svg";
+import dropdownArrow from "../../Assets/Icons/dropdown-arrow-icon.svg";
+import searchIcon from "../../Assets/Icons/search-icon.svg";
+import cartIcon from "../../Assets/Icons/cart-icon.svg";
 
 const Header = () => {
   return (
