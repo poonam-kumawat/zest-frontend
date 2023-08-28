@@ -69,12 +69,11 @@ const Header = () => {
         <div className="lg:hidden m-3 ">
           <nav className="p-2">
             <ul className="">
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:bg-[#B8C6C3] hover:text-[#ffffff] p-2 rounded text-center m-2  md:hidden lg:hidden ">
-                Search
-                {/* <div className="relative lg:flex md:flex">
+              <li className="border-2 text-lg font-medium text-[#B8C6C3] p-2 rounded text-center m-2  md:hidden lg:hidden hover:text-[#4DBD7A]">
+                <div className="relative lg:flex md:flex">
                   <input
                     type="text"
-                    className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#B8C6C3] rounded"
+                    className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#4DBD7A] rounded "
                     placeholder="Search Vegetables and Fruits"
                   ></input>
                   <img
@@ -84,15 +83,15 @@ const Header = () => {
                     width={20}
                     height={20}
                   />
-                </div> */}
+                </div>
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:bg-[#B8C6C3] hover:text-[#ffffff] p-2 rounded text-center m-2  md:hidden lg:hidden">
+              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2  md:hidden lg:hidden">
                 Location
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:bg-[#B8C6C3] hover:text-[#ffffff] p-2 rounded text-center m-2">
+              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2">
                 Cart
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:bg-[#B8C6C3] hover:text-[#ffffff] p-2 rounded text-center m-2">
+              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2">
                 Login
               </li>
             </ul>
