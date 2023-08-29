@@ -69,7 +69,7 @@ const Header = () => {
                 <div className="relative lg:flex md:flex">
                   <input
                     type="text"
-                    className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#4DBD7A] rounded "
+                    className="border border-[#B8C6C3] p-1 shadow-sm px-5 outline-[#4DBD7A] rounded w-full "
                     placeholder="Search Vegetables and Fruits"
                   ></input>
                   <img
