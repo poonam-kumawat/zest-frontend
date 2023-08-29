@@ -1,9 +1,5 @@
 import { useState } from "react";
 import "./Header.css";
-import dropdownArrow from "../../Assets/Icons/dropdown-arrow-icon.svg";
-import searchIcon from "../../Assets/Icons/search-icon.svg";
-import cartIcon from "../../Assets/Icons/cart-icon.svg";
-import menuIcon from "../../Assets/Icons/menu-icon.svg";
 
 const Header = () => {
   // for mobile menu bar
@@ -19,7 +15,7 @@ const Header = () => {
             Location
             <img
               className="mx-4 my-1"
-              src={dropdownArrow}
+              src="/assets/icons/dropdown-arrow-icon.svg"
               alt="fruit"
               width={15}
               height={15}
@@ -34,7 +30,7 @@ const Header = () => {
           ></input>
           <img
             className="mx-4 my-1 absolute right-0 top-0 mt-2"
-            src={searchIcon}
+            src="/assets/icons/search-icon.svg"
             alt="fruit"
             width={20}
             height={20}
@@ -43,7 +39,7 @@ const Header = () => {
         <div className="hidden lg:flex ">
           <img
             className="mx-10 my-1"
-            src={cartIcon}
+            src="/assets/icons/cart-icon.svg"
             alt="fruit"
             width={30}
             height={30}
@@ -55,7 +51,7 @@ const Header = () => {
         <div>
           <img
             className="lg:hidden"
-            src={menuIcon}
+            src="/assets/icons/menu-icon.svg"
             alt="fruit"
             width={30}
             height={30}
@@ -78,7 +74,7 @@ const Header = () => {
                   ></input>
                   <img
                     className="mx-4 my-1 absolute right-0 top-0 mt-2"
-                    src={searchIcon}
+                    src="/assets/icons/search-icon.svg"
                     alt="fruit"
                     width={20}
                     height={20}
