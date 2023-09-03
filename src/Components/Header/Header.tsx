@@ -56,9 +56,8 @@ const Header = () => {
             login
           </button>
         </div>
-        <div>
+        <div className="lg:hidden">
           <img
-            className="lg:hidden"
             src="/assets/icons/menu-icon.svg"
             alt="menu"
             width={30}
