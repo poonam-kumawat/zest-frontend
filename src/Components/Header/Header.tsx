@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Header.css";
 
 const Header = () => {
@@ -6,10 +6,26 @@ const Header = () => {
   const [show, setShow] = useState(false);
   // for location popover
   const [showLocation, setShowLocation] = useState(false);
+  const locationRef = useRef<HTMLInputElement>(null);
+
+  const handleClickOutside = (event: any) => {
+    if (locationRef.current && !locationRef.current.contains(event.target)) {
+      setShowLocation(!showLocation);
+    }
+  };
+
+  useEffect(() => {
+    if (showLocation) {
+      document.addEventListener("click", handleClickOutside, true);
+    }
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [showLocation]);
 
   return (
-    <div>
-      <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between  mx-auto  flex-wrap  md:flex lg:flex">
+    <div className="sticky top-0 z-50">
+      <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
         <div className="flex">
           <div className="text-2xl font-semibold text-[#4DBD7A] px-10 ">
             Zest
@@ -89,7 +105,13 @@ const Header = () => {
                   />
                 </div>
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 md:hidden lg:hidden">
+              <li
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 md:hidden lg:hidden"
+                onClick={() => {
+                  if (show) setShow(false);
+                  setShowLocation(!showLocation);
+                }}
+              >
                 Location
               </li>
               <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2">
@@ -104,8 +126,11 @@ const Header = () => {
       )}
       {/* Location Popover */}
       {showLocation && (
-        <div className="bg-[#333333] bg-opacity-70 flex p-4 md:p-10 md:justify-center h-screen">
-          <div className=" bg-[#FFFFFF] text-[#000]  rounded-lg p-10 md:w-4/5 h-fit max-w-3xl lg:max-h-44 ">
+        <div className="bg-[#333333] bg-opacity-70 p-4 md:p-10 md:justify-center h-full fixed z-50 w-full">
+          <div
+            className=" bg-[#FFFFFF] text-[#000]  rounded-lg p-10 md:w-4/5 h-fit max-w-3xl lg:max-h-44 "
+            ref={locationRef}
+          >
             <div className="flex pb-8 font-md text-lg">
               <img
                 className="mx-10"
