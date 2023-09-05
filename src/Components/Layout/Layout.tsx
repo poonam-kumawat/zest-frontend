@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Navbar from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 interface Props {
   children?: ReactNode;
@@ -11,6 +12,7 @@ const Layout = ({ children, ...Props }: Props) => {
     <div>
       <Navbar />
       <div>{children}</div>
+      <Footer/>
     </div>
   );
 };
