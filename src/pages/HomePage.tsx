@@ -96,7 +96,7 @@ const HomePage: React.FC = () => {
         </section>
 
         <section className='discount-list px-6'>
-          <div className='mt-10 grid grid-cols-6 grid-rows-auto justify-items-center'>
+          <div className='mt-10 grid grid-cols-6 gap-6 grid-rows-auto justify-items-center'>
             <img src='/assets/images/vcard1.svg' alt='vcard1' />
             <img src='/assets/images/vcard2.svg' alt='vcard2' />
             <img src='/assets/images/vcard3.svg' alt='vcard3' />
@@ -105,7 +105,7 @@ const HomePage: React.FC = () => {
             <img src='/assets/images/vcard2.svg' alt='vcard2' />
           </div>
 
-          <div className='mt-10 grid grid-cols-6 grid-rows-auto justify-items-center'>
+          <div className='mt-10 grid grid-cols-6 gap-6 grid-rows-auto justify-items-center'>
             <img src='/assets/images/vcard1.svg' alt='vcard1' />
             <img src='/assets/images/vcard2.svg' alt='vcard2' />
             <img src='/assets/images/vcard3.svg' alt='vcard3' />
