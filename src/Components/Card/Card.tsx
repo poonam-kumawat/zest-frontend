@@ -14,7 +14,7 @@ interface CardDataProps {
 
 const Card: FC<CardProps> = ({cardData}) => {
   return (
-    <div className="card gap-4 border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
+    <div className="card cursor-pointer gap-4 border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
       <img
         className="mt-5 m-auto"
         src="/assets/images/pear.svg"
