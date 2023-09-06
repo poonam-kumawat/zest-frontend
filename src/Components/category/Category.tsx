@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../Card";
+import "./category.css"
 
 interface CardProps {
   id: number;
@@ -33,13 +34,16 @@ const data: Array<CardProps> = [
     price: 90,
   },
 ];
+
+
+
 const Category = () => {
   return (
     <div className="categortWrap">
       <div className="grid grid-cols-4 gap-1">
         <div className="col-start-1 col-end-2 p-6 pl-12">
-          <div className="box border-t-2 border-r-2 border-[#ddd]">
-            <div className="border-[#ddd] border-2 border-t-0 border-y-1 p-5 flex align-middle hover:bg-[#F2FFF3] active hover:border-[#4DBD7A] hover:border-l-8 hover:border-y-0 hover:border-r-0 hover:cursor-pointer ">
+          <div className="box border-2 border-b-0 border-[#ddd]">
+            <div className="activeCategory border-[#ddd] border-b-2  p-5 flex align-middle hover:bg-[#F2FFF3] active  hover:border-r-0 hover:cursor-pointer ">
               <img
                 src="/assets/images/karela.svg"
                 className="w-12 pr-4"
@@ -47,7 +51,7 @@ const Category = () => {
               />
               <p>Vegetables</p>
             </div>
-            <div className="border-[#ddd] border-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
+            <div className="border-[#ddd] border-b-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
               <img
                 src="/assets/images/pear.svg"
                 className="w-12 pr-4"
@@ -55,7 +59,7 @@ const Category = () => {
               />
               <p>Fruits</p>
             </div>
-            <div className="border-[#ddd] border-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
+            <div className="border-[#ddd] border-b-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
               <img
                 src="/assets/images/custudapple.svg"
                 className="w-12 pr-4"
@@ -63,7 +67,7 @@ const Category = () => {
               />
               <p>Salads</p>
             </div>
-            <div className="border-[#ddd] border-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
+            <div className="border-[#ddd] border-b-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
               <img
                 src="/assets/images/cherry.svg"
                 className="w-12 pr-4"
@@ -71,7 +75,7 @@ const Category = () => {
               />
               <p>Berries</p>
             </div>
-            <div className="border-[#ddd] border-2 border-t-0 border-y-1 p-5 flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
+            <div className="border-[#ddd] border-b-2 border-t-0  p-5 flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
               <img
                 src="/assets/images/karela.svg"
                 className="w-12 pr-4"
@@ -79,7 +83,7 @@ const Category = () => {
               />
               <p>Vegetables</p>
             </div>
-            <div className="border-[#ddd] border-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
+            <div className="border-[#ddd] border-b-2  p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
               <img
                 src="/assets/images/pear.svg"
                 className="w-12 pr-4"
@@ -87,7 +91,7 @@ const Category = () => {
               />
               <p>Fruits</p>
             </div>
-            <div className="border-[#ddd] border-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
+            <div className="border-[#ddd] border-b-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
               <img
                 src="/assets/images/custudapple.svg"
                 className="w-12 pr-4"
@@ -95,7 +99,7 @@ const Category = () => {
               />
               <p>Salads</p>
             </div>
-            <div className="border-[#ddd] border-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
+            <div className="border-[#ddd] border-b-2 border-y-1 p-5  border-t-0  flex align-middle hover:bg-[#F2FFF3] hover:cursor-pointer ">
               <img
                 src="/assets/images/custudapple.svg"
                 className="w-12 pr-4"
