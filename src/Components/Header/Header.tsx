@@ -69,7 +69,7 @@ const Header = () => {
             height={30}
           />
           <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8">
-            login
+            Login
           </button>
         </div>
         <div className="lg:hidden">
