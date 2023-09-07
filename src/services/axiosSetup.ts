@@ -13,7 +13,6 @@ export const globalaxiosInstance = axios.create({
 //   return request
 // }
 
-//
 const requestHandler = (request: any) => {
   return request;
 };
