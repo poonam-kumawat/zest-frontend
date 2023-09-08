@@ -104,17 +104,17 @@ const HomePage: React.FC = () => {
               <img src='/assets/images/vcard2.svg' alt='vcard2' />
               <img src='/assets/images/vcard3.svg' alt='vcard3' />
               <img src='/assets/images/vcard4.svg' alt='vcard4' />
-              <img src='/assets/images/vcard4.svg' alt='vcard4' />
+              <img src='/assets/images/vcard1.svg' alt='vcard4' />
               <img src='/assets/images/vcard2.svg' alt='vcard2' />
             </div>
 
             <div className='mt-10 grid grid-cols-6 gap-6 grid-rows-auto'>
-              <img src='/assets/images/vcard1.svg' alt='vcard1' />
-              <img src='/assets/images/vcard2.svg' alt='vcard2' />
-              <img src='/assets/images/vcard3.svg' alt='vcard3' />
-              <img src='/assets/images/vcard4.svg' alt='vcard4' />
-              <img src='/assets/images/vcard4.svg' alt='vcard4' />
-              <img src='/assets/images/vcard2.svg' alt='vcard2' />
+              <img src='/assets/images/vcard5.svg' alt='vcard1' />
+              <img src='/assets/images/vcard6.svg' alt='vcard2' />
+              <img src='/assets/images/vcard7.svg' alt='vcard3' />
+              <img src='/assets/images/vcard8.svg' alt='vcard4' />
+              <img src='/assets/images/vcard7.svg' alt='vcard4' />
+              <img src='/assets/images/vcard6.svg' alt='vcard2' />
             </div>
           </section>
 
