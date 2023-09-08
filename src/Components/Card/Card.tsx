@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-let quantity:number = 0;
+let quantity: number = 0;
 interface CardProps {
   cardData: any
 }
@@ -12,25 +12,25 @@ interface CardDataProps {
   price: 40
 }
 
-const Card: FC<CardProps> = ({cardData}) => {
+const Card: FC<CardProps> = ({ cardData }) => {
   return (
     <div className="card cursor-pointer gap-4 border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
       <img
-        className="mt-5 m-auto"
-        src="/assets/images/pear.svg"
+        className="m-auto"
+        src={cardData.imgUrl}
         alt="fruit"
-        width={130}
-        height={130}
+        width={180}
+        height={180}
       />
       <div className="name">
         <p className="text-base mt-4 font-semibold">
-          {cardData.name}
+          {cardData.productName}
         </p>
       </div>
 
       <div className="flex w-full flex-row justify-between">
-        <p className="text-sm text-[#656565]">MRP : ₹ {cardData.price}</p>
-        <p className="text-sm text-[#656565]">({cardData.availability} pieces)</p>
+        <p className="text-sm text-[#656565]">{cardData.price}</p>
+        <p className="text-sm text-[#656565]">({cardData.availability})</p>
       </div>
 
       <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A]">
