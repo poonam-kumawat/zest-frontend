@@ -36,7 +36,7 @@ const ProductDetailsPage: React.FC = () => {
                 <p className="middle m-auto font-semibold text-white text-center">
                   Add
                 </p>
-                <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
+                <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto">
                   <img
                     width={15}
                     height={15}
