@@ -1,8 +1,8 @@
 const ProductDetailsPage: React.FC = () => {
   return (
     <div className="">
-      <div className="flex gap-2 mt-5">
-        <div className="w-full h-screen grid-rows-2 border-e">
+      <div className="flex gap-2 my-5 lg:w-4/5 mx-auto">
+        <div className="w-full h-full grid-rows-2 border-e">
           <div className="w-2/3 p-10 m-auto border max-w-sm">
             <img className="w-full" src="/assets/images/pear.svg" alt="pear" />
           </div>
@@ -27,12 +27,12 @@ const ProductDetailsPage: React.FC = () => {
             <div className="text-3xl font-semibold text-[#1F2937] ">
               Fresh Pear - Indian: 4 Pieces
             </div>
-            <div className=" text-[#656565] mt-5 font-semibold border-b pb-5">
+            <div className=" text-[#656565] mt-5 font-semibold border-b pb-5 text-lg">
               <div className="pb-1">(4 pieces)</div>
               <div className="pb-1">MRP : ₹ 40</div>
               <div className="pb-1">In Stock</div>
               {/* Add button */}
-              <div className="w-full flex flex-row p-1.5 rounded bg-[#4DBD7A] w-38 mt-5">
+              <div className="w-1/2 flex flex-row p-1.5 rounded bg-[#4DBD7A] w-38 mt-5">
                 <p className="middle m-auto font-semibold text-white text-center">
                   Add
                 </p>
@@ -46,7 +46,7 @@ const ProductDetailsPage: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className="py-5 text-2xl font-semibold text-[#1F2937]">
+            <div className="py-10 text-2xl font-semibold text-[#1F2937]">
               How it works
             </div>
             <div className="flex pb-4">
@@ -97,6 +97,40 @@ const ProductDetailsPage: React.FC = () => {
                   The order will be carefully delivered at your doorstep
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-[#F5F5F5] h-24 flex justify-between px-10  mb-5">
+        <div className="flex m-auto">
+          <div className="flex">
+            <img
+              className="w-16  xl:mx-12"
+              src="/assets/icons/no-minimum-order.svg"
+              alt="no-minimum-order"
+            />
+            <div className=" m-8 text-[#1F2937] font-semibold">
+              NO MINIMUM ORDER
+            </div>
+          </div>
+          <div className="flex">
+            <img
+              className="w-16  lg:mx-12"
+              src="/assets/icons/45-min-delivery.svg"
+              alt="45-min-delivery"
+            />
+            <div className=" m-8 text-[#1F2937] font-semibold">
+              45 MINS DELIVERY
+            </div>
+          </div>
+          <div className="flex">
+            <img
+              className="w-16 xl:mx-12"
+              src="/assets/icons/contactless-safe.svg"
+              alt="contactless-safe"
+            />
+            <div className="m-8 text-[#1F2937] font-semibold">
+              CONTACTLESS & SAFE
             </div>
           </div>
         </div>
