@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="footerWrap mt-20 py-10  bg-[#F9F9F9]">
+    <div className="footerWrap  py-10  bg-[#F9F9F9]">
       <div className="md:grid md:grid-cols-3">
         <div className="fisrtCol">
           <h2 className="m-auto text-center text-[#4DBD7A] text-4xl font-bold">
@@ -16,22 +16,22 @@ const Footer = () => {
           </p>
         </div>
         <div className="flex md:grid-cols-2">
-        <div className="secondCol md:mx-auto md:my-0 grid">
-          <div className="grid">
-            <a href="/">Home</a>
-            <a href="/">Delivery areas</a>
-            <a href="/">Carreir</a>
-            <a href="/">Press</a>
+          <div className="secondCol md:mx-auto md:my-0 grid">
+            <div className="grid">
+              <a href="/">Home</a>
+              <a href="/">Delivery areas</a>
+              <a href="/">Carreir</a>
+              <a href="/">Press</a>
+            </div>
           </div>
-        </div>
-        <div className="thirdCol md:mx-auto md:my-0 grid">
-          <div className="grid">
-            <a href="/">Privacy Policy</a>
-            <a href="/">Terms of use</a>
-            <a href="/">Blogs</a>
-            <a href="/">Aboutus</a>
+          <div className="thirdCol md:mx-auto md:my-0 grid">
+            <div className="grid">
+              <a href="/">Privacy Policy</a>
+              <a href="/">Terms of use</a>
+              <a href="/">Blogs</a>
+              <a href="/">Aboutus</a>
+            </div>
           </div>
-        </div>
         </div>
         <div className="forthCol grid text-center">
           <div className="grid">
