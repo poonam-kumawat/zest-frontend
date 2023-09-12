@@ -23,7 +23,6 @@ const Header = ({ navigate }: any) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-
     navigate({
       pathname: "category",
       search: createSearchParams({
