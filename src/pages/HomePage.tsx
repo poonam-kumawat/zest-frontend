@@ -3,45 +3,6 @@ import Card from '../Components/Card/Card'
 import { getProducts } from '../services/api.service';
 import Loader from '../Components/Common/Loader';
 
-// interface CardProps {
-//   id: number;
-//   name: string;
-//   availability: number,
-//   price: number
-// }
-// const data: Array<CardProps> = [
-//   {
-//     id: 1,
-//     name: "Fresh Pear - Indian",
-//     availability: 4,
-//     price: 40
-//   },
-//   {
-//     id: 2,
-//     name: "Fresh Apple - Indian",
-//     availability: 40,
-//     price: 140
-//   },
-//   {
-//     id: 3,
-//     name: "Fresh Mango - Indian",
-//     availability: 10,
-//     price: 40
-//   },
-//   {
-//     id: 4,
-//     name: "Fresh Orange - Indian",
-//     availability: 6,
-//     price: 90
-//   },
-//   {
-//     id: 5,
-//     name: "Fresh Kiwi - Indian",
-//     availability: 12,
-//     price: 120
-//   }
-// ]
-
 
 const HomePage: React.FC = () => {
 
@@ -110,7 +71,6 @@ const HomePage: React.FC = () => {
                 }
               </div>
             </section>
-
             <section className='vegetable-list mt-10'>
               <div className=''>
                 <p className='text-2xl font-semibold my-4'>Fresh Vegetables</p>
@@ -136,17 +96,17 @@ const HomePage: React.FC = () => {
                 <img src='/assets/images/vcard2.svg' alt='vcard2' />
                 <img src='/assets/images/vcard3.svg' alt='vcard3' />
                 <img src='/assets/images/vcard4.svg' alt='vcard4' />
-                <img src='/assets/images/vcard4.svg' alt='vcard4' />
+                <img src='/assets/images/vcard1.svg' alt='vcard4' />
                 <img src='/assets/images/vcard2.svg' alt='vcard2' />
               </div>
 
               <div className='mt-10 grid grid-cols-6 gap-6 grid-rows-auto'>
-                <img src='/assets/images/vcard1.svg' alt='vcard1' />
-                <img src='/assets/images/vcard2.svg' alt='vcard2' />
-                <img src='/assets/images/vcard3.svg' alt='vcard3' />
-                <img src='/assets/images/vcard4.svg' alt='vcard4' />
-                <img src='/assets/images/vcard4.svg' alt='vcard4' />
-                <img src='/assets/images/vcard2.svg' alt='vcard2' />
+                <img src='/assets/images/vcard5.svg' alt='vcard1' />
+                <img src='/assets/images/vcard6.svg' alt='vcard2' />
+                <img src='/assets/images/vcard7.svg' alt='vcard3' />
+                <img src='/assets/images/vcard8.svg' alt='vcard4' />
+                <img src='/assets/images/vcard5.svg' alt='vcard4' />
+                <img src='/assets/images/vcard7.svg' alt='vcard2' />
               </div>
             </section>
 
