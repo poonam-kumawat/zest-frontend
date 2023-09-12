@@ -9,16 +9,16 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 function App() {
   return (
     <div>
-      <Layout>
-        <Router>
+      <Router>
+        <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/category" element={<Category />} />
 
             <Route path="/details" element={<ProductDetailsPage />} />
           </Routes>
-        </Router>
-      </Layout>
+        </Layout>
+      </Router>
     </div>
   );
 }

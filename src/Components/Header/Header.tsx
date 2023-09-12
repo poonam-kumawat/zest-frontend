@@ -1,18 +1,36 @@
 import { useEffect, useRef, useState } from "react";
 import "./Header.css";
+import { createSearchParams } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ navigate }: any) => {
   // for mobile menu bar
   const [show, setShow] = useState(false);
   // for location popover
   const [showLocation, setShowLocation] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<any>('');
   const locationRef = useRef<HTMLInputElement>(null);
+
 
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
       setShowLocation(!showLocation);
     }
   };
+
+  const handleChange = (e: any) => {
+    setSearchQuery(e.target.value)
+  }
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+
+    navigate({
+      pathname: "category",
+      search: createSearchParams({
+        search: searchQuery
+      }).toString()
+    })
+  }
 
   useEffect(() => {
     if (showLocation) {
@@ -47,11 +65,16 @@ const Header = () => {
           </div>
         </div>
         <div className="relative hidden lg:flex md:flex">
-          <input
-            type="text"
-            className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#B8C6C3] rounded"
-            placeholder="Search Vegetables and Fruits"
-          ></input>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+              type="text"
+              className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#B8C6C3] rounded"
+              placeholder="Search Vegetables and Fruits"
+              value={searchQuery}
+              onChange={(e) => handleChange(e)}
+              required
+            ></input>
+          </form>
           <img
             className="mx-4 my-1 absolute right-0 top-0 mt-2"
             src="/assets/icons/search-icon.svg"
