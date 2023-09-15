@@ -1,12 +1,30 @@
 const ProductDetailsPage: React.FC = () => {
   return (
     <div className="">
-      <div className="flex gap-2 my-5 lg:w-4/5 mx-auto">
-        <div className="w-full h-full grid-rows-2 border-e">
+      <div className="md:flex md:gap-2 my-5 md:my-10 lg:w-4/5 mx-auto ">
+        <div className="w-full h-full grid-rows-2 md:border-e">
           <div className="w-2/3 p-10 m-auto border max-w-sm">
             <img className="w-full" src="/assets/images/pear.svg" alt="pear" />
           </div>
-          <div className="p-10 ms-10 font-semibold">
+          <div className="py-5 md:py-10 px-10 font-semibold">
+            <div className="md:hidden pb-5">
+              <div className="text-3xl font-semibold text-[#1F2937]">
+                Fresh Pear - Indian: 4 Pieces
+              </div>
+              <div className=" text-[#656565] mt-5 font-semibold border-b pb-8 text-lg ">
+                <div className="pb-1">(4 pieces)</div>
+                <div className="pb-1">MRP : ₹ 40</div>
+                <div className="pb-1">In Stock</div>
+                <div className="w-4/5 flex flex-row p-1.5 rounded bg-[#4DBD7A] mt-5">
+                  <p className="middle m-auto font-semibold text-white text-center">
+                    Add
+                  </p>
+                  <button className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto">
+                    <img src="/assets/icons/plus-icon.svg" alt="add" />
+                  </button>
+                </div>
+              </div>
+            </div>
             <div className="text-2xl text-[#5C625E] ">Details</div>
             <div className="text-[#747875] mt-5 text-lg">
               The pear tree and shrub are a species of genus Pyrus, in the
@@ -14,7 +32,7 @@ const ProductDetailsPage: React.FC = () => {
               Several species of pear are valued for their edible fruit and
               juices while others are cultivated as trees.
             </div>
-            <div className="text-[#747875] mt-5 ms-10">
+            <div className="text-[#747875] mt-5 ms-5">
               <ul className="list-disc">
                 <li>Country of Origin : India</li>
                 <li>Shelf Life : 5 days</li>
@@ -23,34 +41,36 @@ const ProductDetailsPage: React.FC = () => {
           </div>
         </div>
         <div className="w-full h-full grid-rows-2">
-          <div className="p-10">
-            <div className="text-3xl font-semibold text-[#1F2937] ">
-              Fresh Pear - Indian: 4 Pieces
-            </div>
-            <div className=" text-[#656565] mt-5 font-semibold border-b pb-5 text-lg">
-              <div className="pb-1">(4 pieces)</div>
-              <div className="pb-1">MRP : ₹ 40</div>
-              <div className="pb-1">In Stock</div>
-              {/* Add button */}
-              <div className="w-1/2 flex flex-row p-1.5 rounded bg-[#4DBD7A] w-38 mt-5">
-                <p className="middle m-auto font-semibold text-white text-center">
-                  Add
-                </p>
-                <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto">
-                  <img
-                    width={15}
-                    height={15}
-                    src="/assets/icons/plus-icon.svg"
-                    alt="add"
-                  />
-                </button>
+          <div className="px-10">
+            <div className="hidden md:block">
+              <div className="text-3xl font-semibold text-[#1F2937]">
+                Fresh Pear - Indian: 4 Pieces
+              </div>
+              <div className=" text-[#656565] mt-5 font-semibold border-b pb-5 text-lg">
+                <div className="pb-1">(4 pieces)</div>
+                <div className="pb-1">MRP : ₹ 40</div>
+                <div className="pb-1">In Stock</div>
+                {/* Add button */}
+                <div className="w-1/2 flex flex-row p-1.5 rounded bg-[#4DBD7A] w-38 mt-5">
+                  <p className="middle m-auto font-semibold text-white text-center">
+                    Add
+                  </p>
+                  <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto">
+                    <img
+                      width={15}
+                      height={15}
+                      src="/assets/icons/plus-icon.svg"
+                      alt="add"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="py-10 text-2xl font-semibold text-[#1F2937]">
+            <div className="py-6 md:py-10 text-2xl font-semibold text-[#1F2937]">
               How it works
             </div>
             <div className="flex pb-4">
-              <div className="border px-2 py-6 md:px-4 md:py-5 lg:p-5 h-18 w-18 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
+              <div className="border p-3 md:px-4 md:py-5 lg:p-5 h-16 w-24 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
                 <img src="/assets/icons/order-packed.svg" alt="order_packed" />
               </div>
               <div className="text-lg font-semibold">
@@ -61,7 +81,7 @@ const ProductDetailsPage: React.FC = () => {
               </div>
             </div>
             <div className="flex pb-4">
-              <div className="border px-2 py-6 md:px-4 md:py-5 lg:p-5 h-18 w-18 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
+              <div className="border p-3 md:px-4 md:py-5 lg:p-5 h-16 w-24 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
                 <img
                   src="/assets/icons/over-to-carrier.svg"
                   alt="over_to_carrier"
@@ -76,7 +96,7 @@ const ProductDetailsPage: React.FC = () => {
               </div>
             </div>
             <div className="flex">
-              <div className="border px-2 py-6 md:px-4 md:py-5 lg:p-5 h-18 w-18 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
+              <div className="border p-3 md:px-4 md:py-5 lg:p-5 h-16 w-24 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
                 <img
                   src="/assets/icons/out-for-delivery.svg"
                   alt="out_for_delivery"
@@ -92,8 +112,8 @@ const ProductDetailsPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#F5F5F5] h-24 flex justify-between px-10  mb-5">
-        <div className="flex m-auto">
+      <div className="bg-[#F5F5F5] md:h-24 flex justify-between px-10  mb-5">
+        <div className="md:flex m-auto">
           <div className="flex">
             <img
               className="w-16  xl:mx-12"
