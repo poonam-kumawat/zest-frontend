@@ -15,11 +15,11 @@ const ProductDetailsPage: React.FC = () => {
                 <div className="pb-1">(4 pieces)</div>
                 <div className="pb-1">MRP : ₹ 40</div>
                 <div className="pb-1">In Stock</div>
-                <div className="w-4/5 flex flex-row p-1.5 rounded bg-[#4DBD7A] mt-5">
+                <div className="w-4/5 flex flex-row p-1.5 rounded bg-[#4DBD7A] mt-5 cursor-pointer">
                   <p className="middle m-auto font-semibold text-white text-center">
                     Add
                   </p>
-                  <button className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto">
+                  <button className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto ">
                     <img src="/assets/icons/plus-icon.svg" alt="add" />
                   </button>
                 </div>
@@ -32,7 +32,7 @@ const ProductDetailsPage: React.FC = () => {
               Several species of pear are valued for their edible fruit and
               juices while others are cultivated as trees.
             </div>
-            <div className="text-[#747875] mt-5 ms-5">
+            <div className="text-[#747875] mt-5 ms-5 border-b md:border-none pb-10">
               <ul className="list-disc">
                 <li>Country of Origin : India</li>
                 <li>Shelf Life : 5 days</li>
@@ -46,12 +46,11 @@ const ProductDetailsPage: React.FC = () => {
               <div className="text-3xl font-semibold text-[#1F2937]">
                 Fresh Pear - Indian: 4 Pieces
               </div>
-              <div className=" text-[#656565] mt-5 font-semibold border-b pb-5 text-lg">
+              <div className=" text-[#656565] mt-5 font-semibold border-b pb-10 text-lg">
                 <div className="pb-1">(4 pieces)</div>
                 <div className="pb-1">MRP : ₹ 40</div>
                 <div className="pb-1">In Stock</div>
-                {/* Add button */}
-                <div className="w-1/2 flex flex-row p-1.5 rounded bg-[#4DBD7A] w-38 mt-5">
+                <div className="w-1/2 flex flex-row p-1.5 rounded bg-[#4DBD7A] w-38 mt-5 cursor-pointer">
                   <p className="middle m-auto font-semibold text-white text-center">
                     Add
                   </p>
@@ -66,10 +65,10 @@ const ProductDetailsPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="py-6 md:py-10 text-2xl font-semibold text-[#1F2937]">
+            <div className="pt-0 pb-5  md:py-10 text-2xl font-semibold text-[#1F2937]">
               How it works
             </div>
-            <div className="flex pb-4">
+            <div className="flex pb-5">
               <div className="border p-3 md:px-4 md:py-5 lg:p-5 h-16 w-24 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
                 <img src="/assets/icons/order-packed.svg" alt="order_packed" />
               </div>

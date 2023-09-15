@@ -53,26 +53,26 @@ const Header = () => {
             placeholder="Search Vegetables and Fruits"
           ></input>
           <img
-            className="mx-4 my-1 absolute right-0 top-0 mt-2"
+            className="mx-4 my-1 absolute right-0 top-0 mt-2 cursor-pointer"
             src="/assets/icons/search-icon.svg"
             alt="search"
             width={20}
             height={20}
           />
         </div>
-        <div className="hidden lg:flex ">
+        <div className="hidden lg:flex">
           <img
-            className="mx-10 my-1"
+            className="mx-10 my-1 cursor-pointer"
             src="/assets/icons/cart-icon.svg"
             alt="cart"
             width={30}
             height={30}
           />
-          <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8">
+          <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">
             Login
           </button>
         </div>
-        <div className="lg:hidden">
+        <div className="lg:hidden cursor-pointer">
           <img
             src="/assets/icons/menu-icon.svg"
             alt="menu"
@@ -89,7 +89,7 @@ const Header = () => {
         <div className="lg:hidden m-3 ">
           <nav className="p-2">
             <ul className="">
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] p-2 rounded text-center m-2  md:hidden lg:hidden hover:text-[#4DBD7A]">
+              <li className="border-2 text-lg font-medium text-[#B8C6C3] p-2 rounded text-center m-2 md:hidden lg:hidden hover:text-[#4DBD7A]">
                 <div className="relative lg:flex md:flex">
                   <input
                     type="text"
@@ -97,7 +97,7 @@ const Header = () => {
                     placeholder="Search Vegetables and Fruits"
                   ></input>
                   <img
-                    className="mx-4 my-1 absolute right-0 top-0 mt-2"
+                    className="mx-4 my-1 absolute right-0 top-0 mt-2 cursor-pointer"
                     src="/assets/icons/search-icon.svg"
                     alt="search"
                     width={20}
@@ -106,7 +106,7 @@ const Header = () => {
                 </div>
               </li>
               <li
-                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 md:hidden lg:hidden"
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 md:hidden lg:hidden "
                 onClick={() => {
                   if (show) setShow(false);
                   setShowLocation(!showLocation);
@@ -150,7 +150,7 @@ const Header = () => {
                   placeholder="Search delivery location"
                 ></input>
                 <img
-                  className="mx-4 my-1 absolute right-0 top-0 mt-3"
+                  className="mx-4 my-1 absolute right-0 top-0 mt-3 cursor-pointer"
                   src="/assets/icons/search-icon.svg"
                   alt="search"
                   width={20}
