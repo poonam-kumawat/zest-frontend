@@ -27,11 +27,11 @@ const Header = () => {
     <div className="sticky top-0 z-50">
       <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
         <div className="flex">
-          <div className="text-2xl font-semibold text-[#4DBD7A] px-10 ">
+          <div className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer">
             Zest
           </div>
           <div
-            className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex"
+            className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
               setShowLocation(!showLocation);
             }}
@@ -106,7 +106,7 @@ const Header = () => {
                 </div>
               </li>
               <li
-                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 md:hidden lg:hidden "
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 md:hidden lg:hidden cursor-pointer"
                 onClick={() => {
                   if (show) setShow(false);
                   setShowLocation(!showLocation);
@@ -114,10 +114,10 @@ const Header = () => {
               >
                 Location
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2">
+              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer">
                 Cart
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2">
+              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer">
                 Login
               </li>
             </ul>
