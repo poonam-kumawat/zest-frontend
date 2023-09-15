@@ -50,13 +50,8 @@ const ProductDetailsPage: React.FC = () => {
               How it works
             </div>
             <div className="flex pb-4">
-              <div className="border p-5 h-18 me-5 my-auto">
-                <img
-                  width={45}
-                  height={45}
-                  src="/assets/icons/order-packed.svg"
-                  alt="order_packed"
-                />
+              <div className="border px-2 py-6 md:px-4 md:py-5 lg:p-5 h-18 w-18 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
+                <img src="/assets/icons/order-packed.svg" alt="order_packed" />
               </div>
               <div className="text-lg font-semibold">
                 <div className="text-[#1F2937]">Order Packed</div>
@@ -66,12 +61,10 @@ const ProductDetailsPage: React.FC = () => {
               </div>
             </div>
             <div className="flex pb-4">
-              <div className="border p-5 h-18 me-5 my-auto">
+              <div className="border px-2 py-6 md:px-4 md:py-5 lg:p-5 h-18 w-18 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
                 <img
-                  width={45}
-                  height={45}
                   src="/assets/icons/over-to-carrier.svg"
-                  alt="order_packed"
+                  alt="over_to_carrier"
                 />
               </div>
               <div className="text-lg font-semibold">
@@ -83,12 +76,10 @@ const ProductDetailsPage: React.FC = () => {
               </div>
             </div>
             <div className="flex">
-              <div className="border p-5 h-18 me-5 my-auto">
+              <div className="border px-2 py-6 md:px-4 md:py-5 lg:p-5 h-18 w-18 md:h-18 md:w-18 lg:h-20 lg:w-18 me-5 my-auto">
                 <img
-                  width={45}
-                  height={45}
                   src="/assets/icons/out-for-delivery.svg"
-                  alt="order_packed"
+                  alt="out_for_delivery"
                 />
               </div>
               <div className="text-lg font-semibold">
