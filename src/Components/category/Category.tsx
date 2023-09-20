@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import "./category.css"
 import Loader from '../Common/Loader';
 import { getProducts, getCategories } from '../../services/api.service';
+import { useLocation } from "react-router-dom";
 
 
 
@@ -42,14 +43,32 @@ interface CardProps {
 
 
 const Category = () => {
-  const [fruits, setFruits] = useState([])
+  const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
   const [categories, setCategories] = useState([]);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get('search');
 
   useEffect(() => {
-    getHomeProducts()
     getCategoriesData()
-  }, [])
+    if (searchQuery) {
+      getSearchResults()
+    } else {
+      getHomeProducts()
+    }
+    console.log('searchQuery :>> ', searchQuery);
+  }, [searchQuery])
+
+  const getSearchResults = async () => {
+    const searchFilter = {
+      productName: { $regex: searchQuery, $options: "i" },
+    };
+    const res = await getProducts(searchFilter)
+    setProducts(res.data)
+    console.log('res :>> ', res);
+  }
+
 
   const getHomeProducts = async () => {
 
@@ -62,7 +81,7 @@ const Category = () => {
     ])
     setLoading(false)
 
-    setFruits(response[0].data.slice(0, 8))
+    setProducts(response[0].data.slice(0, 8))
 
   }
   const getCategoriesData = async () => {
@@ -153,11 +172,17 @@ const Category = () => {
           </div>
           <div className="col-start-2 col-end-5 p-6 pr-12">
             <p className="mb-5 font-semibold text-2xl">Fruits</p>
-            <div className="grid grid-cols-4 grid-rows-auto gap-4">
-              {fruits.map((cardData: CardProps) => {
-                return <Card key={cardData._id} cardData={cardData} />;
-              })}
-            </div>
+            {products.length > 0 ? (
+              <div className="grid grid-cols-4 grid-rows-auto gap-4">
+                {
+                  products.map((cardData: CardProps) => {
+                    return <Card key={cardData._id} cardData={cardData} />;
+                  })
+                }
+              </div>
+            ) : (
+              <p className="text-center text-xl">No Products Available</p>
+            )}
           </div>
         </div>
       ) : <Loader />}
