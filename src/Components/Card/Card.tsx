@@ -1,18 +1,20 @@
 import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 let quantity: number = 0;
 interface CardProps {
-  cardData: any
+  cardData: any;
 }
 
 interface CardDataProps {
   id: number;
   name: string;
-  availability: number,
-  price: 40
+  availability: number;
+  price: 40;
 }
 
 const Card: FC<CardProps> = ({ cardData }) => {
+  const navigate = useNavigate();
   return (
     <div className="card cursor-pointer gap-4 border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
       <img
@@ -21,9 +23,17 @@ const Card: FC<CardProps> = ({ cardData }) => {
         alt="fruit"
         width={180}
         height={180}
+        onClick={() => {
+          navigate(`/product/${cardData._id}`);
+        }}
       />
       <div className="name">
-        <p className="text-base mt-4 font-semibold">
+        <p
+          className="text-base mt-4 font-semibold"
+          onClick={() => {
+            navigate(`/product/${cardData._id}`);
+          }}
+        >
           {cardData.productName}
         </p>
       </div>
