@@ -2,14 +2,32 @@ import React, { FC, useEffect, useState } from "react";
 import Card from "../Components/Card/Card";
 import { getProducts } from "../services/api.service";
 import Loader from "../Components/Common/Loader";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   const [vegetables, setVegetables] = useState([]);
   const [fruits, setFruits] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<any>('');
+  const navigate = useNavigate()
+
   useEffect(() => {
     getHomeProducts();
   }, []);
+
+  const handleChange = (e: any) => {
+    setSearchQuery(e.target.value)
+  }
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    navigate({
+      pathname: "category",
+      search: createSearchParams({
+        search: searchQuery
+      }).toString()
+    })
+  }
 
   const getHomeProducts = async () => {
     const vegetableFilter = {
@@ -49,7 +67,7 @@ const HomePage: React.FC = () => {
                 Get your healthy foods & snacks delivered at your doorsteps all
                 day everyday
               </div>
-              <div className="flex flex-row w-[60%] top-96 p-2 bg-white rounded-md shadow-md border-1 border-[#1F2937]">
+              <form onSubmit={(e) => handleSubmit(e)} className="flex flex-row w-[60%] top-96 p-2 bg-white rounded-md shadow-md border-1 border-[#1F2937]">
                 <img
                   className="mx-3"
                   src="/assets/icons/search-icon.svg"
@@ -61,11 +79,14 @@ const HomePage: React.FC = () => {
                   type="text"
                   className="m-auto w-[100%] border-0 outline-none"
                   placeholder="Search Vegetables and Fruits"
+                  value={searchQuery}
+                  onChange={(e) => handleChange(e)}
+                  required
                 />
-                <button className="px-5 py-2 bg-[#4DBD7A] text-white rounded-lg">
+                <button type="submit" className="px-5 py-2 bg-[#4DBD7A] text-white rounded-lg">
                   Search
                 </button>
-              </div>
+              </form>
             </div>
           </section>
 
