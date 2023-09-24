@@ -10,11 +10,9 @@ interface Props {
 
 const Layout = ({ children, ...Props }: Props) => {
 
-  const navigate = useNavigate()
-
   return (
     <div>
-      <Navbar navigate={useNavigate()} />
+      <Navbar />
       <div>{children}</div>
       <Footer />
     </div>

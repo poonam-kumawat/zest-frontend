@@ -61,12 +61,13 @@ const Category = () => {
   }, [searchQuery])
 
   const getSearchResults = async () => {
+    setLoading(true);
     const searchFilter = {
       productName: { $regex: searchQuery, $options: "i" },
     };
     const res = await getProducts(searchFilter)
     setProducts(res.data)
-    console.log('res :>> ', res);
+    setLoading(false);
   }
 
 

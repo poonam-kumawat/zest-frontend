@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./Header.css";
-import { createSearchParams } from "react-router-dom";
+import { Link, createSearchParams, useNavigate } from "react-router-dom";
 
-const Header = ({ navigate }: any) => {
+const Header = () => {
   // for mobile menu bar
   const [show, setShow] = useState(false);
   // for location popover
   const [showLocation, setShowLocation] = useState(false);
   const [searchQuery, setSearchQuery] = useState<any>('');
   const locationRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate()
 
 
   const handleClickOutside = (event: any) => {
@@ -44,9 +45,11 @@ const Header = ({ navigate }: any) => {
     <div className="sticky top-0 z-50">
       <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
         <div className="flex">
-          <div className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer">
-            Zest
-          </div>
+          <Link to={`/`}>
+            <div className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer">
+              Zest
+            </div>
+          </Link>
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
