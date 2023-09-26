@@ -47,7 +47,7 @@ const ProductDetailsPage: React.FC = () => {
             <div className="w-full h-full grid-rows-2 md:border-e">
               <div className="w-2/3 p-10 m-auto border max-w-sm">
                 <img
-                  className="w-full"
+                  className="w-full mix-blend-multiply scale-[1.5]"
                   src={details?.imgUrl}
                   alt={details?.productName}
                 />
