@@ -9,15 +9,15 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 function App() {
   return (
     <div>
-      <Layout>
-        <Router>
+      <Router>
+        <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/category" element={<Category />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
           </Routes>
-        </Router>
-      </Layout>
+        </Layout>
+      </Router>
     </div>
   );
 }
