@@ -44,9 +44,7 @@ const HomePage: React.FC = () => {
     setLoading(false);
 
     setVegetables(response[0].data.slice(0, 5));
-    setFruits(response[1].data.slice(0, 5));
-
-    console.log("response :>> ", response);
+    setFruits(response[1].data.slice(0, 5));    
   };
 
   return (
