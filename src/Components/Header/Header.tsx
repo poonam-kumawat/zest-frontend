@@ -41,15 +41,19 @@ const Header = () => {
     };
   }, [showLocation]);
 
+ 
+
   return (
     <div className="sticky top-0 z-50">
       <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
         <div className="flex">
-          <Link to={`/`}>
-            <div className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer">
+          
+            <div onClick={() => {
+            navigate(`/`);
+          }} className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer">
               Zest
             </div>
-          </Link>
+          
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {

@@ -57,6 +57,8 @@ const Category = () => {
     }
   };
 
+  
+
   return (
     <div className="categortWrap min-h-screen w-full h-full">
       {!loading ? (
