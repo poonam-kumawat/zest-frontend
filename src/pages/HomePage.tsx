@@ -7,7 +7,7 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 const HomePage: React.FC = () => {
   const [vegetables, setVegetables] = useState([]);
   const [fruits, setFruits] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState<any>('');
   const navigate = useNavigate()
 
@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
     const fruitsFilter = {
       categories: { $regex: "Fruits", $options: "i" },
     };
-    setLoading(true);
+    // setLoading(true);
     const response = await Promise.all([
       getProducts(vegetableFilter),
       getProducts(fruitsFilter),
