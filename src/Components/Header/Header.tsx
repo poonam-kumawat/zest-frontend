@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import "./Header.css";
+import Cart from "../Cart/Cart";
 
 const Header = () => {
   // for mobile menu bar
   const [show, setShow] = useState(false);
   // for location popover
   const [showLocation, setShowLocation] = useState(false);
+  // for cart popover
+  const [showCart, setShowCart] = useState(false);
   const locationRef = useRef<HTMLInputElement>(null);
 
   const handleClickOutside = (event: any) => {
@@ -67,6 +70,9 @@ const Header = () => {
             alt="cart"
             width={30}
             height={30}
+            onClick={() => {
+              setShowCart(!showCart);
+            }}
           />
           <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">
             Login
@@ -114,7 +120,12 @@ const Header = () => {
               >
                 Location
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer">
+              <li
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
+                onClick={() => {
+                  setShowCart(!showCart);
+                }}
+              >
                 Cart
               </li>
               <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer">
@@ -174,6 +185,8 @@ const Header = () => {
           </div>
         </div>
       )}
+      {/* Cart Popover */}
+      {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
     </div>
   );
 };
