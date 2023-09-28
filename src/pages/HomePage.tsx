@@ -46,12 +46,15 @@ const HomePage: React.FC = () => {
     setVegetables(response[0].data.slice(0, 5));
     setFruits(response[1].data.slice(0, 5));    
   };
+  const scrollToTop = () => {
+   window.scroll(0,0)
+  }
 
   return (
     <div className="w-full h-full min-h-screen home">
       {!loading ? (
         <section>
-          <section className="banner-search w-full mt-4 relative flex items-center justify-center">
+          <section className="banner-search w-full relative flex items-center justify-center">
             <img
               className="bg-cover w-full bg-center bg-no-repeat"
               src="/assets/images/homePage.svg"
@@ -109,9 +112,9 @@ const HomePage: React.FC = () => {
               <div className="">
                 <p className="text-2xl font-semibold my-4">Fresh Vegetables</p>
               </div>
-              <div className="grid grid-cols-5 grid-rows-auto gap-8">
+              <div onClick={()=>{scrollToTop()}} className="grid grid-cols-5 grid-rows-auto gap-8">
                 {vegetables.map((cardData: any) => {
-                  return <Card key={cardData._id} cardData={cardData} />;
+                  return <Card  key={cardData._id} cardData={cardData} />;
                 })}
               </div>
             </section>

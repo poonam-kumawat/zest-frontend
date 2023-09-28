@@ -52,17 +52,17 @@ const ProductDetailsPage: React.FC = () => {
                   alt={details?.productName}
                 />
               </div>
-              <div className="py-5 md:py-10 px-10 font-semibold">
+              <div className="py-5 md:py-10 px-10">
                 <div className="md:hidden pb-5">
                   <div className="text-3xl font-semibold text-[#1F2937]">
                     {details?.productName}
                   </div>
-                  <div className=" text-[#656565] mt-5 font-semibold border-b pb-8 text-lg ">
+                  <div className=" text-[#656565] mt-5 border-b pb-8 text-lg ">
                     <div className="pb-1">Quantity: {details?.quantity}</div>
                     <div className="pb-1">MRP : {details?.price}</div>
                     <div className="pb-1">In Stock</div>
                     <div className="w-4/5 flex flex-row p-1.5 rounded bg-[#4DBD7A] mt-5 cursor-pointer">
-                      <p className="middle m-auto font-semibold text-white text-center">
+                      <p className="middle m-auto  text-white text-center">
                         Add
                       </p>
                       <button className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto ">
@@ -89,7 +89,7 @@ const ProductDetailsPage: React.FC = () => {
                   <div className="text-3xl font-semibold text-[#1F2937]">
                     {details?.productName}
                   </div>
-                  <div className=" text-[#656565] mt-5 font-semibold border-b pb-10 text-lg">
+                  <div className=" text-[#656565] mt-5  border-b pb-10 text-lg">
                     <div className="pb-1">Quantity: {details?.quantity}</div>
                     <div className="pb-1">MRP : {details?.price}</div>
                     <div className="pb-1">In Stock</div>
@@ -118,8 +118,8 @@ const ProductDetailsPage: React.FC = () => {
                       alt="order_packed"
                     />
                   </div>
-                  <div className="text-lg font-semibold">
-                    <div className="text-[#1F2937]">Order Packed</div>
+                  <div className="text-lg">
+                    <div className="text-[#1F2937] font-semibold">Order Packed</div>
                     <div className="text-[#747875]">
                       Your order will be packed safely and transferred to
                       warehouse
@@ -133,8 +133,8 @@ const ProductDetailsPage: React.FC = () => {
                       alt="over_to_carrier"
                     />
                   </div>
-                  <div className="text-lg font-semibold">
-                    <div className="text-[#1F2937]"> Over to the Carrier</div>
+                  <div className="text-lg ">
+                    <div className="text-[#1F2937] font-semibold"> Over to the Carrier</div>
                     <div className="text-[#747875]">
                       The order will be picked from the warehouse and out for
                       delivery
@@ -148,8 +148,8 @@ const ProductDetailsPage: React.FC = () => {
                       alt="out_for_delivery"
                     />
                   </div>
-                  <div className="text-lg font-semibold">
-                    <div className="text-[#1F2937]"> Out for delivery</div>
+                  <div className="text-lg">
+                    <div className="text-[#1F2937] font-semibold"> Out for delivery</div>
                     <div className="text-[#747875]">
                       The order will be carefully delivered at your doorstep
                     </div>
