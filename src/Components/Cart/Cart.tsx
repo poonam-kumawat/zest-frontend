@@ -35,9 +35,8 @@ const Cart = ({
         {/* <div className=" pt-60 font-semibold text-lg mx-8">
           No item added to cart. Add now
         </div> */}
-
         {/* Product Cart */}
-        <div className="card cursor-pointer m-2 gap-4 rounded p-2 flex justify-center bg-[#ffffff] ">
+        <div className="card cursor-pointer mx-2 my-4 gap-4 rounded p-2 flex justify-center bg-[#ffffff] shadow">
           <img
             className="mx-4 my-auto"
             src={"/assets/images/cherry.svg"}
@@ -85,6 +84,40 @@ const Cart = ({
             </div>
           </div>
         </div>
+        {/* Price Summary */}
+        <div className="card mx-2 my-4 rounded px-4 py-2  bg-[#ffffff] text-[#1F2937] font-semibold shadow">
+          <p className="text-xl font-semibold my-2 mx-6 ">Price Summary</p>
+          <div className="flex w-full flex-row justify-between px-8 py-2 border-t border-slate-400 text-sm ">
+            <p>Sub Total</p>
+            <p> + 400 </p>
+          </div>
+          <div className="flex w-full flex-row justify-between px-8 py-2 text-sm ">
+            <p>Delivery Charges</p>
+            <p className="pr-2"> + 40 </p>
+          </div>
+          <div className="flex w-full flex-row justify-between px-8 py-2 text-sm ">
+            <p> Grand Total</p>
+            <p> + 440 </p>
+          </div>
+        </div>
+        <div className="flex m-2 p-4 font-semibold text-[#656565]">
+          <img
+            className="mr-4"
+            width={25}
+            src="/assets/icons/info-icon.svg"
+            alt="info"
+          />
+          <div className="text-left text-sm">
+            Orders cancelled within 24 hrs of delivery won’t
+            <br />
+            be applicable for refund.In case of unexpected
+            <br />
+            delays, a refund will be provided, if applicable.
+          </div>
+        </div>
+        <button className="w-5/6 rounded-lg bg-[#4DBD7A] h-10 mx-8 font-semibold text-white text-lg">
+          Proceed to Payment
+        </button>
       </div>
     </div>
   );
