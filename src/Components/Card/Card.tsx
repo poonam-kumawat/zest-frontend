@@ -16,9 +16,9 @@ interface CardDataProps {
 const Card: FC<CardProps> = ({ cardData }) => {
   const navigate = useNavigate();
   return (
-    <div className="card cursor-pointer gap-4 border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
+    <div className="card cursor-pointer border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
       <img
-        className="m-auto"
+        className="m-auto mix-blend-multiply scale-[1.2]"
         src={cardData.imgUrl}
         alt="fruit"
         width={180}
@@ -27,9 +27,10 @@ const Card: FC<CardProps> = ({ cardData }) => {
           navigate(`/product/${cardData._id}`);
         }}
       />
+      <div className="gap-4 flex flex-col ">
       <div className="name">
         <p
-          className="text-base mt-4 font-semibold"
+          className="text-base font-semibold"
           onClick={() => {
             navigate(`/product/${cardData._id}`);
           }}
@@ -57,7 +58,7 @@ const Card: FC<CardProps> = ({ cardData }) => {
         <p className="middle m-auto font-semibold text-white text-center">
           {quantity > 0 ? quantity : "Add"}
         </p>
-        <button className="end float-right w-8 h-8 flex items-center justify-center bg-[#268462] rounded">
+        <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
           <img
             width={15}
             height={15}
@@ -65,6 +66,7 @@ const Card: FC<CardProps> = ({ cardData }) => {
             alt="add"
           />
         </button>
+      </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Header.css";
+import { Link, createSearchParams, useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
 
 const Header = () => {
@@ -7,14 +8,30 @@ const Header = () => {
   const [show, setShow] = useState(false);
   // for location popover
   const [showLocation, setShowLocation] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<any>("");
   // for cart popover
   const [showCart, setShowCart] = useState(false);
   const locationRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
       setShowLocation(!showLocation);
     }
+  };
+
+  const handleChange = (e: any) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    navigate({
+      pathname: "category",
+      search: createSearchParams({
+        search: searchQuery,
+      }).toString(),
+    });
   };
 
   useEffect(() => {
@@ -30,9 +47,15 @@ const Header = () => {
     <div className="sticky top-0 z-50">
       <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
         <div className="flex">
-          <div className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer">
+          <div
+            onClick={() => {
+              navigate(`/`);
+            }}
+            className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer"
+          >
             Zest
           </div>
+
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
@@ -50,11 +73,16 @@ const Header = () => {
           </div>
         </div>
         <div className="relative hidden lg:flex md:flex">
-          <input
-            type="text"
-            className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#B8C6C3] rounded"
-            placeholder="Search Vegetables and Fruits"
-          ></input>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+              type="text"
+              className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#B8C6C3] rounded"
+              placeholder="Search Vegetables and Fruits"
+              value={searchQuery}
+              onChange={(e) => handleChange(e)}
+              required
+            ></input>
+          </form>
           <img
             className="mx-4 my-1 absolute right-0 top-0 mt-2 cursor-pointer"
             src="/assets/icons/search-icon.svg"
