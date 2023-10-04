@@ -55,6 +55,9 @@ const Category = () => {
       setCategories(response.data);
     } catch (error) {}
   };
+  const scrollToTop = () => {
+    window.scroll(0, 0);
+  };
 
   return (
     <div className="categortWrap min-h-screen w-full h-full">
@@ -69,9 +72,8 @@ const Category = () => {
                 >
                   <img
                     // src="/assets/images/karela.svg"
-
                     src={category.imgUrl}
-                    className="w-12 pr-4 mix-blend-multiply"
+                    className="w-12 pr-4 mix-blend-multiply scale-[1.5]"
                     alt="img"
                   />
                   <p>{category.catergories}</p>
@@ -82,7 +84,12 @@ const Category = () => {
           <div className="col-start-2 col-end-5 p-6 pr-12">
             <p className="mb-5 font-semibold text-2xl">Fruits</p>
             {products.length > 0 ? (
-              <div className="grid grid-cols-4 grid-rows-auto gap-4">
+              <div
+                onClick={() => {
+                  scrollToTop();
+                }}
+                className="grid grid-cols-4 grid-rows-auto gap-4"
+              >
                 {products.map((cardData: CardProps) => {
                   return <Card key={cardData._id} cardData={cardData} />;
                 })}

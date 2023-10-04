@@ -83,7 +83,7 @@ const Header = () => {
               required
             ></input>
           </form>
-          <img
+          <img onClick={(e)=>{handleSubmit(e)}}
             className="mx-4 my-1 absolute right-0 top-0 mt-2 cursor-pointer"
             src="/assets/icons/search-icon.svg"
             alt="search"
