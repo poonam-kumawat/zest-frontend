@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import "./Header.css";
 import { Link, createSearchParams, useNavigate } from "react-router-dom";
+import Cart from "../Cart/Cart";
 
 const Header = () => {
   // for mobile menu bar
   const [show, setShow] = useState(false);
   // for location popover
   const [showLocation, setShowLocation] = useState(false);
-  const [searchQuery, setSearchQuery] = useState<any>('');
+  const [searchQuery, setSearchQuery] = useState<any>("");
+  // for cart popover
+  const [showCart, setShowCart] = useState(false);
   const locationRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
@@ -19,18 +21,18 @@ const Header = () => {
   };
 
   const handleChange = (e: any) => {
-    setSearchQuery(e.target.value)
-  }
+    setSearchQuery(e.target.value);
+  };
 
   const handleSubmit = (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     navigate({
       pathname: "category",
       search: createSearchParams({
-        search: searchQuery
-      }).toString()
-    })
-  }
+        search: searchQuery,
+      }).toString(),
+    });
+  };
 
   useEffect(() => {
     if (showLocation) {
@@ -41,19 +43,19 @@ const Header = () => {
     };
   }, [showLocation]);
 
- 
-
   return (
     <div className="sticky top-0 z-50">
       <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
         <div className="flex">
-          
-            <div onClick={() => {
-            navigate(`/`);
-          }} className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer">
-              Zest
-            </div>
-          
+          <div
+            onClick={() => {
+              navigate(`/`);
+            }}
+            className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer"
+          >
+            Zest
+          </div>
+
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
@@ -96,6 +98,9 @@ const Header = () => {
             alt="cart"
             width={30}
             height={30}
+            onClick={() => {
+              setShowCart(!showCart);
+            }}
           />
           <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">
             Login
@@ -143,7 +148,12 @@ const Header = () => {
               >
                 Location
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer">
+              <li
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
+                onClick={() => {
+                  setShowCart(!showCart);
+                }}
+              >
                 Cart
               </li>
               <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer">
@@ -203,6 +213,8 @@ const Header = () => {
           </div>
         </div>
       )}
+      {/* Cart Popover */}
+      {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
     </div>
   );
 };

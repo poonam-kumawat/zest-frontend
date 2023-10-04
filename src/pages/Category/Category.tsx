@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../../Components/Card/Card";
 import "./category.css";
 import Loader from "../../Components/Common/Loader";
@@ -53,11 +53,8 @@ const Category = () => {
     try {
       const response = await getCategories();
       setCategories(response.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
-
-  
 
   return (
     <div className="categortWrap min-h-screen w-full h-full">
