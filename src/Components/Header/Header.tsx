@@ -44,8 +44,8 @@ const Header = () => {
   }, [showLocation]);
 
   return (
-    <div className="sticky top-0 z-50">
-      <div className=" p-4 bg-[#ffffff] flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
+    <div className="sticky top-0 z-50 bg-[#ffffff]">
+      <div className=" p-4 flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
         <div className="flex">
           <div
             onClick={() => {
@@ -125,9 +125,9 @@ const Header = () => {
       </div>
       {/* Mobile navbar */}
       {show && (
-        <div className="lg:hidden m-3 ">
+        <div className="lg:hidden bg-[#ffffff] border-t">
           <nav className="p-2">
-            <ul className="">
+            <ul className="text-[#ffffff]">
               <li className="border-2 text-lg font-medium text-[#B8C6C3] p-2 rounded text-center m-2 md:hidden lg:hidden hover:text-[#4DBD7A]">
                 <div className="relative lg:flex md:flex">
                   <input
