@@ -119,7 +119,9 @@ const ProductDetailsPage: React.FC = () => {
                     />
                   </div>
                   <div className="text-lg">
-                    <div className="text-[#1F2937] font-semibold">Order Packed</div>
+                    <div className="text-[#1F2937] font-semibold">
+                      Order Packed
+                    </div>
                     <div className="text-[#747875]">
                       Your order will be packed safely and transferred to
                       warehouse
@@ -134,7 +136,10 @@ const ProductDetailsPage: React.FC = () => {
                     />
                   </div>
                   <div className="text-lg ">
-                    <div className="text-[#1F2937] font-semibold"> Over to the Carrier</div>
+                    <div className="text-[#1F2937] font-semibold">
+                      {" "}
+                      Over to the Carrier
+                    </div>
                     <div className="text-[#747875]">
                       The order will be picked from the warehouse and out for
                       delivery
@@ -149,7 +154,10 @@ const ProductDetailsPage: React.FC = () => {
                     />
                   </div>
                   <div className="text-lg">
-                    <div className="text-[#1F2937] font-semibold"> Out for delivery</div>
+                    <div className="text-[#1F2937] font-semibold">
+                      {" "}
+                      Out for delivery
+                    </div>
                     <div className="text-[#747875]">
                       The order will be carefully delivered at your doorstep
                     </div>

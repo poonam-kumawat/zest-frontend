@@ -9,7 +9,6 @@ interface Props {
 }
 
 const Layout = ({ children, ...Props }: Props) => {
-
   return (
     <div>
       <Navbar />
