@@ -24,7 +24,7 @@ const Cart = ({
             setShowCart(!showCart);
           }}
         >
-          <img
+          <img className="cursor-pointer"
             width={50}
             height={50}
             src="/assets/icons/close-button.svg"
