@@ -8,26 +8,26 @@ const HomePage: React.FC = () => {
   const [vegetables, setVegetables] = useState([]);
   const [fruits, setFruits] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState<any>('');
-  const navigate = useNavigate()
+  const [searchQuery, setSearchQuery] = useState<any>("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getHomeProducts();
   }, []);
 
   const handleChange = (e: any) => {
-    setSearchQuery(e.target.value)
-  }
+    setSearchQuery(e.target.value);
+  };
 
   const handleSubmit = (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     navigate({
       pathname: "category",
       search: createSearchParams({
-        search: searchQuery
-      }).toString()
-    })
-  }
+        search: searchQuery,
+      }).toString(),
+    });
+  };
 
   const getHomeProducts = async () => {
     const vegetableFilter = {
@@ -44,11 +44,11 @@ const HomePage: React.FC = () => {
     setLoading(false);
 
     setVegetables(response[0].data.slice(0, 5));
-    setFruits(response[1].data.slice(0, 5));    
+    setFruits(response[1].data.slice(0, 5));
   };
   const scrollToTop = () => {
-   window.scroll(0,0)
-  }
+    window.scroll(0, 0);
+  };
 
   return (
     <div className="w-full h-full min-h-screen home">
@@ -68,7 +68,10 @@ const HomePage: React.FC = () => {
                 Get your healthy foods & snacks delivered at your doorsteps all
                 day everyday
               </div>
-              <form onSubmit={(e) => handleSubmit(e)} className="flex flex-row w-[60%] top-96 p-2 bg-white rounded-md shadow-md border-1 border-[#1F2937]">
+              <form
+                onSubmit={(e) => handleSubmit(e)}
+                className="flex flex-row w-[60%] top-96 p-2 bg-white rounded-md shadow-md border-1 border-[#1F2937]"
+              >
                 <img
                   className="mx-3"
                   src="/assets/icons/search-icon.svg"
@@ -84,7 +87,10 @@ const HomePage: React.FC = () => {
                   onChange={(e) => handleChange(e)}
                   required
                 />
-                <button type="submit" className="px-5 py-2 bg-[#4DBD7A] text-white rounded-lg">
+                <button
+                  type="submit"
+                  className="px-5 py-2 bg-[#4DBD7A] text-white rounded-lg"
+                >
                   Search
                 </button>
               </form>
@@ -112,9 +118,14 @@ const HomePage: React.FC = () => {
               <div className="">
                 <p className="text-2xl font-semibold my-4">Fresh Vegetables</p>
               </div>
-              <div onClick={()=>{scrollToTop()}} className="grid grid-cols-5 grid-rows-auto gap-8">
+              <div
+                onClick={() => {
+                  scrollToTop();
+                }}
+                className="grid grid-cols-5 grid-rows-auto gap-8"
+              >
                 {vegetables.map((cardData: any) => {
-                  return <Card  key={cardData._id} cardData={cardData} />;
+                  return <Card key={cardData._id} cardData={cardData} />;
                 })}
               </div>
             </section>

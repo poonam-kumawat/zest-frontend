@@ -5,7 +5,6 @@
     position: relative;
     animation: spin988 2s linear infinite;
 }
-
 .loader .circle {
     --color: #4DBD7A;
     --dim: 1.2rem;
@@ -15,22 +14,18 @@
     border-radius: 50%;
     position: absolute;
 }
-
 .loader .circle:nth-child(1) {
     top: 0;
     left: 0;
 }
-
 .loader .circle:nth-child(2) {
     top: 0;
     right: 0;
 }
-
 .loader .circle:nth-child(3) {
     bottom: 0;
     left: 0;
 }
-
 .loader .circle:nth-child(4) {
     bottom: 0;
     right: 0;
