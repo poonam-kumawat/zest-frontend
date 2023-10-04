@@ -59,6 +59,7 @@ const Header = () => {
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
+              setShowCart(false)
               setShowLocation(!showLocation);
             }}
           >
@@ -99,6 +100,7 @@ const Header = () => {
             width={30}
             height={30}
             onClick={() => {
+              setShowLocation(false)
               setShowCart(!showCart);
             }}
           />
