@@ -131,7 +131,7 @@ const HomePage: React.FC = () => {
             </section>
 
             <section className="discount-banner mt-10">
-              <img src="/assets/images/vegBanner.svg" alt="vegBanner" />
+              <img src="/assets/images/vegBigBanner.svg" alt="vegBanner" />
             </section>
 
             <section className="discount-list">
