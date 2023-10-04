@@ -59,7 +59,7 @@ const Header = () => {
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
-              setShowCart(false)
+              if(showCart) setShowCart(false)
               setShowLocation(!showLocation);
             }}
           >
@@ -84,7 +84,7 @@ const Header = () => {
               required
             ></input>
           </form>
-          <img onClick={(e)=>{handleSubmit(e)}}
+          <img onClick={(e) => { handleSubmit(e) }}
             className="mx-4 my-1 absolute right-0 top-0 mt-2 cursor-pointer"
             src="/assets/icons/search-icon.svg"
             alt="search"
@@ -100,7 +100,7 @@ const Header = () => {
             width={30}
             height={30}
             onClick={() => {
-              setShowLocation(false)
+              if (showLocation) setShowLocation(false)
               setShowCart(!showCart);
             }}
           />
@@ -115,6 +115,7 @@ const Header = () => {
             width={30}
             height={30}
             onClick={() => {
+              if(showCart) setShowCart(false)
               setShow(!show);
             }}
           />
@@ -153,6 +154,7 @@ const Header = () => {
               <li
                 className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
                 onClick={() => {
+                  if (show) setShow(false);
                   setShowCart(!showCart);
                 }}
               >
