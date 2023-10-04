@@ -28,45 +28,45 @@ const Card: FC<CardProps> = ({ cardData }) => {
         }}
       />
       <div className="gap-4 flex flex-col ">
-      <div className="name">
-        <p
-          className="text-base font-semibold"
-          onClick={() => {
-            navigate(`/product/${cardData._id}`);
-          }}
-        >
-          {cardData.productName}
-        </p>
-      </div>
+        <div className="name">
+          <p
+            className="text-base font-semibold"
+            onClick={() => {
+              navigate(`/product/${cardData._id}`);
+            }}
+          >
+            {cardData.productName}
+          </p>
+        </div>
 
-      <div className="flex w-full flex-row justify-between">
-        <p className="text-sm text-[#656565]">{cardData.price}</p>
-        <p className="text-sm text-[#656565]">({cardData.availability})</p>
-      </div>
+        <div className="flex w-full flex-row justify-between">
+          <p className="text-sm text-[#656565]">{cardData.price}</p>
+          <p className="text-sm text-[#656565]">({cardData.availability})</p>
+        </div>
 
-      <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A]">
-        {quantity >= 1 && (
-          <button className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
+        <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A]">
+          {quantity >= 1 && (
+            <button className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
+              <img
+                width={15}
+                height={15}
+                src="/assets/icons/minus-icon.svg"
+                alt="add"
+              />
+            </button>
+          )}
+          <p className="middle m-auto font-semibold text-white text-center">
+            {quantity > 0 ? quantity : "Add"}
+          </p>
+          <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
             <img
               width={15}
               height={15}
-              src="/assets/icons/minus-icon.svg"
+              src="/assets/icons/plus-icon.svg"
               alt="add"
             />
           </button>
-        )}
-        <p className="middle m-auto font-semibold text-white text-center">
-          {quantity > 0 ? quantity : "Add"}
-        </p>
-        <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
-          <img
-            width={15}
-            height={15}
-            src="/assets/icons/plus-icon.svg"
-            alt="add"
-          />
-        </button>
-      </div>
+        </div>
       </div>
     </div>
   );
