@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+
 
 const Cart = ({
   setShowCart,
@@ -24,18 +24,14 @@ const Cart = ({
             setShowCart(!showCart);
           }}
         >
-          <img className="cursor-pointer"
+          <img
+            className="cursor-pointer"
             width={50}
             height={50}
             src="/assets/icons/close-button.svg"
             alt="close"
           />
         </div>
-        {/* Empty Cart message */}
-        {/* <div className=" pt-60 font-semibold text-lg mx-8">
-          No item added to cart. Add now
-        </div> */}
-        {/* Product Cart */}
         <div className="card cursor-pointer mx-2 my-4 gap-4 rounded p-2 flex justify-center bg-[#ffffff] shadow">
           <img
             className="mx-4 my-auto"
@@ -43,20 +39,10 @@ const Cart = ({
             alt="fruit"
             width={80}
             height={80}
-            // onClick={() => {
-            //   // navigate(``);
-            // }}
           />
           <div className="pr-14">
             <div className="name">
-              <p
-                className="text-base font-semibold my-2"
-                // onClick={() => {
-                //   // navigate(``);
-                // }}
-              >
-                Cherry
-              </p>
+              <p className="text-base font-semibold my-2">Cherry</p>
             </div>
 
             <div className="flex w-full flex-row justify-between py-2">
@@ -84,7 +70,7 @@ const Cart = ({
             </div>
           </div>
         </div>
-        {/* Price Summary */}
+
         <div className="card mx-2 my-4 rounded px-4 py-2  bg-[#ffffff] text-[#1F2937] font-semibold shadow">
           <p className="text-xl font-semibold my-2 mx-6 ">Price Summary</p>
           <div className="flex w-full flex-row justify-between px-8 py-2 border-t border-slate-400 text-sm ">
