@@ -19,11 +19,17 @@ export const cartSlice = createSlice({
 
       if (check.includes(true)) {
         state.countList[productDetails._id] += 1;
-        state.totalAmount += 1;
+        state.itemCount += 1;
+        state.totalAmount += parseFloat(
+          productDetails.price.replace("Rs ", "")
+        );
       } else {
         state.productList = [...state.productList, productDetails];
         state.countList[productDetails._id] = 1;
-        state.totalAmount += 1;
+        state.itemCount += 1;
+        state.totalAmount += parseFloat(
+          productDetails.price.replace("Rs ", "")
+        );
       }
     },
   },
