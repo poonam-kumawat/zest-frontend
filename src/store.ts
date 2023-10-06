@@ -1,19 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import { persistStore, persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
-// import root from "./redux//reducers/reducers";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { root } from "./Redux/rootReducer";
 
-// const persistConfig = {
-//   key: "Clip_Magic",
-//   storage,
-//   whitelist: ["user"],
-// };
+const persistConfig = {
+  key: "Zest",
+  storage,
+  whitelist: ["user"],
+};
 
-// const reducer = persistReducer(persistConfig, root);
+const reducer = persistReducer(persistConfig, root);
 
 const store = configureStore({
-  reducer:{},
-  
+  reducer: { reducer },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
-export {store}
+export { store };

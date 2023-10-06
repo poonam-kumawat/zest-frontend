@@ -1,20 +1,23 @@
 import React, { FC } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setProductList } from "../../Redux/reducer/cartReducer";
 
 let quantity: number = 0;
 interface CardProps {
   cardData: any;
 }
 
-interface CardDataProps {
-  id: number;
-  name: string;
-  availability: number;
-  price: 40;
-}
+// interface CardDataProps {
+//   id: number;
+//   name: string;
+//   availability: number;
+//   price: 40;
+// }
 
 const Card: FC<CardProps> = ({ cardData }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div className="card cursor-pointer border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
       <img
@@ -58,7 +61,12 @@ const Card: FC<CardProps> = ({ cardData }) => {
           <p className="middle m-auto font-semibold text-white text-center">
             {quantity > 0 ? quantity : "Add"}
           </p>
-          <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded">
+          <button
+            className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded"
+            onClick={() => {
+              dispatch(setProductList(cardData));
+            }}
+          >
             <img
               width={15}
               height={15}

@@ -1,32 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState: {
-    productList:[],
-    totalAmount:0,
-    itemCount:0,
+    productList: [] as any,
+    countList: {} as any,
+    totalAmount: 0,
+    itemCount: 0,
   },
   reducers: {
-    // increment: (state) => {
-    //   state.totalAmount += 1
-    // },
-    // decrement: (state) => {
-    //   state.totalAmount -= 1
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.totalAmount += action.payload
-    // },
-    
-    addProduct:(state,action)=>{
-        const list = [...state.productList]
-        const cards:any=action.payload
-        // list.push(cards)
-        state.productList = [...list]
-    }
+    setProductList: (state, action) => {
+      const productDetails = action.payload;
+
+      const check = state.productList.map((element: any) => {
+        if (productDetails._id === element._id) return true;
+        else return false;
+      });
+
+      if (check.includes(true)) {
+        state.countList[productDetails._id] += 1;
+        state.totalAmount += 1;
+      } else {
+        state.productList = [...state.productList, productDetails];
+        state.countList[productDetails._id] = 1;
+        state.totalAmount += 1;
+      }
+    },
   },
-})
+});
 
-export const { addProduct } = cartSlice.actions
+export const { setProductList } = cartSlice.actions;
 
-export default cartSlice.reducer
+export default cartSlice.reducer;
