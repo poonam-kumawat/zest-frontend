@@ -5,36 +5,47 @@ export const cartSlice = createSlice({
   initialState: {
     productList: [] as any,
     countList: {} as any,
-    totalAmount: 0,
     itemCount: 0,
+    totalAmount: 0,
   },
   reducers: {
-    setProductList: (state, action) => {
+    addProduct: (state, action) => {
       const productDetails = action.payload;
-
-      const check = state.productList.map((element: any) => {
-        if (productDetails._id === element._id) return true;
-        else return false;
-      });
-
-      if (check.includes(true)) {
+      const existingItem = state.productList.find(
+        (item: any) => item._id === productDetails._id
+      );
+      if (existingItem) {
+        let price: number = parseFloat(existingItem.price.replace("Rs ", ""));
+        price += parseFloat(productDetails.price.replace("Rs ", ""));
+        existingItem.price = `Rs ${price}`;
         state.countList[productDetails._id] += 1;
-        state.itemCount += 1;
-        state.totalAmount += parseFloat(
-          productDetails.price.replace("Rs ", "")
-        );
       } else {
         state.productList = [...state.productList, productDetails];
         state.countList[productDetails._id] = 1;
-        state.itemCount += 1;
-        state.totalAmount += parseFloat(
-          productDetails.price.replace("Rs ", "")
-        );
       }
+      state.itemCount += 1;
+      state.totalAmount += parseFloat(productDetails.price.replace("Rs ", ""));
+    },
+    removeProduct: (state, action) => {
+      //   const productDetails = action.payload;
+      //   const existingItem = state.productList.find(
+      //     (item: any) => item._id === productDetails._id
+      //   );
+      //   if (existingItem) {
+      //     let price: number = parseFloat(existingItem.price.replace("Rs ", ""));
+      //     price += parseFloat(productDetails.price.replace("Rs ", ""));
+      //     existingItem.price = `Rs ${price}`;
+      //     state.countList[productDetails._id] = 1;
+      //   } else {
+      //     state.productList = [...state.productList, productDetails];
+      //     state.countList[productDetails._id] = 1;
+      //   }
+      //   state.itemCount -= 1;
+      //   state.totalAmount -= parseFloat(productDetails.price.replace("Rs ", ""));
     },
   },
 });
 
-export const { setProductList } = cartSlice.actions;
+export const { addProduct, removeProduct } = cartSlice.actions;
 
 export default cartSlice.reducer;

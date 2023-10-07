@@ -12,7 +12,7 @@ const persistConfig = {
 const reducer = persistReducer(persistConfig, root);
 
 const store = configureStore({
-  reducer: { reducer },
+  reducer: reducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
