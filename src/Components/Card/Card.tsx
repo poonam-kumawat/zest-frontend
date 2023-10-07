@@ -21,8 +21,6 @@ const Card: FC<CardProps> = ({ cardData }) => {
   const dispatch = useDispatch();
   const { countList } = useSelector((state: rootType) => state.cart);
 
-  console.log("countList", countList);
-
   return (
     <div className="card cursor-pointer border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
       <img
