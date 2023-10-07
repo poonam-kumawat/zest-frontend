@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./Header.css";
 import { Link, createSearchParams, useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
+import SignIn from "../SignIn/SignIn";
 
 const Header = () => {
   // for mobile menu bar
@@ -11,12 +12,17 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState<any>("");
   // for cart popover
   const [showCart, setShowCart] = useState(false);
+  const [showSignIn, setshowSignIn] = useState(false)
   const locationRef = useRef<HTMLInputElement>(null);
+  const SignInRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
       setShowLocation(!showLocation);
+    }
+    else if (SignInRef.current && !SignInRef.current.contains(event.target)) {
+      setshowSignIn(!showSignIn);
     }
   };
 
@@ -38,10 +44,13 @@ const Header = () => {
     if (showLocation) {
       document.addEventListener("click", handleClickOutside, true);
     }
+    if (showSignIn) {
+      document.addEventListener("click", handleClickOutside, true);
+    }
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, [showLocation]);
+  }, [showLocation, showSignIn]);
 
   return (
     <div className="sticky top-0 z-50 bg-[#ffffff]">
@@ -59,7 +68,7 @@ const Header = () => {
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
-              if(showCart) setShowCart(false)
+              if (showCart) setShowCart(false)
               setShowLocation(!showLocation);
             }}
           >
@@ -107,7 +116,8 @@ const Header = () => {
               setShowCart(!showCart);
             }}
           />
-          <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">
+          <button className="bg-[#4DBD7A] text-[#ffffff] text-center font-medium text-lg rounded-lg py-1 px-8 cursor-pointer"
+            onClick={() => setshowSignIn(!showSignIn)}>
             Login
           </button>
         </div>
@@ -118,7 +128,7 @@ const Header = () => {
             width={30}
             height={30}
             onClick={() => {
-              if(showCart) setShowCart(false)
+              if (showCart) setShowCart(false)
               setShow(!show);
             }}
           />
@@ -222,6 +232,8 @@ const Header = () => {
       )}
       {/* Cart Popover */}
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
+      {/* SignIn Popup */}
+      {showSignIn && <SignIn SignInRef={SignInRef} />}
     </div>
   );
 };

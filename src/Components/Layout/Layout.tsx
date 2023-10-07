@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import Navbar from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 interface Props {
   children?: ReactNode;
@@ -10,9 +10,9 @@ interface Props {
 
 const Layout = ({ children, ...Props }: Props) => {
   return (
-    <div>
+    <div className="heya">
       <Navbar />
-      <div>{children}</div>
+      <Outlet />
       <Footer />
     </div>
   );
