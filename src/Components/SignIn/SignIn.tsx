@@ -9,8 +9,6 @@ const SignIn = ({ SignInRef }: any) => {
     const [otpToken, setotpToken] = useState("")
 
     const handleInputChange = (index: number, value: string) => {
-        // debugger
-        console.log({ index, value })
         const newInputValues = [...inputValues];
         newInputValues[index] = value;
         setInputValues(newInputValues);
@@ -41,28 +39,15 @@ const SignIn = ({ SignInRef }: any) => {
                         <p className={`text-${showOTP ? "xl" : "2xl"} font-semibold`}>{showOTP ? `OTP sent to number +91${mobileNumber}` : "Get Fresh Fruits & Veggies Now"}</p>
                         {
                             showOTP ? (
-                                <div className='flex flex-row otp'>
-                                    {
-                                        inputValues.map((value, index) => {
-                                            return (<input key={index} className='m-2 border border-[#87908F] h-10 w-10 text-center rounded' type='text' maxLength={1} onChange={(e) => handleInputChange(index, e.target.value)} />)
-                                        })
-                                    }
-                                </div>
-                            ) : (
-                                <div className='border-[1px] rounded-md border-[#87908F] text-center flex flex-row items-center'>
-                                    <div className='h-full border-r-[1px] border-[#87908F] px-3 flex items-center justify-center'>
-                                        <p className='text-[#87908F] font-semibold text-lg'>+91</p>
-                                    </div>
-                                    <input onChange={(e) => handleMobileChange(e)} type='text' className='py-2 px-2 text-center text-xl font-semibold rounded-md focus:ring-0 outline-none placeholder:font-semibold placeholder:text-lg' placeholder='Enter Phone Number' />
-                                </div>
-                            )
-                        }
-                        {
-                            !showOTP ? (
-                                <button onClick={() => setshowOTP(true)} className='bg-[#4DBD7A] py-[6px] font-semibold rounded-lg text-xl px-8 text-white'>Generate OTP</button>
-                            ) : (
                                 <>
-                                    <button onClick={() => setshowOTP(true)} className='bg-[#4DBD7A] py-[6px] font-semibold rounded-lg text-xl px-8 text-white'>Confirm</button>
+                                    <div className='flex flex-row otp'>
+                                        {
+                                            inputValues.map((value, index) => {
+                                                return (<input key={index} className='m-2 border border-[#87908F] h-10 w-10 text-center rounded' type='text' maxLength={1} required onChange={(e) => handleInputChange(index, e.target.value)} />)
+                                            })
+                                        }
+                                    </div>
+                                    <button type='submit' onClick={() => setshowOTP(true)} className='bg-[#4DBD7A] py-[6px] font-semibold rounded-lg text-xl px-8 text-white'>Confirm</button>
                                     <div className='flex flex-col items-center gap-1'>
                                         <p className='text-xl font-semibold text-[#87908F]'> 00 : 30 </p>
                                         <div className='flex items-center gap-2'>
@@ -71,11 +56,22 @@ const SignIn = ({ SignInRef }: any) => {
                                         </div>
                                     </div>
                                 </>
+                            ) : (
+                                <form onSubmit={(e) => { e.preventDefault(); setshowOTP(!showOTP) }} className='flex flex-col gap-8 justify-center items-center'>
+                                    <div className='border-[1px] rounded-md border-[#87908F] text-center flex flex-row items-center'>
+                                        <div className='h-full border-r-[1px] border-[#87908F] px-3 flex items-center justify-center'>
+                                            <p className='text-[#87908F] font-semibold text-lg'>+91</p>
+                                        </div>
+                                        <input onChange={(e) => handleMobileChange(e)} type='text' className='py-2 px-2 text-center text-xl font-semibold rounded-md focus:ring-0 outline-none placeholder:font-semibold placeholder:text-lg' placeholder='Enter Phone Number' required maxLength={10} />
+                                    </div>
+                                    <button type='submit' className='bg-[#4DBD7A] py-[6px] px-2 font-semibold rounded-lg text-xl  text-white'>Generate OTP</button>
+                                </form>
+
                             )
                         }
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
