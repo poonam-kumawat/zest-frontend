@@ -5,7 +5,7 @@ export const cartSlice = createSlice({
   initialState: {
     productList: [] as any,
     countList: {} as any,
-    itemCount: 0,
+    cartTotalCount: 0,
     totalAmount: 0,
   },
   reducers: {
@@ -15,33 +15,33 @@ export const cartSlice = createSlice({
         (item: any) => item._id === productDetails._id
       );
       if (existingItem) {
-        let price: number = parseFloat(existingItem.price.replace("Rs ", ""));
-        price += parseFloat(productDetails.price.replace("Rs ", ""));
-        existingItem.price = `Rs ${price}`;
+        // let price: number = parseFloat(existingItem.price.replace("Rs ", ""));
+        // price += parseFloat(productDetails.price.replace("Rs ", ""));
+        // existingItem.price = `Rs ${price}`;
         state.countList[productDetails._id] += 1;
       } else {
         state.productList = [...state.productList, productDetails];
         state.countList[productDetails._id] = 1;
       }
-      state.itemCount += 1;
+      state.cartTotalCount += 1;
       state.totalAmount += parseFloat(productDetails.price.replace("Rs ", ""));
     },
     removeProduct: (state, action) => {
-      //   const productDetails = action.payload;
-      //   const existingItem = state.productList.find(
-      //     (item: any) => item._id === productDetails._id
-      //   );
-      //   if (existingItem) {
-      //     let price: number = parseFloat(existingItem.price.replace("Rs ", ""));
-      //     price += parseFloat(productDetails.price.replace("Rs ", ""));
-      //     existingItem.price = `Rs ${price}`;
-      //     state.countList[productDetails._id] = 1;
-      //   } else {
-      //     state.productList = [...state.productList, productDetails];
-      //     state.countList[productDetails._id] = 1;
-      //   }
-      //   state.itemCount -= 1;
-      //   state.totalAmount -= parseFloat(productDetails.price.replace("Rs ", ""));
+      const productDetails = action.payload;
+      // const existingItem = state.productList.find(
+      //   (item: any) => item._id === productDetails._id
+      // );
+
+      state.totalAmount -= parseFloat(productDetails.price.replace("Rs ", ""));
+      if (state.countList[productDetails._id] === 1) {
+        state.productList = state.productList.filter(
+          (item: any) => item.id === productDetails._id
+        );
+        state.countList[productDetails._id] -= 1;
+      } else {
+        state.countList[productDetails._id] -= 1;
+      }
+      state.cartTotalCount -= 1;
     },
   },
 });

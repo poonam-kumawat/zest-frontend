@@ -49,7 +49,6 @@ const Card: FC<CardProps> = ({ cardData }) => {
           <p className="text-sm text-[#656565]">{cardData.price}</p>
           <p className="text-sm text-[#656565]">({cardData.availability})</p>
         </div>
-
         <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A]">
           {countList[`${cardData._id}`] >= 1 && (
             <button
@@ -67,7 +66,8 @@ const Card: FC<CardProps> = ({ cardData }) => {
             </button>
           )}
           <p className="middle m-auto font-semibold text-white text-center">
-            {countList[`${cardData._id}`] > 0
+            {countList[`${cardData._id}`] !== undefined &&
+            countList[`${cardData._id}`] !== 0
               ? countList[`${cardData._id}`]
               : "Add"}
           </p>
