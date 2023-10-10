@@ -10,7 +10,7 @@ const Cart = ({
 }) => {
   const [quantity, setQuantity] = useState(0);
   return (
-    <div className="bg-[#333333] bg-opacity-70  h-full fixed z-50 w-full grid place-content-end">
+    <div className="bg-[#333333] bg-opacity-70  h-full fixed z-50 w-full grid place-content-end translate-x-(100%) ease-out duration-300">
       <div className="bg-[#F6F6F6] text-[#000]  h-screen bg-[#E4E4E4]">
         <div className="flex justify-between border-b border-slate-400 ">
           <div className="text-[#1F2937] text-2xl font-semibold my-2 mx-6">
