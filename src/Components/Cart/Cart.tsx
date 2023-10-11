@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { rootType } from "../../Redux/rootReducer";
+
+
 
 
 const Cart = ({
@@ -9,6 +13,8 @@ const Cart = ({
   showCart: any;
 }) => {
   const [quantity, setQuantity] = useState(0);
+  const { cartTotalCount } = useSelector((state: rootType) => state.cart);
+  const cartItems=useSelector((state:rootType)=>state.cart.productList);
   return (
     <div className="bg-[#333333] bg-opacity-70  h-full fixed z-50 w-full grid place-content-end translate-x-(100%) ease-out duration-300">
       <div className="bg-[#F6F6F6] text-[#000]  h-screen bg-[#E4E4E4]">
@@ -16,7 +22,7 @@ const Cart = ({
           <div className="text-[#1F2937] text-2xl font-semibold my-2 mx-6">
             My Cart
           </div>
-          <div className="text-[#656565] text-sm m-4 ">Item Count : 1</div>
+          <div className="text-[#656565] text-sm m-4 ">Item Count : {cartTotalCount}</div>
         </div>
         <div
           className=" -ms-14 -mt-12"
