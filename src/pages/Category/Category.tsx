@@ -15,6 +15,7 @@ interface CardProps {
 const Category = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isActive, setIsActive] = useState("");
   const [categories, setCategories] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -46,17 +47,29 @@ const Category = () => {
     setLoading(true);
     const response = await Promise.all([getProducts(fruitsFilter)]);
     setLoading(false);
-
     setProducts(response[0].data.slice(0, 8));
   };
+
   const getCategoriesData = async () => {
     try {
       const response = await getCategories();
       setCategories(response.data);
+      setIsActive(response.data[0]._id);
     } catch (error) {}
   };
+
   const scrollToTop = () => {
     window.scroll(0, 0);
+  };
+
+  const handleCategoryClick = async (id: any) => {
+    try {
+      const filterCategoryId = {
+        categoryIds: id,
+      };
+      const res = await getProducts(filterCategoryId);
+      setProducts(res.data);
+    } catch (error) {}
   };
 
   return (
@@ -68,7 +81,13 @@ const Category = () => {
               {categories.map((category: any) => (
                 <div
                   key={category._id}
-                  className="activeCategory border-[#ddd] border-b-2  p-5 flex align-middle hover:bg-[#F2FFF3] active  hover:border-r-0 hover:cursor-pointer "
+                  className={`${
+                    isActive === category._id ? "activeCategory " : ""
+                  }" border-[#ddd] border-b-2 p-5 flex align-middle hover:bg-[#F2FFF3] active hover:border-r-0 hover:cursor-pointer`}
+                  onClick={() => {
+                    handleCategoryClick(category._id);
+                    setIsActive(category._id);
+                  }}
                 >
                   <img
                     // src="/assets/images/karela.svg"
