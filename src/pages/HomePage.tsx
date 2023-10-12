@@ -119,9 +119,7 @@ const HomePage: React.FC = () => {
                 <p className="text-2xl font-semibold my-4">Fresh Vegetables</p>
               </div>
               <div
-                onClick={() => {
-                  scrollToTop();
-                }}
+                
                 className="grid grid-cols-5 grid-rows-auto gap-8"
               >
                 {vegetables.map((cardData: any) => {
@@ -136,21 +134,69 @@ const HomePage: React.FC = () => {
 
             <section className="discount-list">
               <div className="mt-10 grid grid-cols-6 gap-6 grid-rows-auto">
-                <img className="cursor-pointer" src="/assets/images/vcard1.svg" alt="vcard1" />
-                <img className="cursor-pointer" src="/assets/images/vcard2.svg" alt="vcard2" />
-                <img className="cursor-pointer" src="/assets/images/vcard3.svg" alt="vcard3" />
-                <img className="cursor-pointer" src="/assets/images/vcard4.svg" alt="vcard4" />
-                <img className="cursor-pointer" src="/assets/images/vcard1.svg" alt="vcard4" />
-                <img className="cursor-pointer" src="/assets/images/vcard2.svg" alt="vcard2" />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard1.svg"
+                  alt="vcard1"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard2.svg"
+                  alt="vcard2"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard3.svg"
+                  alt="vcard3"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard4.svg"
+                  alt="vcard4"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard1.svg"
+                  alt="vcard4"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard2.svg"
+                  alt="vcard2"
+                />
               </div>
 
               <div className="mt-10 grid grid-cols-6 gap-6 grid-rows-auto">
-                <img className="cursor-pointer" src="/assets/images/vcard5.svg" alt="vcard1" />
-                <img className="cursor-pointer" src="/assets/images/vcard6.svg" alt="vcard2" />
-                <img className="cursor-pointer" src="/assets/images/vcard7.svg" alt="vcard3" />
-                <img className="cursor-pointer" src="/assets/images/vcard8.svg" alt="vcard4" />
-                <img className="cursor-pointer" src="/assets/images/vcard5.svg" alt="vcard4" />
-                <img className="cursor-pointer" src="/assets/images/vcard7.svg" alt="vcard2" />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard5.svg"
+                  alt="vcard1"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard6.svg"
+                  alt="vcard2"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard7.svg"
+                  alt="vcard3"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard8.svg"
+                  alt="vcard4"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard5.svg"
+                  alt="vcard4"
+                />
+                <img
+                  className="cursor-pointer"
+                  src="/assets/images/vcard7.svg"
+                  alt="vcard2"
+                />
               </div>
             </section>
 

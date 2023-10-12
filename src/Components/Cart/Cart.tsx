@@ -2,9 +2,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 
-
-
-
 const Cart = ({
   setShowCart,
   showCart,
@@ -14,7 +11,7 @@ const Cart = ({
 }) => {
   const [quantity, setQuantity] = useState(0);
   const { cartTotalCount } = useSelector((state: rootType) => state.cart);
-  const cartItems=useSelector((state:rootType)=>state.cart.productList);
+  const cartItems = useSelector((state: rootType) => state.cart.productList);
   return (
     <div className="bg-[#333333] bg-opacity-70  h-full fixed z-50 w-full grid place-content-end translate-x-(100%) ease-out duration-300">
       <div className="bg-[#F6F6F6] text-[#000]  h-screen bg-[#E4E4E4]">
@@ -22,7 +19,9 @@ const Cart = ({
           <div className="text-[#1F2937] text-2xl font-semibold my-2 mx-6">
             My Cart
           </div>
-          <div className="text-[#656565] text-sm m-4 ">Item Count : {cartTotalCount}</div>
+          <div className="text-[#656565] text-sm m-4 ">
+            Item Count : {cartTotalCount}
+          </div>
         </div>
         <div
           className=" -ms-14 -mt-12"
@@ -50,12 +49,10 @@ const Cart = ({
             <div className="name">
               <p className="text-base font-semibold my-2">Cherry</p>
             </div>
-
             <div className="flex w-full flex-row justify-between py-2">
               <p className="text-sm text-[#656565] pr-12">MRP : Rs. 50</p>
               <p className="text-sm text-[#656565]"> (4 pieces)</p>
             </div>
-
             <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A] h-7">
               {quantity >= 1 && (
                 <button className="flex items-center justify-center bg-[#268462] rounded">
