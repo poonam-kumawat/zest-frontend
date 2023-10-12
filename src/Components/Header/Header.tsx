@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Header.css";
-import { Link, createSearchParams, useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
 
 const Header = () => {
@@ -59,7 +59,7 @@ const Header = () => {
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
-              if(showCart) setShowCart(false)
+              if (showCart) setShowCart(false);
               setShowLocation(!showLocation);
             }}
           >
@@ -103,7 +103,7 @@ const Header = () => {
             width={30}
             height={30}
             onClick={() => {
-              if (showLocation) setShowLocation(false)
+              if (showLocation) setShowLocation(false);
               setShowCart(!showCart);
             }}
           />
@@ -118,8 +118,9 @@ const Header = () => {
             width={30}
             height={30}
             onClick={() => {
-              if(showCart) setShowCart(false)
+              if (showCart) setShowCart(false);
               setShow(!show);
+              if (showCart) setShowCart(false);
             }}
           />
         </div>
@@ -159,6 +160,7 @@ const Header = () => {
                 onClick={() => {
                   if (show) setShow(false);
                   setShowCart(!showCart);
+                  if (show) setShow(false);
                 }}
               >
                 Cart

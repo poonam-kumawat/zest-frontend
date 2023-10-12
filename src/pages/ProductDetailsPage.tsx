@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../services/api.service";
 import { useParams } from "react-router-dom";
 import Loader from "../Components/Common/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { rootType } from "../Redux/rootReducer";
+import { addProduct, removeProduct } from "../Redux/reducer/cartReducer";
 
 type ProductDetails = {
   availability: string;
@@ -22,9 +25,12 @@ const ProductDetailsPage: React.FC = () => {
   const [details, setDetails] = useState<ProductDetails>();
   const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+  const { countList } = useSelector((state: rootType) => state.cart);
+
   useEffect(() => {
     if (params.id) getHomeProducts(params.id);
-  }, []);
+  }, [params.id]);
 
   const getHomeProducts = async (id: string) => {
     const filter = {
@@ -96,10 +102,33 @@ const ProductDetailsPage: React.FC = () => {
                     <div className="pb-1">MRP : {details?.price}</div>
                     <div className="pb-1">In Stock</div>
                     <div className="w-1/2 flex flex-row p-1.5 rounded bg-[#4DBD7A] w-38 mt-5 cursor-pointer">
+                      {countList[`${details?._id}`] >= 1 && (
+                        <button
+                          className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded"
+                          onClick={() => {
+                            dispatch(removeProduct(details));
+                          }}
+                        >
+                          <img
+                            width={15}
+                            height={15}
+                            src="/assets/icons/minus-icon.svg"
+                            alt="plus"
+                          />
+                        </button>
+                      )}
                       <p className="middle m-auto font-semibold text-white text-center">
-                        Add
+                        {countList[`${details?._id}`] !== undefined &&
+                        countList[`${details?._id}`] !== 0
+                          ? countList[`${details?._id}`]
+                          : "Add"}
                       </p>
-                      <button className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto">
+                      <button
+                        onClick={() => {
+                          dispatch(addProduct(details));
+                        }}
+                        className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto"
+                      >
                         <img
                           width={15}
                           height={15}

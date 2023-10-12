@@ -1,5 +1,6 @@
+import { useSelector } from "react-redux";
+import { rootType } from "../../Redux/rootReducer";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 
 const Cart = ({
   setShowCart,
@@ -9,6 +10,10 @@ const Cart = ({
   showCart: any;
 }) => {
   const [quantity, setQuantity] = useState(0);
+  const { cartTotalCount, productList } = useSelector(
+    (state: rootType) => state.cart
+  );
+  // const cartItems = useSelector((state: rootType) => state.cart.productList);
   return (
     <div className="bg-[#333333] bg-opacity-70 h-full fixed z-50 w-full grid place-content-end">
       <div className="bg-[#F6F6F6] text-[#000]  h-screen">
@@ -16,7 +21,9 @@ const Cart = ({
           <div className="text-[#1F2937] text-2xl font-semibold my-2 mx-6">
             My Cart
           </div>
-          <div className="text-[#656565] text-sm m-4 ">Item Count : 1</div>
+          <div className="text-[#656565] text-sm m-4 ">
+            Item Count : {cartTotalCount}
+          </div>
         </div>
         <div
           className=" -ms-14 -mt-12"
@@ -24,7 +31,8 @@ const Cart = ({
             setShowCart(!showCart);
           }}
         >
-          <img className="cursor-pointer"
+          <img
+            className="cursor-pointer"
             width={50}
             height={50}
             src="/assets/icons/close-button.svg"
@@ -43,27 +51,15 @@ const Cart = ({
             alt="fruit"
             width={80}
             height={80}
-            // onClick={() => {
-            //   // navigate(``);
-            // }}
           />
           <div className="pr-14">
             <div className="name">
-              <p
-                className="text-base font-semibold my-2"
-                // onClick={() => {
-                //   // navigate(``);
-                // }}
-              >
-                Cherry
-              </p>
+              <p className="text-base font-semibold my-2">Cherry</p>
             </div>
-
             <div className="flex w-full flex-row justify-between py-2">
               <p className="text-sm text-[#656565] pr-12">MRP : Rs. 50</p>
               <p className="text-sm text-[#656565]"> (4 pieces)</p>
             </div>
-
             <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A] h-7">
               {quantity >= 1 && (
                 <button className="flex items-center justify-center bg-[#268462] rounded">
