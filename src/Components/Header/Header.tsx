@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Header.css";
-import { Link, createSearchParams, useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
 
 const Header = () => {
@@ -59,7 +59,7 @@ const Header = () => {
           <div
             className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
             onClick={() => {
-              setShowCart(false)
+              if (showCart) setShowCart(false);
               setShowLocation(!showLocation);
             }}
           >
@@ -103,9 +103,8 @@ const Header = () => {
             width={30}
             height={30}
             onClick={() => {
-              setShowLocation(false)
+              if (showLocation) setShowLocation(false);
               setShowCart(!showCart);
-              
             }}
           />
           <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">
@@ -119,8 +118,9 @@ const Header = () => {
             width={30}
             height={30}
             onClick={() => {
+              if (showCart) setShowCart(false);
               setShow(!show);
-              if(showCart) setShowCart(false);
+              if (showCart) setShowCart(false);
             }}
           />
         </div>
@@ -158,6 +158,7 @@ const Header = () => {
               <li
                 className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
                 onClick={() => {
+                  if (show) setShow(false);
                   setShowCart(!showCart);
                   if (show) setShow(false);
                 }}

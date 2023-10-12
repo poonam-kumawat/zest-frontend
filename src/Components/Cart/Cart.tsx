@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
+import { useState } from "react";
 
 const Cart = ({
   setShowCart,
@@ -10,11 +10,13 @@ const Cart = ({
   showCart: any;
 }) => {
   const [quantity, setQuantity] = useState(0);
-  const { cartTotalCount } = useSelector((state: rootType) => state.cart);
-  const cartItems = useSelector((state: rootType) => state.cart.productList);
+  const { cartTotalCount, productList } = useSelector(
+    (state: rootType) => state.cart
+  );
+  // const cartItems = useSelector((state: rootType) => state.cart.productList);
   return (
-    <div className="bg-[#333333] bg-opacity-70  h-full fixed z-50 w-full grid place-content-end translate-x-(100%) ease-out duration-300">
-      <div className="bg-[#F6F6F6] text-[#000]  h-screen bg-[#E4E4E4]">
+    <div className="bg-[#333333] bg-opacity-70 h-full fixed z-50 w-full grid place-content-end">
+      <div className="bg-[#F6F6F6] text-[#000]  h-screen">
         <div className="flex justify-between border-b border-slate-400 ">
           <div className="text-[#1F2937] text-2xl font-semibold my-2 mx-6">
             My Cart
@@ -37,7 +39,12 @@ const Cart = ({
             alt="close"
           />
         </div>
-        <div className="card cursor-pointer mx-2 my-4 gap-4 rounded p-2 flex justify-center bg-[#ffffff] shadow">
+        {/* Empty Cart message */}
+        {/* <div className=" pt-60 font-semibold text-lg mx-8">
+          No item added to cart. Add now
+        </div> */}
+        {/* Product Cart */}
+        <div className="card cursor-pointer mx-3 my-4 gap-4 rounded p-2 flex justify-center bg-[#ffffff] shadow">
           <img
             className="mx-4 my-auto"
             src={"/assets/images/cherry.svg"}
@@ -73,8 +80,8 @@ const Cart = ({
             </div>
           </div>
         </div>
-
-        <div className="card mx-2 my-4 rounded px-4 py-2  bg-[#ffffff] text-[#1F2937] font-semibold shadow">
+        {/* Price Summary */}
+        <div className="card mx-3 my-4 rounded px-4 py-2  bg-[#ffffff] text-[#1F2937] font-semibold shadow">
           <p className="text-xl font-semibold my-2 mx-6 ">Price Summary</p>
           <div className="flex w-full flex-row justify-between px-8 py-2 border-t border-slate-400 text-sm ">
             <p>Sub Total</p>

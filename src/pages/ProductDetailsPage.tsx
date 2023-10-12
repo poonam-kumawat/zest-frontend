@@ -30,7 +30,7 @@ const ProductDetailsPage: React.FC = () => {
 
   useEffect(() => {
     if (params.id) getHomeProducts(params.id);
-  }, []);
+  }, [params.id]);
 
   const getHomeProducts = async (id: string) => {
     const filter = {
@@ -77,15 +77,17 @@ const ProductDetailsPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="text-2xl text-[#5C625E] ">Details</div>
-                <div className="text-[#747875] mt-5 text-lg">
-                  {details?.product_description}
-                </div>
-                <div className="text-[#747875] mt-5 ms-5 border-b md:border-none pb-10">
-                  <ul className="list-disc">
-                    <li>Country of Origin : India</li>
-                    <li>Shelf Life : 5 days</li>
-                  </ul>
+                <div className="ps-8">
+                  <div className="text-2xl text-[#5C625E] ">Details</div>
+                  <div className="text-[#747875] mt-5 text-lg">
+                    {details?.product_description}
+                  </div>
+                  <div className="text-[#747875] mt-5 ms-5 border-b md:border-none pb-10">
+                    <ul className="list-disc">
+                      <li>Country of Origin : India</li>
+                      <li>Shelf Life : 5 days</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -137,7 +139,7 @@ const ProductDetailsPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="pt-0 pb-5  md:py-10 text-2xl font-semibold text-[#1F2937]">
+                <div className="pt-0 pb-4 md:py-10 text-2xl font-semibold text-[#1F2937]">
                   How it works
                 </div>
                 <div className="flex pb-5">
