@@ -12,10 +12,9 @@ const Cart = ({
 }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
-  const { cartTotalCount, productList,countList } = useSelector(
+  const { cartTotalCount, productList, countList, totalAmount } = useSelector(
     (state: rootType) => state.cart
   );
-  // const cartItems = useSelector((state: rootType) => state.cart.productList);
   return (
     <div className="bg-[#333333] bg-opacity-70 h-full fixed z-50 w-full grid place-content-end">
       <div className="bg-[#F6F6F6] text-[#000]  h-screen  overflow-scroll">
@@ -46,74 +45,92 @@ const Cart = ({
           No item added to cart. Add now
         </div> */}
         {/* Product Cart */}
-        
+        {productList.length > 0 ? (
+          <div>
         {productList.map((cartitem: any) => {
-          return(
-        <div  key={cartitem._id} className="card cursor-pointer mx-3 my-4 gap-4 rounded  p-2 flex justify-center bg-[#ffffff] shadow">
-          <img
-            className="mx-4 my-auto"
-            src={cartitem.imgUrl}
-            alt="fruit"
-            width={80}
-            height={80}
-          />
-          <div className="pr-14">
-            <div className="name">
-              <p className="text-base font-semibold my-2">{cartitem.productName}</p>
+          return (
+            <div
+              key={cartitem._id}
+              className="card cursor-pointer mx-3 my-4 gap-4 rounded  p-2 flex justify-center bg-[#ffffff] shadow"
+            >
+              <img
+                className="mx-4 my-auto"
+                src={cartitem.imgUrl}
+                alt="fruit"
+                width={80}
+                height={80}
+              />
+              <div className="pr-14">
+                <div className="name">
+                  <p className="text-base font-semibold my-2">
+                    {cartitem.productName}
+                  </p>
+                </div>
+                <div className="flex w-full flex-row justify-between py-2">
+                  <p className="text-sm text-[#656565] pr-12">
+                    {cartitem.price}
+                  </p>
+                  <p className="text-sm text-[#656565]">
+                    {" "}
+                    ({cartitem.availability})
+                  </p>
+                </div>
+                <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A] h-7">
+                  {countList[`${cartitem._id}`] >= 1 && (
+                    <button
+                      onClick={() => {
+                        dispatch(removeProduct(cartitem));
+                      }}
+                      className="flex items-center justify-center bg-[#268462] rounded"
+                    >
+                      <img src="/assets/icons/minus-icon.svg" alt="add" />
+                    </button>
+                  )}
+                  <p className="mx-auto -my-0.5 font-semibold text-white text-center ">
+                    {countList[`${cartitem._id}`] !== undefined &&
+                    countList[`${cartitem._id}`] !== 0
+                      ? countList[`${cartitem._id}`]
+                      : "Add"}
+                  </p>
+                  <button
+                    onClick={() => {
+                      dispatch(addProduct(cartitem));
+                    }}
+                    className="float-right w-5 h-5 flex items-center justify-center bg-[#268462] rounded"
+                  >
+                    <img
+                      width={15}
+                      height={15}
+                      src="/assets/icons/plus-icon.svg"
+                      alt="add"
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="flex w-full flex-row justify-between py-2">
-              <p className="text-sm text-[#656565] pr-12">{cartitem.price}</p>
-              <p className="text-sm text-[#656565]"> ({cartitem.availability})</p>
-            </div>
-            <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A] h-7">
-              {countList[`${cartitem._id}`] >= 1 &&(
-                <button
-                onClick={() => {
-                  dispatch(removeProduct(cartitem));
-                }}
-                 className="flex items-center justify-center bg-[#268462] rounded">
-                  <img src="/assets/icons/minus-icon.svg" alt="add" />
-                </button>
-              )}
-              <p className="mx-auto -my-0.5 font-semibold text-white text-center ">
-              {countList[`${cartitem._id}`] !== undefined &&
-            countList[`${cartitem._id}`] !== 0
-              ? countList[`${cartitem._id}`]
-              : "Add"}
-              </p>
-              <button 
-              onClick={() => {
-                dispatch(addProduct(cartitem));
-              }}
-              className="float-right w-5 h-5 flex items-center justify-center bg-[#268462] rounded">
-                <img
-                  width={15}
-                  height={15}
-                  src="/assets/icons/plus-icon.svg"
-                  alt="add"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
           );
-
         })}
-        
+        </div>
+        ):(
+          <div className=" py-8 font-semibold text-lg mx-6">
+          No item added to cart. Add now
+        </div>
+        )}
+
         {/* Price Summary */}
         <div className="card mx-3 my-4 rounded px-4 py-2  bg-[#ffffff] text-[#1F2937] font-semibold shadow">
           <p className="text-xl font-semibold my-2 mx-6 ">Price Summary</p>
           <div className="flex w-full flex-row justify-between px-8 py-2 border-t border-slate-400 text-sm ">
             <p>Sub Total</p>
-            <p> + 400 </p>
+            <p>{totalAmount}</p>
           </div>
           <div className="flex w-full flex-row justify-between px-8 py-2 text-sm ">
             <p>Delivery Charges</p>
-            <p className="pr-2"> + 40 </p>
+            <p className="pr-2">+ 40</p>
           </div>
           <div className="flex w-full flex-row justify-between px-8 py-2 text-sm ">
             <p> Grand Total</p>
-            <p> + 440 </p>
+            <p>{totalAmount+40}</p>
           </div>
         </div>
         <div className="flex m-2 p-4 font-semibold text-[#656565]">
