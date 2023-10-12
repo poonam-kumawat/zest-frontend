@@ -28,6 +28,7 @@ export const cartSlice = createSlice({
     },
     removeProduct: (state, action) => {
       const productDetails = action.payload;
+     
       // const existingItem = state.productList.find(
       //   (item: any) => item._id === productDetails._id
       // );
