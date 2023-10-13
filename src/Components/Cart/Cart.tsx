@@ -3,6 +3,14 @@ import { rootType } from "../../Redux/rootReducer";
 import { useState } from "react";
 import { addProduct, removeProduct } from "../../Redux/reducer/cartReducer";
 
+const setVisible = () => {
+  console.log(document.body.style.overflow);
+  if (document.body.style.overflow !== "scroll") {
+    document.body.style.overflow = "scroll";
+  } else {
+    document.body.style.overflow = "hidden";
+  }
+};
 const Cart = ({
   setShowCart,
   showCart,
@@ -16,7 +24,7 @@ const Cart = ({
     (state: rootType) => state.cart
   );
   return (
-    <div className="bg-[#333333] bg-opacity-70 h-full fixed z-50 w-full grid place-content-end">
+    <div className="bg-[#333333]  bg-opacity-70 h-full fixed z-50 w-full grid place-content-end">
       <div className="bg-[#F6F6F6] text-[#000]  h-screen  overflow-scroll">
         <div className="flex justify-between border-b border-slate-400 ">
           <div className="text-[#1F2937] text-2xl font-semibold my-2 mx-6">
@@ -27,9 +35,10 @@ const Cart = ({
           </div>
         </div>
         <div
-          className=" -ms-14 -mt-12"
+          className=" -ms-14 -mt-12 absolute"
           onClick={() => {
             setShowCart(!showCart);
+            setVisible();
           }}
         >
           <img
