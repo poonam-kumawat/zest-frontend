@@ -100,9 +100,31 @@ const HomePage: React.FC = () => {
 
           <div className="px-10 max-w-screen-2xl mx-auto">
             <section className="w-full fresh-products mt-14 grid grid-cols-3 grid-rows-auto gap-6 justify-items-center">
-              <img src="/assets/images/FruitCard1.svg" alt="fruit1" />
-              <img src="/assets/images/FruitCard2.svg" alt="fruit1" />
-              <img src="/assets/images/FruitCard3.svg" alt="fruit1" />
+              <img
+                src="/assets/images/FruitCard1.svg"
+                alt="fruit1"
+                onClick={() => {
+                  navigate({
+                    pathname: "category",
+                    search: createSearchParams({
+                      categories: "Vegetables",
+                    }).toString(),
+                  });
+                }}
+              />
+              <img
+                src="/assets/images/FruitCard2.svg"
+                alt="fruit2"
+                onClick={() => {
+                  navigate({
+                    pathname: "category",
+                    search: createSearchParams({
+                      categories: "Fruits",
+                    }).toString(),
+                  });
+                }}
+              />
+              <img src="/assets/images/FruitCard3.svg" alt="fruit3" />
             </section>
 
             <section className="fruit-list mt-10">

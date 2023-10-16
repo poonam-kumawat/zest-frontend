@@ -15,28 +15,40 @@ interface CardProps {
 const Category = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isActive, setIsActive] = useState("");
+  const [isActive, setIsActive] = useState({ id: "", name: "" });
   const [categories, setCategories] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get("search");
+  const searchQueryCategories = searchParams.get("categories");
 
   useEffect(() => {
     getCategoriesData();
-    if (searchQuery) {
+    if (searchQuery || searchQueryCategories) {
       getSearchResults();
     } else {
       getHomeProducts();
     }
-  }, [searchQuery]);
+  }, [searchQuery, searchQueryCategories]);
 
   const getSearchResults = async () => {
     setLoading(true);
-    const searchFilter = {
-      productName: { $regex: searchQuery, $options: "i" },
-    };
+    let searchFilter;
+    if (searchQueryCategories) {
+      searchFilter = {
+        categories: { $regex: searchQueryCategories, $options: "i" },
+      };
+    } else {
+      searchFilter = {
+        productName: { $regex: searchQuery, $options: "i" },
+      };
+    }
     const res = await getProducts(searchFilter);
     setProducts(res.data);
+    setIsActive({
+      id: res.data[0].categoryIds[0],
+      name: res.data[0].categories,
+    });
     setLoading(false);
   };
 
@@ -54,7 +66,12 @@ const Category = () => {
     try {
       const response = await getCategories();
       setCategories(response.data);
-      setIsActive(response.data[0]._id);
+      if (!searchQuery && !searchQueryCategories) {
+        setIsActive({
+          id: response.data[0]._id,
+          name: response.data[0].catergories,
+        });
+      }
     } catch (error) {}
   };
 
@@ -82,11 +99,14 @@ const Category = () => {
                 <div
                   key={category._id}
                   className={`${
-                    isActive === category._id ? "activeCategory " : ""
+                    isActive.id === category._id ? "activeCategory " : ""
                   }" border-[#ddd] border-b-2 p-5 flex align-middle hover:bg-[#F2FFF3] active hover:border-r-0 hover:cursor-pointer`}
                   onClick={() => {
                     handleCategoryClick(category._id);
-                    setIsActive(category._id);
+                    setIsActive({
+                      id: category._id,
+                      name: category.catergories,
+                    });
                   }}
                 >
                   <img
@@ -101,7 +121,7 @@ const Category = () => {
             </div>
           </div>
           <div className="col-start-2 col-end-5 p-6 pr-12">
-            <p className="mb-5 font-semibold text-2xl">Fruits</p>
+            <p className="mb-5 font-semibold text-2xl">{isActive.name}</p>
             {products.length > 0 ? (
               <div
                 onClick={() => {

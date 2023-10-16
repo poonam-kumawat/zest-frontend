@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Layout from "./Components/Layout/Layout";
@@ -14,7 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/category" element={<Category />} />
-            <Route path="/product/:id" element={<ProductDetailsPage/>} />
+            <Route path="/product/:id" element={<ProductDetailsPage />} />
           </Routes>
         </Layout>
       </Router>
