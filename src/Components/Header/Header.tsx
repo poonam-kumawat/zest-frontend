@@ -33,6 +33,14 @@ const Header = () => {
       }).toString(),
     });
   };
+  const setHidden = () => {
+    console.log(document.body.style.overflow);
+    if (document.body.style.overflow !== "hidden") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  };
 
   useEffect(() => {
     if (showLocation) {
@@ -97,7 +105,7 @@ const Header = () => {
         </div>
         <div className="hidden lg:flex">
           <img
-            className="mx-10 my-1 cursor-pointer"
+            className="mx-10 my-1 cursor-pointer "
             src="/assets/icons/cart-icon.svg"
             alt="cart"
             width={30}
@@ -105,6 +113,7 @@ const Header = () => {
             onClick={() => {
               if (showLocation) setShowLocation(false);
               setShowCart(!showCart);
+              setHidden();
             }}
           />
           <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">

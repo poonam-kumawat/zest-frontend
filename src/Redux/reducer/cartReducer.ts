@@ -28,6 +28,7 @@ export const cartSlice = createSlice({
     },
     removeProduct: (state, action) => {
       const productDetails = action.payload;
+
       // const existingItem = state.productList.find(
       //   (item: any) => item._id === productDetails._id
       // );
@@ -35,7 +36,7 @@ export const cartSlice = createSlice({
       state.totalAmount -= parseFloat(productDetails.price.replace("Rs ", ""));
       if (state.countList[productDetails._id] === 1) {
         state.productList = state.productList.filter(
-          (item: any) => item.id === productDetails._id
+          (item: any) => item._id !== productDetails._id
         );
         state.countList[productDetails._id] -= 1;
       } else {
