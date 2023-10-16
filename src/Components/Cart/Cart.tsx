@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
-import { useState } from "react";
 import { addProduct, removeProduct } from "../../Redux/reducer/cartReducer";
 
 const setVisible = () => {
@@ -19,7 +18,6 @@ const Cart = ({
   showCart: any;
 }) => {
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(0);
   const { cartTotalCount, productList, countList, totalAmount } = useSelector(
     (state: rootType) => state.cart
   );
@@ -56,74 +54,74 @@ const Cart = ({
         {/* Product Cart */}
         {productList.length > 0 ? (
           <div>
-        {productList.map((cartitem: any) => {
-          return (
-            <div
-              key={cartitem._id}
-              className="card cursor-pointer mx-3 my-4 gap-4 rounded  p-2 flex justify-center bg-[#ffffff] shadow"
-            >
-              <img
-                className="mx-4 my-auto"
-                src={cartitem.imgUrl}
-                alt="fruit"
-                width={80}
-                height={80}
-              />
-              <div className="pr-14">
-                <div className="name">
-                  <p className="text-base font-semibold my-2">
-                    {cartitem.productName}
-                  </p>
+            {productList.map((cartitem: any) => {
+              return (
+                <div
+                  key={cartitem._id}
+                  className="card cursor-pointer mx-3 my-4 gap-4 rounded  p-2 flex justify-center bg-[#ffffff] shadow"
+                >
+                  <img
+                    className="mx-4 my-auto"
+                    src={cartitem.imgUrl}
+                    alt="fruit"
+                    width={80}
+                    height={80}
+                  />
+                  <div className="pr-14">
+                    <div className="name">
+                      <p className="text-base font-semibold my-2">
+                        {cartitem.productName}
+                      </p>
+                    </div>
+                    <div className="flex w-full flex-row justify-between py-2">
+                      <p className="text-sm text-[#656565] pr-12">
+                        {cartitem.price}
+                      </p>
+                      <p className="text-sm text-[#656565]">
+                        {" "}
+                        ({cartitem.availability})
+                      </p>
+                    </div>
+                    <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A] h-7">
+                      {countList[`${cartitem._id}`] >= 1 && (
+                        <button
+                          onClick={() => {
+                            dispatch(removeProduct(cartitem));
+                          }}
+                          className="flex items-center justify-center bg-[#268462] rounded"
+                        >
+                          <img src="/assets/icons/minus-icon.svg" alt="add" />
+                        </button>
+                      )}
+                      <p className="mx-auto -my-0.5 font-semibold text-white text-center ">
+                        {countList[`${cartitem._id}`] !== undefined &&
+                        countList[`${cartitem._id}`] !== 0
+                          ? countList[`${cartitem._id}`]
+                          : "Add"}
+                      </p>
+                      <button
+                        onClick={() => {
+                          dispatch(addProduct(cartitem));
+                        }}
+                        className="float-right w-5 h-5 flex items-center justify-center bg-[#268462] rounded"
+                      >
+                        <img
+                          width={15}
+                          height={15}
+                          src="/assets/icons/plus-icon.svg"
+                          alt="add"
+                        />
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex w-full flex-row justify-between py-2">
-                  <p className="text-sm text-[#656565] pr-12">
-                    {cartitem.price}
-                  </p>
-                  <p className="text-sm text-[#656565]">
-                    {" "}
-                    ({cartitem.availability})
-                  </p>
-                </div>
-                <div className="w-full flex flex-row p-1 rounded bg-[#4DBD7A] h-7">
-                  {countList[`${cartitem._id}`] >= 1 && (
-                    <button
-                      onClick={() => {
-                        dispatch(removeProduct(cartitem));
-                      }}
-                      className="flex items-center justify-center bg-[#268462] rounded"
-                    >
-                      <img src="/assets/icons/minus-icon.svg" alt="add" />
-                    </button>
-                  )}
-                  <p className="mx-auto -my-0.5 font-semibold text-white text-center ">
-                    {countList[`${cartitem._id}`] !== undefined &&
-                    countList[`${cartitem._id}`] !== 0
-                      ? countList[`${cartitem._id}`]
-                      : "Add"}
-                  </p>
-                  <button
-                    onClick={() => {
-                      dispatch(addProduct(cartitem));
-                    }}
-                    className="float-right w-5 h-5 flex items-center justify-center bg-[#268462] rounded"
-                  >
-                    <img
-                      width={15}
-                      height={15}
-                      src="/assets/icons/plus-icon.svg"
-                      alt="add"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-        </div>
-        ):(
+              );
+            })}
+          </div>
+        ) : (
           <div className=" py-8 font-semibold text-lg mx-6">
-          No item added to cart. Add now
-        </div>
+            No item added to cart. Add now
+          </div>
         )}
 
         {/* Price Summary */}
@@ -139,7 +137,7 @@ const Cart = ({
           </div>
           <div className="flex w-full flex-row justify-between px-8 py-2 text-sm ">
             <p> Grand Total</p>
-            <p>{totalAmount+40}</p>
+            <p>{totalAmount + 40}</p>
           </div>
         </div>
         <div className="flex m-2 p-4 font-semibold text-[#656565]">
