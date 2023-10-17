@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import "./Header.css";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
+import { useSelector } from "react-redux";
+import { rootType } from "../../Redux/rootReducer";
 
 const Header = () => {
   // for mobile menu bar
@@ -50,6 +52,7 @@ const Header = () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, [showLocation]);
+  const { cartTotalCount } = useSelector((state: rootType) => state.cart);
 
   return (
     <div className="sticky top-0 z-50 bg-[#ffffff]">
@@ -104,18 +107,23 @@ const Header = () => {
           />
         </div>
         <div className="hidden lg:flex">
-          <img
-            className="mx-10 my-1 cursor-pointer "
-            src="/assets/icons/cart-icon.svg"
-            alt="cart"
-            width={30}
-            height={30}
-            onClick={() => {
-              if (showLocation) setShowLocation(false);
-              setShowCart(!showCart);
-              setHidden();
-            }}
-          />
+          <div className="relative">
+            <p className="badge bg-[#4DBD7A] text-[#ffffff] rounded-[50px] absolute right-9 top-0 text-[10px] m-0 px-[5px] text-center ">
+              {cartTotalCount}
+            </p>
+            <img
+              className="mx-10 my-1 cursor-pointer "
+              src="/assets/icons/cart-icon.svg"
+              alt="cart"
+              width={30}
+              height={30}
+              onClick={() => {
+                if (showLocation) setShowLocation(false);
+                setShowCart(!showCart);
+                setHidden();
+              }}
+            />
+          </div>
           <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">
             Login
           </button>

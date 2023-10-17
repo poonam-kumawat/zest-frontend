@@ -16,11 +16,14 @@ interface CardProps {
 //   price: 40;
 // }
 
-const Card: FC<CardProps> = ({ cardData }) => { 
+const Card: FC<CardProps> = ({ cardData }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { countList } = useSelector((state: rootType) => state.cart);
- 
+
+  const scrollToTop = () => {
+    window.scroll(0, 0);
+  };
 
   return (
     <div className="card cursor-pointer border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
@@ -31,6 +34,7 @@ const Card: FC<CardProps> = ({ cardData }) => {
         width={180}
         height={180}
         onClick={() => {
+          scrollToTop();
           navigate(`/product/${cardData._id}`);
         }}
       />

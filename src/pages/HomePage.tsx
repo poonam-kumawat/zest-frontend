@@ -104,6 +104,7 @@ const HomePage: React.FC = () => {
                 src="/assets/images/FruitCard1.svg"
                 alt="fruit1"
                 onClick={() => {
+                  scrollToTop();
                   navigate({
                     pathname: "category",
                     search: createSearchParams({
@@ -116,6 +117,7 @@ const HomePage: React.FC = () => {
                 src="/assets/images/FruitCard2.svg"
                 alt="fruit2"
                 onClick={() => {
+                  scrollToTop();
                   navigate({
                     pathname: "category",
                     search: createSearchParams({
@@ -124,7 +126,19 @@ const HomePage: React.FC = () => {
                   });
                 }}
               />
-              <img src="/assets/images/FruitCard3.svg" alt="fruit3" />
+              <img
+                src="/assets/images/FruitCard3.svg"
+                alt="fruit3"
+                onClick={() => {
+                  scrollToTop();
+                  navigate({
+                    pathname: "category",
+                    search: createSearchParams({
+                      categories: "salad",
+                    }).toString(),
+                  });
+                }}
+              />
             </section>
 
             <section className="fruit-list mt-10">
@@ -158,31 +172,85 @@ const HomePage: React.FC = () => {
                   className="cursor-pointer"
                   src="/assets/images/vcard1.svg"
                   alt="vcard1"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "Vegetables",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard2.svg"
                   alt="vcard2"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "Fruits",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard3.svg"
                   alt="vcard3"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "Fresh fruits",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard4.svg"
                   alt="vcard4"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "Fruits",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard1.svg"
                   alt="vcard4"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "salad",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard2.svg"
                   alt="vcard2"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "Fresh fruits",
+                      }).toString(),
+                    });
+                  }}
                 />
               </div>
 
@@ -191,31 +259,85 @@ const HomePage: React.FC = () => {
                   className="cursor-pointer"
                   src="/assets/images/vcard5.svg"
                   alt="vcard1"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "leafy vegetable",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard6.svg"
                   alt="vcard2"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "salad",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard7.svg"
                   alt="vcard3"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "salad",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard8.svg"
                   alt="vcard4"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "Fresh fruits",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard5.svg"
                   alt="vcard4"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "leafy vegetable",
+                      }).toString(),
+                    });
+                  }}
                 />
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard7.svg"
                   alt="vcard2"
+                  onClick={() => {
+                    scrollToTop();
+                    navigate({
+                      pathname: "category",
+                      search: createSearchParams({
+                        categories: "salad",
+                      }).toString(),
+                    });
+                  }}
                 />
               </div>
             </section>
