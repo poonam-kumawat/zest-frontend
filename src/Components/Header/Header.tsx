@@ -12,11 +12,12 @@ const Header = () => {
   // for location popover
   const [showLocation, setShowLocation] = useState(false);
   const [searchQuery, setSearchQuery] = useState<any>("");
-  const [deliveryLocation, setdeliveryLocation] = useState("");
   // for cart popover
   const [showCart, setShowCart] = useState(false);
   const locationRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+
+  const { deliveryLocation } = useSelector((state: rootType) => state.location);
 
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
@@ -88,7 +89,16 @@ const Header = () => {
                 />
               </>
             ) : (
-              <p>{deliveryLocation}</p>
+              <>
+                <p>{deliveryLocation}</p>
+                <img
+                  className="mx-4 my-1"
+                  src="/assets/icons/dropdown-arrow-icon.svg"
+                  alt="dropdown-arrow"
+                  width={15}
+                  height={15}
+                />
+              </>
             )}
           </div>
         </div>
@@ -202,7 +212,6 @@ const Header = () => {
         <Location
           locationRef={locationRef}
           setShowLocation={setShowLocation}
-          setdeliveryLocation={setdeliveryLocation}
         />
       )}
       {/* Cart Popover */}

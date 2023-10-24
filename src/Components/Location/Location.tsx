@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { LoaderRing } from "../Common/Loader";
 import { getLocation } from "../../services/api.service";
+import { useDispatch } from "react-redux";
+import { saveLocation } from "../../Redux/reducer/locationReducer";
 
 const Location = ({
   locationRef,
   setShowLocation,
-  setdeliveryLocation,
 }: {
   locationRef: any;
   setShowLocation: any;
-  setdeliveryLocation: any;
 }) => {
+  const dispatch = useDispatch();
+
   const [pincode, setPincode] = useState("");
   const [error, setError] = useState("");
   const [searching, setsearching] = useState(false);
@@ -22,11 +24,11 @@ const Location = ({
       setsearching(true);
       const res: any = await getLocation({ pincode });
       if (res.data) {
-        setdeliveryLocation(res.data.name)
-        setShowLocation(false)
+        dispatch(saveLocation(res.data.name));
+        setShowLocation(false);
       } else {
-        setsearching(false)
-        setError("Products are not deliverable for the given Location")
+        setsearching(false);
+        setError("Products are not deliverable for the given Location");
       }
     } else {
       setError("Please Enter Valid Pincode");
