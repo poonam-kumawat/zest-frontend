@@ -1,17 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer } from "redux-persist";
+import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { root } from "./Redux/rootReducer";
 
 const persistConfig = {
   key: "Zest",
   storage,
-  whitelist: ["user"],
+  // whitelist: ["user"],
 };
 
 const reducer = persistReducer(persistConfig, root);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: reducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -19,4 +19,4 @@ const store = configureStore({
     }),
 });
 
-export { store };
+export const persistedStore =  persistStore(store);

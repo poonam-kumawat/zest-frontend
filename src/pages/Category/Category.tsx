@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Card from "../../Components/Card/Card";
 import "./category.css";
-import Loader from "../../Components/Common/Loader";
 import { getProducts, getCategories } from "../../services/api.service";
 import { useLocation } from "react-router-dom";
+import {LoaderHome} from "../../Components/Common/Loader";
 
 interface CardProps {
   _id: number;
@@ -139,7 +139,7 @@ const Category = () => {
           </div>
         </div>
       ) : (
-        <Loader />
+        <LoaderHome />
       )}
     </div>
   );
