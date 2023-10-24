@@ -7,3 +7,8 @@ export const getProducts = (filter: any) => {
 export const getCategories=()=>{
     return globalaxiosInstance.get('/api/category/')
 }
+
+
+export const sendOTP = (email: string) => {
+    return globalaxiosInstance.post('/api/user', { email});
+  };
