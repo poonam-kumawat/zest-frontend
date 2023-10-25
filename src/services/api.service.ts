@@ -10,5 +10,9 @@ export const getCategories=()=>{
 
 
 export const sendOTP = (email: string) => {
-    return globalaxiosInstance.post('/api/user', { email});
-  };
+    return globalaxiosInstance.post('/api/user/send-otp', { email});
+};
+
+export const verifyOTP=(email:string,otp:any)=>{
+    return globalaxiosInstance.post('/api/user/verify-otp',{email,otp})
+}

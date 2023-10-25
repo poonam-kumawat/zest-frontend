@@ -1,44 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { sendOTP } from "../../services/api.service";
+import { sendOTP, verifyOTP } from "../../services/api.service";
 
 const SignIn = () => {
   const [showOTP, setshowOTP] = useState(false);
   const [email, setEmail] = useState("");
 
-  const [inputValues, setInputValues] = useState(Array(6).fill(''));
-  console.log('inputValues :>> ', inputValues);
-  const [otpToken, setotpToken] = useState("")
+  const [inputValues, setInputValues] = useState(Array(6).fill(""));
+  // console.log('inputValues :>> ', inputValues);
+  const [otp, setotpToken] = useState("");
   const [minutes, setMinutes] = useState(1);
-const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(30);
 
   const handleInputChange = (index: number, value: string) => {
-      const newInputValues = [...inputValues];
-      newInputValues[index] = value;
-      setInputValues(newInputValues);
+    const newInputValues = [...inputValues];
+    newInputValues[index] = value;
+    setInputValues(newInputValues);
   };
+  
+ 
 
   useEffect(() => {
-      setotpToken(inputValues.join(''))
-      const interval = setInterval(() => {
-        if (seconds > 0) {
-          setSeconds(seconds - 1);
+    setotpToken(inputValues.join(""));
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(interval);
+        } else {
+          setSeconds(59);
+          setMinutes(minutes - 1);
         }
-    
-        if (seconds === 0) {
-          if (minutes === 0) {
-            clearInterval(interval);
-          } else {
-            setSeconds(59);
-            setMinutes(minutes - 1);
-          }
-        }
-      }, 1000);
-    
-      return () => {
-        clearInterval(interval);
-      };
-  }, [inputValues,seconds])
-  
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [inputValues, seconds]);
 
   const handleSendOTP = async () => {
     try {
@@ -47,10 +48,20 @@ const [seconds, setSeconds] = useState(30);
       console.log(error);
     }
   };
-  const resendOtp=()=>{
-    setMinutes(1);
-    setSeconds(30);
+  const verifyOtp=async(email:string,otp:any)=>{
+    try{
+      verifyOTP(email,otp);
+    }
+    catch(error){
+      console.log(error);
+    }
   }
+  const resendOtp = () => {
+    setMinutes(1);
+    console.log("setMinutes");
+    setSeconds(30);
+    sendOTP(email);
+  };
 
   return (
     <>
@@ -76,7 +87,11 @@ const [seconds, setSeconds] = useState(30);
             >
               {showOTP ? "OTP Verification" : "Zest"}
             </p>
-            <p className={`text-${showOTP ? "xl" : "2xl"} font-semibold text`}>
+            <p
+              className={`text-${
+                showOTP ? "xl" : "2xl"
+              } font-semibold text-center`}
+            >
               {showOTP
                 ? `OTP sent to email ${email}`
                 : "Get Fresh Fruits & Veggies Now"}
@@ -84,7 +99,7 @@ const [seconds, setSeconds] = useState(30);
             {showOTP ? (
               <>
                 <div className="flex flex-row otp">
-                 {inputValues.map((value, index) => {
+                  {inputValues.map((value, index) => {
                     return (
                       <input
                         key={index}
@@ -92,37 +107,46 @@ const [seconds, setSeconds] = useState(30);
                         type="text"
                         maxLength={1}
                         required
-                        onChange={(e) =>
-                          handleInputChange(index, e.target.value)
-                        }
+                        onChange={(e) => {
+                          handleInputChange(index, e.target.value);                       
+                          
+                        }}
                       />
                     );
                   })}
                 </div>
                 <button
                   type="submit"
-                  onClick={() => setshowOTP(true)}
+                  onClick={() => {setshowOTP(true);
+                    verifyOtp(email,otp);
+                    }}
                   className="bg-[#4DBD7A] py-[6px] font-semibold rounded-lg text-xl px-8 text-white"
                 >
                   Confirm
                 </button>
                 <div className="flex flex-col items-center gap-1">
-                {seconds > 0 || minutes > 0 ? (
-                  <p className="text-xl font-semibold text-[#87908F]">
-                    {/* {" "}
+                  {seconds > 0 || minutes > 0 ? (
+                    <p className="text-xl font-semibold text-[#87908F]">
+                      {/* {" "}
                     00 : 30{" "} */}
-                    {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                  </p>
+                      {minutes < 10 ? `0${minutes}` : minutes}:
+                      {seconds < 10 ? `0${seconds}` : seconds}
+                    </p>
                   ) : (
                     <p>Didn't recieve code?</p>
-                )}
+                  )}
                   <div className="flex items-center gap-2">
                     {/* <p className="text-md text-[#87908F]"> Didn't Get It ? </p> */}
-                    <button className="text-md cursor-pointer text-[#4DBD7A]" onClick={() => resendOtp} disabled={seconds > 0 || minutes > 0} style={{
-          color: seconds > 0 || minutes > 0 ? "#DFE3E8" : "#4DBD7A", 
-        }}>
-                      {" "}
-                      Resent OTP{" "}
+                    <button
+                      className="text-md cursor-pointer text-[#4DBD7A]"
+                      disabled={seconds > 0 || minutes > 0}
+                      style={{
+                        color:
+                          seconds > 0 || minutes > 0 ? "#DFE3E8" : "#4DBD7A",
+                      }}
+                      onClick={() => resendOtp()}
+                    >
+                      Resend OTP
                     </button>
                   </div>
                 </div>
