@@ -5,6 +5,8 @@ import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import SignIn from "../SignIn/signIn";
+import Profile from "../Profile/Profile";
+import { access } from "fs";
 
 const Header = () => {
   // for mobile menu bar
@@ -17,6 +19,8 @@ const Header = () => {
   const locationRef = useRef<HTMLInputElement>(null);
   const SignInRef = useRef<HTMLInputElement>(null);
   const [showSignIn, setshowSignIn] = useState(false);
+  const { accessToken } = useSelector((state: rootType) => state.user);
+  const [showProfile, setShowProfile] = useState(false);
 
   const navigate = useNavigate();
 
@@ -130,12 +134,32 @@ const Header = () => {
               }}
             />
           </div>
-          <button
-            onClick={() => setshowSignIn(!showSignIn)}
-            className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer"
-          >
-            Login
-          </button>
+          {!accessToken ? (
+            <button
+              onClick={() => setshowSignIn(!showSignIn)}
+              className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer"
+            >
+              Login
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                if (showProfile) setShowProfile(false);
+                setShowProfile(!showProfile);
+                setHidden();
+              }}
+              className="flex"
+            >
+              <img
+                className="cursor-pointer"
+                src="/assets/icons/profile-icon.svg"
+                alt="profile"
+                width={35}
+                height={35}
+              />
+              <span className="my-auto mx-2"> User Name</span>
+            </button>
+          )}
         </div>
         <div className="lg:hidden cursor-pointer">
           <img
@@ -146,7 +170,6 @@ const Header = () => {
             onClick={() => {
               if (showCart) setShowCart(false);
               setShow(!show);
-              if (showCart) setShowCart(false);
             }}
           />
         </div>
@@ -250,7 +273,13 @@ const Header = () => {
       )}
       {/* Cart Popover */}
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
-      {showSignIn && <SignIn SignInRef={SignInRef} />}
+      {showSignIn && (
+        <SignIn SignInRef={SignInRef} setshowSignIn={setshowSignIn} />
+      )}
+      {/* Profile Popover */}
+      {showProfile && (
+        <Profile setShowProfile={setShowProfile} showProfile={showProfile} />
+      )}
     </div>
   );
 };

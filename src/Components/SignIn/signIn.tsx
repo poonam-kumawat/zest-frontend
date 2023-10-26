@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import { userLogin, userLogout } from "../../Redux/reducer/userReducer";
 
-const SignIn = ({ SignInRef }: any) => {
+const SignIn = ({ SignInRef, setshowSignIn }: any) => {
   const [showOTP, setshowOTP] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -55,8 +55,10 @@ const SignIn = ({ SignInRef }: any) => {
     try {
       const { data } = await verifyOTP(email, otp);
       dispatch(userLogin(data));
+      setshowSignIn(false);
     } catch (error) {
       console.log(error);
+      // setshowSignIn(false);
     }
   };
   const resendOtp = () => {
