@@ -15,7 +15,6 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/category" element={<Category />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
-            <Route path="/login" element={<SignIn/>} />
           </Routes>
         </Layout>
       </Router>

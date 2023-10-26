@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { sendOTP, verifyOTP } from "../../services/api.service";
+import { useDispatch, useSelector } from "react-redux";
+import { rootType } from "../../Redux/rootReducer";
+import { userLogin, userLogout } from "../../Redux/reducer/userReducer";
 
-const SignIn = () => {
+const SignIn = ({ SignInRef }: any) => {
   const [showOTP, setshowOTP] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -10,14 +13,14 @@ const SignIn = () => {
   const [otp, setotpToken] = useState("");
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(30);
+  const dispatch = useDispatch();
+  const { accessToken } = useSelector((state: rootType) => state.user);
 
   const handleInputChange = (index: number, value: string) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
     setInputValues(newInputValues);
   };
-  
- 
 
   useEffect(() => {
     setotpToken(inputValues.join(""));
@@ -43,19 +46,19 @@ const SignIn = () => {
 
   const handleSendOTP = async () => {
     try {
-      sendOTP(email);
+      await sendOTP(email);
     } catch (error) {
       console.log(error);
     }
   };
-  const verifyOtp=async(email:string,otp:any)=>{
-    try{
-      verifyOTP(email,otp);
-    }
-    catch(error){
+  const handleVerifyOtp = async (email: string, otp: any) => {
+    try {
+      const { data } = await verifyOTP(email, otp);
+      dispatch(userLogin(data));
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
   const resendOtp = () => {
     setMinutes(1);
     console.log("setMinutes");
@@ -66,7 +69,10 @@ const SignIn = () => {
   return (
     <>
       <div className="bg-[#333333] p-[1rem] flex bg-opacity-70 pt-8 justify-center h-full fixed z-50 w-full">
-        <div className="bg-[#FFFFFF] w-full flex text-[#000] rounded-xl h-fit max-w-3xl sm:max-h-96">
+        <div
+          className="bg-[#FFFFFF] w-full flex text-[#000] rounded-xl h-fit max-w-3xl sm:max-h-96"
+          ref={SignInRef}
+        >
           <div className="w-[40%] hidden sm:block">
             <img
               className="h-full rounded-l-xl"
@@ -108,8 +114,7 @@ const SignIn = () => {
                         maxLength={1}
                         required
                         onChange={(e) => {
-                          handleInputChange(index, e.target.value);                       
-                          
+                          handleInputChange(index, e.target.value);
                         }}
                       />
                     );
@@ -117,9 +122,10 @@ const SignIn = () => {
                 </div>
                 <button
                   type="submit"
-                  onClick={() => {setshowOTP(true);
-                    verifyOtp(email,otp);
-                    }}
+                  onClick={() => {
+                    setshowOTP(true);
+                    handleVerifyOtp(email, otp);
+                  }}
                   className="bg-[#4DBD7A] py-[6px] font-semibold rounded-lg text-xl px-8 text-white"
                 >
                   Confirm

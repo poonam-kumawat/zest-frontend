@@ -4,6 +4,7 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
+import SignIn from "../SignIn/signIn";
 
 const Header = () => {
   // for mobile menu bar
@@ -14,11 +15,16 @@ const Header = () => {
   // for cart popover
   const [showCart, setShowCart] = useState(false);
   const locationRef = useRef<HTMLInputElement>(null);
+  const SignInRef = useRef<HTMLInputElement>(null);
+  const [showSignIn, setshowSignIn] = useState(false);
+
   const navigate = useNavigate();
 
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
       setShowLocation(!showLocation);
+    } else if (SignInRef.current && !SignInRef.current.contains(event.target)) {
+      setshowSignIn(!showSignIn);
     }
   };
 
@@ -124,7 +130,10 @@ const Header = () => {
               }}
             />
           </div>
-          <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">
+          <button
+            onClick={() => setshowSignIn(!showSignIn)}
+            className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer"
+          >
             Login
           </button>
         </div>
@@ -241,6 +250,7 @@ const Header = () => {
       )}
       {/* Cart Popover */}
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
+      {showSignIn && <SignIn SignInRef={SignInRef} />}
     </div>
   );
 };
