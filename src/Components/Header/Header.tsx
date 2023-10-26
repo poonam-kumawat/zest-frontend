@@ -4,6 +4,7 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
+import Profile from "../Profile/Profile";
 
 const Header = () => {
   // for mobile menu bar
@@ -14,6 +15,8 @@ const Header = () => {
   // for cart popover
   const [showCart, setShowCart] = useState(false);
   const locationRef = useRef<HTMLInputElement>(null);
+  const [showProfile, setShowProfile] = useState(false);
+
   const navigate = useNavigate();
 
   const handleClickOutside = (event: any) => {
@@ -127,6 +130,23 @@ const Header = () => {
           <button className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer">
             Login
           </button>
+          {/* <button
+            onClick={() => {
+              if (showProfile) setShowProfile(false);
+              setShowProfile(!showProfile);
+              setHidden();
+            }}
+            className="flex"
+          >
+            <img
+              className="cursor-pointer"
+              src="/assets/icons/profile-icon.svg"
+              alt="profile"
+              width={35}
+              height={35}
+            />
+            <span className="my-auto mx-2"> User Name</span>
+          </button> */}
         </div>
         <div className="lg:hidden cursor-pointer">
           <img
@@ -137,7 +157,6 @@ const Header = () => {
             onClick={() => {
               if (showCart) setShowCart(false);
               setShow(!show);
-              if (showCart) setShowCart(false);
             }}
           />
         </div>
@@ -241,6 +260,10 @@ const Header = () => {
       )}
       {/* Cart Popover */}
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
+      {/* Profile Popover */}
+      {showProfile && (
+        <Profile setShowProfile={setShowProfile} showProfile={showProfile} />
+      )}
     </div>
   );
 };
