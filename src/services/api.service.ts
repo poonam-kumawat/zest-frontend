@@ -5,7 +5,7 @@ export const getProducts = (filter: any) => {
 };
 
 export const getCategories = () => {
-  return protectedaxiosInstance.get("/api/category/");
+  return protectedaxiosInstance.get("/api/category");
 };
 
 export const sendOTP = (email: string) => {

@@ -45,7 +45,7 @@ protectedaxiosInstance.interceptors.response.use(
       const refreshToken = store.getState().user.refreshToken;
       console.log("refresh kya hai", refreshToken);
       console.log("email hai ki nahi", store.getState().user.email);
-      return axios
+      return globalaxiosInstance
         .post(`${process.env.REACT_APP_BACKEND_URL}/api/user/refresh`, {
           email: store.getState().user.email,
           refreshToken: refreshToken,
@@ -53,9 +53,9 @@ protectedaxiosInstance.interceptors.response.use(
         .then((res) => {
           if (res.status === 201) {
             store.dispatch(setAccessToken(res.data.accessToken));
-            axios.defaults.headers.common["Authorization"] =
-              "Bearer " + res.data.accessToken;
-            return axios(originalRequest);
+            protectedaxiosInstance.defaults.headers.common["Authorization"] =
+              "Bearer " + store.getState().user.accessToken;
+            return protectedaxiosInstance(originalRequest);
           }
         });
     }
