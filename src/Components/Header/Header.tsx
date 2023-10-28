@@ -5,8 +5,6 @@ import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import SignIn from "../SignIn/signIn";
-import Profile from "../Profile/Profile";
-import { access } from "fs";
 
 const Header = () => {
   // for mobile menu bar
@@ -20,7 +18,7 @@ const Header = () => {
   const SignInRef = useRef<HTMLInputElement>(null);
   const [showSignIn, setshowSignIn] = useState(false);
   const { accessToken } = useSelector((state: rootType) => state.user);
-  const [showProfile, setShowProfile] = useState(false);
+  const { cartTotalCount } = useSelector((state: rootType) => state.cart);
 
   const navigate = useNavigate();
 
@@ -62,7 +60,6 @@ const Header = () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, [showLocation]);
-  const { cartTotalCount } = useSelector((state: rootType) => state.cart);
 
   return (
     <div className="sticky top-0 z-50 bg-[#ffffff]">
@@ -144,9 +141,7 @@ const Header = () => {
           ) : (
             <button
               onClick={() => {
-                if (showProfile) setShowProfile(false);
-                setShowProfile(!showProfile);
-                setHidden();
+                navigate("/profile");
               }}
               className="flex"
             >
@@ -275,10 +270,6 @@ const Header = () => {
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
       {showSignIn && (
         <SignIn SignInRef={SignInRef} setshowSignIn={setshowSignIn} />
-      )}
-      {/* Profile Popover */}
-      {showProfile && (
-        <Profile setShowProfile={setShowProfile} showProfile={showProfile} />
       )}
     </div>
   );

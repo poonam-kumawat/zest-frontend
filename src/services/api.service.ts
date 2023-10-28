@@ -22,3 +22,14 @@ export const getRefreshToken = (email: any, refreshToken: any) => {
     refreshToken,
   });
 };
+
+export const fetchUserDetails = (email: string) => {
+  return protectedaxiosInstance.post("/api/user/get-details", { email });
+};
+
+export const updateUserDetails = (email: string, update: object) => {
+  return protectedaxiosInstance.post("/api/user/update-details", {
+    email,
+    update,
+  });
+};

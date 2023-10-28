@@ -4,7 +4,7 @@ import Layout from "./Components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import Category from "./pages/Category/Category";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
-import SignIn from "./Components/SignIn/signIn";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/category" element={<Category />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </Layout>
       </Router>
