@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Components/Card/Card";
 import { getProducts } from "../services/api.service";
-import Loader from "../Components/Common/Loader";
 import { createSearchParams, useNavigate } from "react-router-dom";
+import {LoaderHome} from "../Components/Common/Loader";
 
 const HomePage: React.FC = () => {
   const [vegetables, setVegetables] = useState([]);
@@ -389,7 +389,7 @@ const HomePage: React.FC = () => {
           </div>
         </section>
       ) : (
-        <Loader />
+        <LoaderHome />
       )}
     </div>
   );

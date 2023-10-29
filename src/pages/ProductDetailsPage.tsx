@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/api.service";
 import { useParams } from "react-router-dom";
-import Loader from "../Components/Common/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../Redux/rootReducer";
 import { addProduct, removeProduct } from "../Redux/reducer/cartReducer";
+import {LoaderHome} from "../Components/Common/Loader";
 
 type ProductDetails = {
   availability: string;
@@ -45,7 +45,7 @@ const ProductDetailsPage: React.FC = () => {
     <div>
       {loading ? (
         <div className="h-screen">
-          <Loader />
+          <LoaderHome />
         </div>
       ) : (
         <div>

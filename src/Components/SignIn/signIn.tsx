@@ -13,6 +13,8 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
   const [otp, setotpToken] = useState("");
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(30);
+  const [emailError, setEmailError] = useState("");
+  const [otpError, setOtpError] = useState("");
   const dispatch = useDispatch();
   const { accessToken } = useSelector((state: rootType) => state.user);
 
@@ -44,19 +46,34 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     };
   }, [inputValues, seconds]);
 
-  const handleSendOTP = async () => {
+  const handleSendOTP = async (e: any) => {
     try {
-      await sendOTP(email);
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+      if (email.trim() === "" || !emailRegex.test(email)) {
+        e.preventDefault();
+        setEmailError("Invalid email address");
+      } else {
+        setEmailError("");
+        setshowOTP(!showOTP);
+        await sendOTP(email);
+      }
     } catch (error) {
       console.log(error);
     }
   };
   const handleVerifyOtp = async (email: string, otp: any) => {
     try {
-      const { data } = await verifyOTP(email, otp);
-      dispatch(userLogin(data));
-      setshowSignIn(false);
+      const otpRegex = /^\d{6}$/;
+      if (!otpRegex.test(otp)) {
+        setOtpError("Invalid OTP format");
+        return;
+      } else {
+        const data = await verifyOTP(email, otp);
+        dispatch(userLogin(data));
+        setshowSignIn(false);
+      }
     } catch (error) {
+      setOtpError("Please Enter correct otp");
       console.log(error);
       // setshowSignIn(false);
     }
@@ -72,7 +89,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     <>
       <div className="bg-[#333333] p-[1rem] flex bg-opacity-70 pt-8 justify-center h-full fixed z-50 w-full">
         <div
-          className="bg-[#FFFFFF] w-full flex text-[#000] rounded-xl h-fit max-w-3xl sm:max-h-96"
+          className="bg-[#FFFFFF] w-full flex text-[#000] rounded-xl h-fit max-w-3xl sm:max-h-max"
           ref={SignInRef}
         >
           <div className="w-[40%] hidden sm:block">
@@ -84,7 +101,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
           </div>
 
           <div
-            className={`w-full sm:w-[55%] p-2 gap-${
+            className={`w-full sm:w-[70%] p-2 gap-${
               showOTP ? "6" : "8"
             }  flex flex-col justify-center items-center`}
           >
@@ -122,6 +139,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
                     );
                   })}
                 </div>
+                {otpError && <p className="text-red-600 m-0">{otpError}</p>}
                 <button
                   type="submit"
                   onClick={() => {
@@ -162,9 +180,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
             ) : (
               <form
                 onSubmit={(e) => {
-                  e.preventDefault();
-                  setshowOTP(!showOTP);
-                  handleSendOTP();
+                  handleSendOTP(e);
                 }}
                 className="flex flex-col gap-8 justify-center items-center"
               >
@@ -185,6 +201,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
                     value={email}
                   />
                 </div>
+                {emailError && <p className="text-red-600 m-0">{emailError}</p>}
                 <button
                   type="submit"
                   className="bg-[#4DBD7A] py-[6px] px-2 font-semibold rounded-lg text-xl  text-white"
