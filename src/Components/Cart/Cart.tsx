@@ -3,7 +3,6 @@ import { rootType } from "../../Redux/rootReducer";
 import { addProduct, removeProduct } from "../../Redux/reducer/cartReducer";
 
 const setVisible = () => {
-  console.log(document.body.style.overflow);
   if (document.body.style.overflow !== "scroll") {
     document.body.style.overflow = "scroll";
   } else {
