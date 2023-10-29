@@ -3,13 +3,14 @@ import { sendOTP, verifyOTP } from "../../services/api.service";
 import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import { userLogin, userLogout } from "../../Redux/reducer/userReducer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = ({ SignInRef, setshowSignIn }: any) => {
   const [showOTP, setshowOTP] = useState(false);
   const [email, setEmail] = useState("");
 
   const [inputValues, setInputValues] = useState(Array(6).fill(""));
-  // console.log('inputValues :>> ', inputValues);
   const [otp, setotpToken] = useState("");
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(30);
@@ -46,6 +47,11 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     };
   }, [inputValues, seconds]);
 
+  const showToastMessage = () => {
+    toast.error("Something Went Wrong !", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
   const handleSendOTP = async (e: any) => {
     try {
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -58,7 +64,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
         await sendOTP(email);
       }
     } catch (error) {
-      console.log(error);
+      showToastMessage();
     }
   };
   const handleVerifyOtp = async (email: string, otp: any) => {
@@ -68,19 +74,16 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
         setOtpError("Invalid OTP format");
         return;
       } else {
-        const data = await verifyOTP(email, otp);
+        const { data } = await verifyOTP(email, otp);
         dispatch(userLogin(data));
         setshowSignIn(false);
       }
     } catch (error) {
       setOtpError("Please Enter correct otp");
-      console.log(error);
-      // setshowSignIn(false);
     }
   };
   const resendOtp = () => {
     setMinutes(1);
-    console.log("setMinutes");
     setSeconds(30);
     sendOTP(email);
   };
@@ -213,6 +216,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

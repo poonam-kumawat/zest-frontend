@@ -22,11 +22,8 @@ const Header = () => {
   const [showSignIn, setshowSignIn] = useState(false);
   const { accessToken } = useSelector((state: rootType) => state.user);
   const [showProfile, setShowProfile] = useState(false);
-
   const navigate = useNavigate();
-
   const { deliveryLocation } = useSelector((state: rootType) => state.location);
-
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
       setShowLocation(!showLocation);
@@ -49,8 +46,7 @@ const Header = () => {
     });
   };
   const setHidden = () => {
-    console.log(document.body.style.overflow);
-    if (document.body.style.overflow !== "hidden") {
+      if (document.body.style.overflow !== "hidden") {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "scroll";
@@ -241,10 +237,7 @@ const Header = () => {
       )}
       {/* Location Popover */}
       {showLocation && (
-        <Location
-          locationRef={locationRef}
-          setShowLocation={setShowLocation}
-        />
+        <Location locationRef={locationRef} setShowLocation={setShowLocation} />
       )}
       {/* Cart Popover */}
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}

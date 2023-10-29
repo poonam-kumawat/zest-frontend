@@ -43,8 +43,6 @@ protectedaxiosInstance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = store.getState().user.refreshToken;
-      console.log("refresh kya hai", refreshToken);
-      console.log("email hai ki nahi", store.getState().user.email);
       return globalaxiosInstance
         .post(`${process.env.REACT_APP_BACKEND_URL}/api/user/refresh`, {
           email: store.getState().user.email,
