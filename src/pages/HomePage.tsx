@@ -10,7 +10,6 @@ const HomePage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState<any>("");
   const navigate = useNavigate();
-
   useEffect(() => {
     getHomeProducts();
   }, []);

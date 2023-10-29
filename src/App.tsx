@@ -4,6 +4,7 @@ import Layout from "./Components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import Category from "./pages/Category/Category";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import SignIn from "./Components/SignIn/signIn";
 
 function App() {
   return (
