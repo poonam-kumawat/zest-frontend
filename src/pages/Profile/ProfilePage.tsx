@@ -9,36 +9,46 @@ import {
 
 const ProfilePage = () => {
   const [isActive, setIsActive] = useState("details");
-  const [userDetails, setUserDetails] = useState<any>({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [userDetails, setUserDetails] = useState<any>({});
+  const [address, setAddress] = useState({
+    name: "",
+    address: "",
+  });
   const { email } = useSelector((state: rootType) => state.user);
 
   const getUserDetails = async () => {
+    //add error handling later
     try {
       const { data } = await fetchUserDetails(email);
-      setUserDetails(data);
       setFirstName(data?.firstName);
       setLastName(data?.lastName);
       setPhoneNumber(data?.phoneNumber);
+      setUserDetails(data);
     } catch (error) {
       console.log("error : ", error);
     }
   };
 
   const updateDetails = async () => {
+    //add error handling later
     try {
-      const update = {
-        firstName: firstName,
-        lastName: lastName,
-        phoneNumber: phoneNumber,
-      };
-      console.log("update : ", update);
-      const { data } = await updateUserDetails(email, update);
-      console.log("data", data);
-
-      // setUserDetails(res.data);
+      let update;
+      if (address.address === "") {
+        update = {
+          firstName: firstName,
+          lastName: lastName,
+          phoneNumber: phoneNumber,
+        };
+      } else {
+        update = {
+          name: address.name,
+          address: address.address,
+        };
+      }
+      await updateUserDetails(email, update);
     } catch (error) {
       console.log("error : ", error);
     }
@@ -48,14 +58,10 @@ const ProfilePage = () => {
     getUserDetails();
   }, []);
 
-  useEffect(() => {
-    console.log("lastName", lastName);
-  }, [lastName]);
-
   return (
-    <div className=" h-full w-full ">
+    <div className=" w-full ">
       <div className=" mx-auto  max-w-screen-xl">
-        <div className=" grid grid-cols-4 gap-0  border mx-32 my-7 rounded-e-2xl bg-[#fff] mx-auto ">
+        <div className=" grid grid-cols-4 gap-0  border shadow mx-32 my-7 rounded-e-2xl bg-[#fff] mx-auto ">
           <div className="rounded-r-3xl bg-[#3BB77E] text-[#ffffff] ">
             <div className=" border-b-2 border-[#ffffff] m-5 text-3xl p-6 pb-8 font-semibold">
               My
@@ -94,16 +100,17 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
-          <div className="w-full col-span-3">
+          <div className="w-full col-span-3 h-[500px]">
             {isActive === "details" ? (
-              <div className="mx-16 my-20 grid gap-8 ">
+              <div className="ms-16 me-48 my-16 grid gap-8 ">
+                {/* Add Validationto form fields */}
                 <input
                   type="text"
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   className="p-2 outline-[#747875] text-[#656565] 
-               border rounded"
+               border rounded "
                 ></input>
                 <input
                   type="text"
@@ -127,23 +134,68 @@ const ProfilePage = () => {
                   className="p-2 outline-[#747875] text-[#656565] border rounded"
                   maxLength={10}
                 ></input>
-                <button onClick={updateDetails}>Save</button>
+                <button
+                  onClick={updateDetails}
+                  className="w-1/5 h-8 bg-[#3BB77E] rounded text-[#fff] place-self-end me-2"
+                >
+                  Save
+                </button>
               </div>
             ) : isActive === "address" ? (
-              <div className="mx-16 my-14 grid gap-8 ">
-                <div className="border-2 rounded p-2 grid">
-                  <input
-                    type="text"
-                    placeholder="Address 1"
-                    className="border p-1 w-1/4 mb-2 outline-[#747875] "
-                  ></input>
-                  <textarea
-                    rows={3}
-                    className="border outline-[#747875] "
-                  ></textarea>
+              <div className="m-16 grid gap-8 overflow-y-scroll max-h-96 ">
+                {userDetails?.address?.map((item: any, index: number) => {
+                  return (
+                    <div className="border-2 rounded p-2 grid border-[#cdd4d1]">
+                      <div className="grid grid-flow-row auto-rows-max">
+                        <div className=" font-semibold">{item.name}</div>
+                        <div>{item.address}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className="border-2 rounded p-2 grid border-[#cdd4d1]">
+                  <form className="grid grid-flow-row auto-rows-max">
+                    <input
+                      required
+                      type="text"
+                      placeholder="Address Name"
+                      className="border p-1 w-1/4 mb-2 outline-[#747875] "
+                      value={address.name}
+                      onChange={(e: any) => {
+                        setAddress({
+                          ...address,
+                          name: e.target.value,
+                        });
+                      }}
+                    ></input>
+                    <textarea
+                      required
+                      rows={3}
+                      className="border outline-[#747875] "
+                      value={address.address}
+                      onChange={(e: any) => {
+                        setAddress({
+                          ...address,
+                          address: e.target.value,
+                        });
+                      }}
+                    ></textarea>
+
+                    <button
+                      onClick={() => {
+                        if (address.name !== "" && address.address !== "") {
+                          updateDetails();
+                        }
+                      }}
+                      className="w-[70px] h-6 bg-[#3BB77E] rounded text-[#fff] place-self-end mt-2"
+                    >
+                      Save
+                    </button>
+                  </form>
                 </div>
+
                 <div>
-                  <button className="border-2 w-2/6 p-2 flex text-[#656565]  rounded hover:border-[#747875] ">
+                  <button className="border-2 w-2/6 p-2 flex text-[#656565] rounded hover:border-[#747875] ">
                     <img
                       width={15}
                       height={15}
@@ -156,7 +208,7 @@ const ProfilePage = () => {
                 </div>
               </div>
             ) : (
-              ""
+              <div className=" p-6"> Order Page</div>
             )}
           </div>
         </div>
