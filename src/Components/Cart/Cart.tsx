@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import { addProduct, removeProduct } from "../../Redux/reducer/cartReducer";
+import { Link, useNavigate } from "react-router-dom";
 
 const setVisible = () => {
   if (document.body.style.overflow !== "scroll") {
@@ -20,6 +21,9 @@ const Cart = ({
   const { cartTotalCount, productList, countList, totalAmount } = useSelector(
     (state: rootType) => state.cart
   );
+
+  const navigate = useNavigate();
+
   return (
     <div className="bg-[#333333]  bg-opacity-70 h-full fixed z-50 w-full grid place-content-end">
       <div className="bg-[#F6F6F6] text-[#000]  h-screen  overflow-scroll">
@@ -154,7 +158,10 @@ const Cart = ({
             delays, a refund will be provided, if applicable.
           </div>
         </div>
-        <button className="w-5/6 rounded-lg bg-[#4DBD7A] h-10 mx-8 font-semibold text-white text-lg mb-20">
+        <button
+          onClick={() => navigate("/checkout")}
+          className="w-5/6 rounded-lg bg-[#4DBD7A] h-10 mx-8 font-semibold text-white text-lg mb-20"
+        >
           Proceed to Payment
         </button>
       </div>
