@@ -5,8 +5,7 @@ import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import SignIn from "../SignIn/signIn";
-import Profile from "../Profile/Profile";
-import { access } from "fs";
+
 import Location from "../Location/Location";
 
 const Header = () => {
