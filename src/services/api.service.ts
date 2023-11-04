@@ -5,7 +5,7 @@ export const getProducts = (filter: any) => {
 };
 
 export const getCategories = () => {
-  return protectedaxiosInstance.get("/api/category");
+  return globalaxiosInstance.get("/api/category");
 };
 
 export const sendOTP = (email: string) => {
@@ -32,4 +32,13 @@ export const updateUserDetails = (email: string, update: object) => {
     email,
     update,
   });
+};
+
+export const getLocation = (filter: any) => {
+  return globalaxiosInstance.post(`/api/pincode/`, filter);
+};
+
+export const getUserDetails = (email: string) => {
+  console.log("email", email);
+  return globalaxiosInstance.post(`/api/user/get-details`, { email });
 };

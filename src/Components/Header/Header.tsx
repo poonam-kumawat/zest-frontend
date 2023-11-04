@@ -5,6 +5,9 @@ import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import SignIn from "../SignIn/signIn";
+import Profile from "../Profile/Profile";
+import { access } from "fs";
+import Location from "../Location/Location";
 
 const Header = () => {
   // for mobile menu bar
@@ -19,9 +22,8 @@ const Header = () => {
   const [showSignIn, setshowSignIn] = useState(false);
   const { accessToken } = useSelector((state: rootType) => state.user);
   const { cartTotalCount } = useSelector((state: rootType) => state.cart);
-
   const navigate = useNavigate();
-
+  const { deliveryLocation } = useSelector((state: rootType) => state.location);
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
       setShowLocation(!showLocation);
@@ -44,7 +46,6 @@ const Header = () => {
     });
   };
   const setHidden = () => {
-    console.log(document.body.style.overflow);
     if (document.body.style.overflow !== "hidden") {
       document.body.style.overflow = "hidden";
     } else {
@@ -81,14 +82,29 @@ const Header = () => {
               setShowLocation(!showLocation);
             }}
           >
-            Location
-            <img
-              className="mx-4 my-1"
-              src="/assets/icons/dropdown-arrow-icon.svg"
-              alt="dropdown-arrow"
-              width={15}
-              height={15}
-            />
+            {!deliveryLocation ? (
+              <>
+                <p>Location</p>
+                <img
+                  className="mx-4 my-1"
+                  src="/assets/icons/dropdown-arrow-icon.svg"
+                  alt="dropdown-arrow"
+                  width={15}
+                  height={15}
+                />
+              </>
+            ) : (
+              <>
+                <p>{deliveryLocation}</p>
+                <img
+                  className="mx-4 my-1"
+                  src="/assets/icons/dropdown-arrow-icon.svg"
+                  alt="dropdown-arrow"
+                  width={15}
+                  height={15}
+                />
+              </>
+            )}
           </div>
         </div>
         <div className="relative hidden lg:flex md:flex">
@@ -218,53 +234,7 @@ const Header = () => {
       )}
       {/* Location Popover */}
       {showLocation && (
-        <div className="bg-[#333333] bg-opacity-70 p-4 md:p-10 md:justify-center h-full fixed z-50 w-full">
-          <div
-            className=" bg-[#FFFFFF] text-[#000]  rounded-lg p-10 md:w-4/5 h-fit max-w-3xl lg:max-h-44 "
-            ref={locationRef}
-          >
-            <div className="flex pb-8 font-md text-lg">
-              <img
-                className="mx-10"
-                src="/assets/icons/location-icon.svg"
-                alt="location"
-                width={30}
-                height={30}
-              />
-              To deliver as quickly as possible, we would like your current
-              location
-            </div>
-            <div className="block justify-center lg:flex">
-              <div className="relative me-4 ">
-                <input
-                  type="text"
-                  className="border border-[#B8C6C3] py-2 w-full lg:w-96 shadow-sm  px-5 outline-[#B8C6C3] rounded"
-                  placeholder="Search delivery location"
-                ></input>
-                <img
-                  className="mx-4 my-1 absolute right-0 top-0 mt-3 cursor-pointer"
-                  src="/assets/icons/search-icon.svg"
-                  alt="search"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div className="my-2 text-center">or</div>
-              <div className="ps-4 relative">
-                <img
-                  className="mx-2 my-3 absolute right-100 top-0 "
-                  src="/assets/icons/location-marker-icon.svg"
-                  alt="location-marker"
-                  width={25}
-                  height={25}
-                />
-                <button className="bg-[#4DBD7A] text-[#ffffff] text-sm rounded-lg py-3 ps-10 pe-5 w-full">
-                  Use Current Location
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Location locationRef={locationRef} setShowLocation={setShowLocation} />
       )}
       {/* Cart Popover */}
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}

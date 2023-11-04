@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Card from "../../Components/Card/Card";
 import "./category.css";
-import Loader from "../../Components/Common/Loader";
 import { getProducts, getCategories } from "../../services/api.service";
 import { useLocation } from "react-router-dom";
+import { LoaderHome } from "../../Components/Common/Loader";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface CardProps {
   _id: number;
@@ -21,6 +23,12 @@ const Category = () => {
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get("search");
   const searchQueryCategories = searchParams.get("categories");
+
+  const showToastMessage = () => {
+    toast.error("Something Went Wrong !", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
 
   useEffect(() => {
     getCategoriesData();
@@ -72,7 +80,9 @@ const Category = () => {
           name: response.data[0].catergories,
         });
       }
-    } catch (error) {}
+    } catch (error) {
+      showToastMessage();
+    }
   };
 
   const scrollToTop = () => {
@@ -86,7 +96,9 @@ const Category = () => {
       };
       const res = await getProducts(filterCategoryId);
       setProducts(res.data);
-    } catch (error) {}
+    } catch (error) {
+      showToastMessage();
+    }
   };
 
   return (
@@ -139,8 +151,9 @@ const Category = () => {
           </div>
         </div>
       ) : (
-        <Loader />
+        <LoaderHome />
       )}
+      <ToastContainer />
     </div>
   );
 };
