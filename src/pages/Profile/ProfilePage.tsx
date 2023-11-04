@@ -17,6 +17,9 @@ const ProfilePage = () => {
     name: "",
     address: "",
   });
+  const [addAddress, setAddAddress] = useState(false);
+  const [editAddress, setEditAddress] = useState("");
+
   const { email } = useSelector((state: rootType) => state.user);
 
   const getUserDetails = async () => {
@@ -147,65 +150,137 @@ const ProfilePage = () => {
                   return (
                     <div className="border-2 rounded p-2 grid border-[#cdd4d1]">
                       <div className="grid grid-flow-row auto-rows-max">
-                        <div className=" font-semibold">{item.name}</div>
-                        <div>{item.address}</div>
+                        {editAddress !== item.name ? (
+                          <div>
+                            <div className=" font-semibold inline-flex items-center justify-between w-full">
+                              {item.name}
+                              <button
+                                className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded-3xl m-1 px-1"
+                                onClick={() => {
+                                  setEditAddress(item.name);
+                                }}
+                              >
+                                <img
+                                  width={20}
+                                  height={20}
+                                  src="/assets/icons/edit-icon.svg"
+                                  alt="edit"
+                                />
+                              </button>
+                            </div>
+                            <div>{item.address}</div>
+                          </div>
+                        ) : (
+                          <div>
+                            <div className=" font-semibold inline-flex items-center justify-between w-full">
+                              <input
+                                type="text"
+                                value={item.name}
+                                className="border p-1 mb-2"
+                              />
+
+                              <button
+                                className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded-3xl p-1.5 "
+                                onClick={() => {
+                                  setEditAddress("");
+                                }}
+                              >
+                                <img
+                                  width={15}
+                                  height={15}
+                                  src="/assets/icons/close-icon.svg"
+                                  alt="close"
+                                />
+                              </button>
+                            </div>
+                            <textarea
+                              value={item.address}
+                              rows={3}
+                              className="w-full border p-1 rounded"
+                            ></textarea>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
                 })}
-                <div className="border-2 rounded p-2 grid border-[#cdd4d1]">
-                  <form className="grid grid-flow-row auto-rows-max">
-                    <input
-                      required
-                      type="text"
-                      placeholder="Address Name"
-                      className="border p-1 w-1/4 mb-2 outline-[#747875] "
-                      value={address.name}
-                      onChange={(e: any) => {
-                        setAddress({
-                          ...address,
-                          name: e.target.value,
-                        });
-                      }}
-                    ></input>
-                    <textarea
-                      required
-                      rows={3}
-                      className="border outline-[#747875] "
-                      value={address.address}
-                      onChange={(e: any) => {
-                        setAddress({
-                          ...address,
-                          address: e.target.value,
-                        });
-                      }}
-                    ></textarea>
+                {addAddress ? (
+                  <div className="border-2 rounded p-2 grid border-[#cdd4d1]">
+                    <form className="grid grid-flow-row auto-rows-max">
+                      <div className="inline-flex items-center justify-between w-full">
+                        <input
+                          required
+                          type="text"
+                          placeholder="Address Name"
+                          className="border p-1 w-1/4 mb-2 outline-[#747875] "
+                          value={address.name}
+                          onChange={(e: any) => {
+                            setAddress({
+                              ...address,
+                              name: e.target.value,
+                            });
+                          }}
+                        ></input>
+                        <button
+                          className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded-3xl p-1.5 "
+                          onClick={() => {
+                            setAddAddress(false);
+                          }}
+                        >
+                          <img
+                            width={15}
+                            height={15}
+                            src="/assets/icons/close-icon.svg"
+                            alt="close"
+                          />
+                        </button>
+                      </div>
+                      <textarea
+                        required
+                        rows={3}
+                        className="border outline-[#747875] "
+                        value={address.address}
+                        onChange={(e: any) => {
+                          setAddress({
+                            ...address,
+                            address: e.target.value,
+                          });
+                        }}
+                      ></textarea>
 
-                    <button
-                      onClick={() => {
-                        if (address.name !== "" && address.address !== "") {
-                          updateDetails();
-                        }
-                      }}
-                      className="w-[70px] h-6 bg-[#3BB77E] rounded text-[#fff] place-self-end mt-2"
-                    >
-                      Save
+                      <div className="flex place-self-end">
+                        <button
+                          onClick={() => {
+                            if (address.name !== "" && address.address !== "") {
+                              updateDetails();
+                              setAddAddress(false);
+                            }
+                          }}
+                          className="w-[70px] h-6 bg-[#3BB77E] rounded text-[#fff] place-self-end mt-2"
+                        >
+                          Save
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => {
+                      setAddAddress(true);
+                    }}
+                  >
+                    <button className="border-2 w-2/6 p-2 flex text-[#656565] rounded hover:border-[#747875] ">
+                      <img
+                        width={15}
+                        height={15}
+                        src="/assets/icons/gray-plus-icon.svg"
+                        alt="plus"
+                        className="my-auto ms-1 me-3"
+                      />
+                      Add Address
                     </button>
-                  </form>
-                </div>
-
-                <div>
-                  <button className="border-2 w-2/6 p-2 flex text-[#656565] rounded hover:border-[#747875] ">
-                    <img
-                      width={15}
-                      height={15}
-                      src="/assets/icons/gray-plus-icon.svg"
-                      alt="plus"
-                      className="my-auto ms-1 me-3"
-                    />
-                    Add Address
-                  </button>
-                </div>
+                  </div>
+                )}
               </div>
             ) : (
               <div className=" p-6"> Order Page</div>
