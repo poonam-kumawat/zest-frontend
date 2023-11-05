@@ -26,3 +26,8 @@ export const getRefreshToken = (email: any, refreshToken: any) => {
 export const getLocation = (filter: any) => {
   return globalaxiosInstance.post(`/api/pincode/`, filter);
 };
+
+export const getUserDetails = (email: string) => {
+  console.log('email', email)
+  return globalaxiosInstance.post(`/api/user/get-details`, {email});
+};
