@@ -62,10 +62,10 @@ const Category = () => {
 
   const getHomeProducts = async () => {
     const fruitsFilter = {
-      categories: { $regex: "Fruits", $options: "i" },
+      categories: { $regex: "Vegetables", $options: "i" },
     };
     setLoading(true);
-    const response = await Promise.all([getProducts(fruitsFilter)]);
+    const response: any = await Promise.all([getProducts(fruitsFilter)]);
     setLoading(false);
     setProducts(response[0].data.slice(0, 8));
   };
