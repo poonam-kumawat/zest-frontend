@@ -54,8 +54,8 @@ const Category = () => {
     const res = await getProducts(searchFilter);
     setProducts(res.data);
     setIsActive({
-      id: res.data[0].categoryIds[0],
-      name: res.data[0].categories,
+      id: res.data[0]?.categoryIds[0],
+      name: res.data[0]?.categories,
     });
     setLoading(false);
   };
