@@ -167,7 +167,6 @@ const Header = () => {
                 width={35}
                 height={35}
               />
-              <span className="my-auto mx-2"> User Name</span>
             </button>
           )}
         </div>
