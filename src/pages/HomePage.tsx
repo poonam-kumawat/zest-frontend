@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../Components/Card/Card";
 import { getProducts } from "../services/api.service";
 import { createSearchParams, useNavigate } from "react-router-dom";
-import {LoaderHome} from "../Components/Common/Loader";
+import { LoaderHome } from "../Components/Common/Loader";
 
 const HomePage: React.FC = () => {
   const [vegetables, setVegetables] = useState([]);
@@ -107,7 +107,7 @@ const HomePage: React.FC = () => {
                   navigate({
                     pathname: "category",
                     search: createSearchParams({
-                      categories: "Vegetables",
+                      categories: "Fruits",
                     }).toString(),
                   });
                 }}
@@ -120,7 +120,7 @@ const HomePage: React.FC = () => {
                   navigate({
                     pathname: "category",
                     search: createSearchParams({
-                      categories: "Fruits",
+                      categories: "Vegetables",
                     }).toString(),
                   });
                 }}
