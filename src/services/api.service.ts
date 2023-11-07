@@ -27,7 +27,18 @@ export const getLocation = (filter: any) => {
   return globalaxiosInstance.post(`/api/pincode/`, filter);
 };
 
-export const getUserDetails = (email: string) => {
-  console.log('email', email)
-  return globalaxiosInstance.post(`/api/user/get-details`, {email});
+export const getAddresses = (filter: any) => {
+  return globalaxiosInstance.post(`/api/address/get`, filter);
+};
+
+export const createAddress = (filter: any) => {
+  return globalaxiosInstance.post(`/api/address/`, filter);
+};
+
+export const updateAddress = (filter: any) => {
+  return globalaxiosInstance.put(`/api/address/`, filter);
+};
+
+export const deleteAddress = (filter: any) => {
+  return globalaxiosInstance.delete(`/api/address/${filter.id}`);
 };
