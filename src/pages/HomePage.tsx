@@ -54,14 +54,20 @@ const HomePage: React.FC = () => {
     <div className="w-full h-full min-h-screen home">
       {!loading ? (
         <section>
-          <section className="banner-search w-full relative flex items-center justify-center">
-            <img
-              className="bg-cover w-full bg-center bg-no-repeat"
+          <section
+            className="banner-search  relative flex items-center justify-center"
+            style={{
+              backgroundImage: "url(/assets/images/homePage.svg)",
+              height: "590px",
+            }}
+          >
+            {/* <img
+              className="bg-cover bg-no-repeat"
               src="/assets/images/homePage.svg"
               alt="home"
-            />
-            <div className="flex flex-col justify-center items-center absolute top-44 gap-8">
-              <div className="text-6xl text-[#1F2937] font-bold">
+            /> */}
+            <div className="md:flex md:flex-col justify-center items-center absolute md:top-44 gap-8 px-4 md:px-0">
+              <div className="text-2xl md:text-6xl text-[#1F2937] font-bold">
                 Fresh Food that deserve to eat
               </div>
               <div className="text-xl text-[#1F2937]">
@@ -97,8 +103,8 @@ const HomePage: React.FC = () => {
             </div>
           </section>
 
-          <div className="px-10 max-w-screen-2xl mx-auto">
-            <section className="w-full fresh-products mt-14 grid grid-cols-3 grid-rows-auto gap-6 justify-items-center">
+          <div className="px-5 md:px-10 max-w-screen-2xl mx-auto">
+            <section className="w-full fresh-products mt-14 grid md:grid-cols-3 md:grid-rows-auto gap-6 justify-items-center">
               <img
                 src="/assets/images/FruitCard1.svg"
                 alt="fruit1"
@@ -144,7 +150,7 @@ const HomePage: React.FC = () => {
               <div className="">
                 <p className="text-2xl font-semibold my-4">Fresh Fruits</p>
               </div>
-              <div className="grid grid-cols-5 grid-rows-auto gap-8">
+              <div className="grid md:grid-cols-5 md:grid-rows-auto gap-8">
                 {fruits.map((cardData: any) => {
                   return <Card key={cardData._id} cardData={cardData} />;
                 })}
@@ -154,7 +160,7 @@ const HomePage: React.FC = () => {
               <div className="">
                 <p className="text-2xl font-semibold my-4">Fresh Vegetables</p>
               </div>
-              <div className="grid grid-cols-5 grid-rows-auto gap-8">
+              <div className="grid md:grid-cols-5 md:grid-rows-auto gap-8">
                 {vegetables.map((cardData: any) => {
                   return <Card key={cardData._id} cardData={cardData} />;
                 })}
@@ -166,7 +172,7 @@ const HomePage: React.FC = () => {
             </section>
 
             <section className="discount-list">
-              <div className="mt-10 grid grid-cols-6 gap-6 grid-rows-auto">
+              <div className="mt-10  md:grid md:grid-cols-6 gap-6 grid-rows-auto">
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard1.svg"
@@ -253,7 +259,7 @@ const HomePage: React.FC = () => {
                 />
               </div>
 
-              <div className="mt-10 grid grid-cols-6 gap-6 grid-rows-auto">
+              <div className="mt-10 md:grid md:grid-cols-6 gap-6 grid-rows-auto">
                 <img
                   className="cursor-pointer"
                   src="/assets/images/vcard5.svg"
@@ -345,7 +351,7 @@ const HomePage: React.FC = () => {
               <h1 className="text-4xl text-center font-bold text-[#1F2937]">
                 How It Works
               </h1>
-              <div className="grid grid-cols-3 gap-12 mt-16">
+              <div className="grid md:grid-cols-3 gap-12 mt-16">
                 <div className="flex justify-center items-center flex-col border-2 border-gray-300 rounded-xl p-10 gap-3">
                   <img
                     src="/assets/images/clip1.svg"
