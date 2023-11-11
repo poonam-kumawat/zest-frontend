@@ -3,6 +3,9 @@ import Card from "../Components/Card/Card";
 import { getProducts } from "../services/api.service";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { LoaderHome } from "../Components/Common/Loader";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const HomePage: React.FC = () => {
   const [vegetables, setVegetables] = useState([]);
@@ -48,6 +51,43 @@ const HomePage: React.FC = () => {
 
   const scrollToTop = () => {
     window.scroll(0, 0);
+  };
+
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    initialSlide: 0,
+
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+    ],
   };
 
   return (
@@ -172,178 +212,209 @@ const HomePage: React.FC = () => {
             </section>
 
             <section className="discount-list">
-              <div className="mt-10  md:grid md:grid-cols-6 gap-6 grid-rows-auto">
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard1.svg"
-                  alt="vcard1"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "Vegetables",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard2.svg"
-                  alt="vcard2"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "Fruits",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard3.svg"
-                  alt="vcard3"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "Fresh fruits",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard4.svg"
-                  alt="vcard4"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "Fruits",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard1.svg"
-                  alt="vcard4"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "salad",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard2.svg"
-                  alt="vcard2"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "Fresh fruits",
-                      }).toString(),
-                    });
-                  }}
-                />
+              <div className="mt-10">
+                <Slider {...settings}>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard1.svg"
+                      alt="vcard1"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "Vegetables",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard2.svg"
+                      alt="vcard2"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "Fruits",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard3.svg"
+                      alt="vcard3"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "Fresh fruits",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard4.svg"
+                      alt="vcard4"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "Fruits",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard1.svg"
+                      alt="vcard4"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "salad",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard2.svg"
+                      alt="vcard2"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "Fresh fruits",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                </Slider>
               </div>
 
-              <div className="mt-10 md:grid md:grid-cols-6 gap-6 grid-rows-auto">
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard5.svg"
-                  alt="vcard1"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "leafy vegetable",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard6.svg"
-                  alt="vcard2"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "salad",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard7.svg"
-                  alt="vcard3"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "salad",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard8.svg"
-                  alt="vcard4"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "Fresh fruits",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard5.svg"
-                  alt="vcard4"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "leafy vegetable",
-                      }).toString(),
-                    });
-                  }}
-                />
-                <img
-                  className="cursor-pointer"
-                  src="/assets/images/vcard7.svg"
-                  alt="vcard2"
-                  onClick={() => {
-                    scrollToTop();
-                    navigate({
-                      pathname: "category",
-                      search: createSearchParams({
-                        categories: "salad",
-                      }).toString(),
-                    });
-                  }}
-                />
+              <div className="mt-10 ">
+                <Slider {...settings}>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard5.svg"
+                      alt="vcard1"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "leafy vegetable",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard6.svg"
+                      alt="vcard2"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "salad",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard7.svg"
+                      alt="vcard3"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "salad",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard8.svg"
+                      alt="vcard4"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "Fresh fruits",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard5.svg"
+                      alt="vcard4"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "leafy vegetable",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="cursor-pointer h-52"
+                      src="/assets/images/vcard7.svg"
+                      alt="vcard2"
+                      onClick={() => {
+                        scrollToTop();
+                        navigate({
+                          pathname: "category",
+                          search: createSearchParams({
+                            categories: "salad",
+                          }).toString(),
+                        });
+                      }}
+                    />
+                  </div>
+                </Slider>
               </div>
             </section>
 
