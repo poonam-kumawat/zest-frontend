@@ -1,40 +1,133 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { rootType } from "../Redux/rootReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import AddressModal from "../Components/AddressModal/AddressModal";
-import { deleteAddress, getAddresses } from "../services/api.service";
+import {
+  deleteAddress,
+  generateOrder,
+  getAddresses,
+  verifyPayment,
+} from "../services/api.service";
 import { LoaderHome } from "../Components/Common/Loader";
+import { protectedaxiosInstance } from "../services/axiosSetup";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const { email } = useSelector((state: rootType) => state.user);
   const [addresses, setAddreses] = useState<any>([]);
   const [loading, setLoading] = useState(true);
-
-  const getUserAddress = async () => {
-    const resp: any = await getAddresses({ email });
-    setAddreses(resp.data);
-    console.log("resp", resp);
-  };
   const [addressModal, setaddressModal] = useState(false);
   const [order, setorder] = useState<any>({});
   const [editAddress, setEditAddress] = useState({});
 
+  const { email } = useSelector((state: rootType) => state.user);
   const { totalAmount } = useSelector((state: rootType) => state.cart);
+  const { productList } = useSelector((state: rootType) => state.cart);
+  const { countList } = useSelector((state: rootType) => state.cart);
+  const { cartTotalCount } = useSelector((state: rootType) => state.cart);
 
-  useEffect(() => {
-    setLoading(true);
-    getUserAddress();
-    setLoading(false);
-  }, []);
+  const navigate = useNavigate();
+
+  const getUserAddress = async () => {
+    const resp: any = await getAddresses({ email });
+    setAddreses(resp.data);
+  };
 
   const createOrder = (addressDetails: any) => {
-    setorder({
+    const userAddress = {
       ...addressDetails,
-      amount: totalAmount,
+    };
+    delete userAddress._id;
+    setorder({
+      ...userAddress,
+      addressId: addressDetails._id,
+      totalItemCount: cartTotalCount,
+      items: productList.map((item: any) => {
+        return {
+          itemId: item._id,
+          productName: item.productName,
+          price: item.price,
+          seller: item.seller,
+          quantity: item.quantity,
+          itemCount: countList[item._id],
+        };
+      }),
+      totalAmount: totalAmount + 40,
     });
   };
+
+  function loadScript(src: string) {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  }
+
+  async function displayRazorpay() {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    // creating a new order
+    const result = await generateOrder({ totalAmount: order.totalAmount });
+
+    if (!result) {
+      alert("Server error. Are you online?");
+      return;
+    }
+
+    // Getting the order details back
+    const { amount, id: order_id, currency } = result.data;
+    const options = {
+      key: "rzp_test_INymvkMXgx0K7V", // Enter the Key ID generated from the Dashboard
+      amount: amount,
+      name: order.name,
+      description: "Zest Order Payment",
+      currency: currency,
+      order_id: order_id,
+      handler: async function (response: any) {
+        const data = {
+          orderCreationId: order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpaySignature: response.razorpay_signature,
+          orderDetails: order,
+        };
+        const resp = await verifyPayment(data);
+
+        if (resp.status === 200) {
+          navigate("/");
+        }
+      },
+      prefill: {
+        name: order.name,
+        email: order.email,
+        contact: order.phoneNumber,
+      },
+      notes: {
+        address: order.address,
+      },
+      theme: {
+        color: "#61dafb",
+      },
+    };
+
+    const paymentObject = new (window as any).Razorpay(options);
+    paymentObject.open();
+  }
 
   const deleteUserAddress = async (id: string) => {
     setLoading(true);
@@ -45,6 +138,12 @@ const Checkout = () => {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    setLoading(true);
+    getUserAddress();
+    setLoading(false);
+  }, []);
 
   return !loading ? (
     <div>
@@ -85,7 +184,7 @@ const Checkout = () => {
                           key={addr._id}
                           onClick={() => createOrder(addr)}
                           className={`${
-                            order._id === addr._id
+                            order.addressId === addr._id
                               ? "border-2 border-[#4DBD7A]"
                               : "border-dashed border-[#babdbc]"
                           } cursor-pointer relative w-full border p-5 gap-3 rounded-lg flex flex-col`}
@@ -148,6 +247,9 @@ const Checkout = () => {
                           <button
                             type="submit"
                             className="w-1/2 text-lg py-1 font-medium bg-[#4DBD7A] text-white rounded-lg gap-2"
+                            onClick={() => {
+                              displayRazorpay();
+                            }}
                           >
                             Proceed to Pay
                           </button>

@@ -28,17 +28,25 @@ export const getLocation = (filter: any) => {
 };
 
 export const getAddresses = (filter: any) => {
-  return globalaxiosInstance.post(`/api/address/get`, filter);
+  return protectedaxiosInstance.post(`/api/address/get`, filter);
 };
 
 export const createAddress = (filter: any) => {
-  return globalaxiosInstance.post(`/api/address/`, filter);
+  return protectedaxiosInstance.post(`/api/address/`, filter);
 };
 
 export const updateAddress = (filter: any) => {
-  return globalaxiosInstance.put(`/api/address/`, filter);
+  return protectedaxiosInstance.put(`/api/address/`, filter);
 };
 
 export const deleteAddress = (filter: any) => {
-  return globalaxiosInstance.delete(`/api/address/${filter.id}`);
+  return protectedaxiosInstance.delete(`/api/address/${filter.id}`);
+};
+
+export const generateOrder = (order: any) => {
+  return protectedaxiosInstance.post(`/api/payment/orders`, order);
+};
+
+export const verifyPayment = (data: any) => {
+  return protectedaxiosInstance.post(`/api/payment/verify`, data);
 };
