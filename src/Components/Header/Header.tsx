@@ -151,7 +151,7 @@ const Header = () => {
           {!accessToken ? (
             <button
               onClick={() => setshowSignIn(!showSignIn)}
-              className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer"
+              className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer hidden md:block"
             >
               Login
             </button>
@@ -231,7 +231,7 @@ const Header = () => {
                   setshowSignIn(!showSignIn);
                   if (show) setShow(false);
                 }}
-                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer  md:hidden"
               >
                 Login
               </li>
