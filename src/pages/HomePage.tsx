@@ -116,7 +116,7 @@ const HomePage: React.FC = () => {
               </div>
               <form
                 onSubmit={(e) => handleSubmit(e)}
-                className="flex flex-row w-[60%] top-96 p-2 bg-white rounded-md shadow-md border-1 border-[#1F2937]"
+                className="flex flex-row md:w-[60%] top-96 p-2 bg-white rounded-md shadow-md border-1 border-[#1F2937]"
               >
                 <img
                   className="mx-3"

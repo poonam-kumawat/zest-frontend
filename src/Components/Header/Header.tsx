@@ -46,7 +46,7 @@ const Header = () => {
     });
   };
   const setHidden = () => {
-      if (document.body.style.overflow !== "hidden") {
+    if (document.body.style.overflow !== "hidden") {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "scroll";
@@ -228,7 +228,13 @@ const Header = () => {
               >
                 Cart
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer">
+              <li
+                onClick={() =>{
+                   setshowSignIn(!showSignIn);
+                   if (show) setShow(false);
+                }}
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
+              >
                 Login
               </li>
             </ul>
