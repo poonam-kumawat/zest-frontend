@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { LoaderRing } from "../Common/Loader";
-import { getLocation } from "../../services/api.service";
-import { useDispatch } from "react-redux";
-import { saveLocation } from "../../Redux/reducer/locationReducer";
+import {
+  createAddress,
+  updateAddress,
+} from "../../services/api.service";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { rootType } from "../../Redux/rootReducer";
 
 const AddressModal = ({
   setaddressModal,
-  dummyData = {},
-  setDummyData,
+  addressData = [],
+  setAddreses,
+  editAddress = {},
 }: {
   setaddressModal: any;
-  dummyData?: any;
-  setDummyData: any;
+  addressData?: any;
+  setAddreses: any;
+  editAddress?: any;
 }) => {
   const [address, setaddress] = useState({
-    address: "",
-    recieverName: "",
-    contactNumber: "",
+    address: editAddress?.address || "",
+    name: editAddress?.name || "",
+    phoneNumber: editAddress?.phoneNumber || "",
   });
+  const [searching, setsearching] = useState(false);
+
+  const { email } = useSelector((state: rootType) => state.user);
 
   const handleChange = (event: any) => {
     setaddress({
@@ -28,19 +36,36 @@ const AddressModal = ({
     });
   };
 
-  const addAddress = () => {
-    debugger;
-    setDummyData([...dummyData, address]);
-    setaddress({
-      address: "",
-      recieverName: "",
-      contactNumber: "",
-    });
+  const addAddress = async () => {
+    setsearching(true);
+    const resp: any = await createAddress({ ...address, email });
+    console.log("addedAdress :>> ", resp);
+    if (resp.status === 201) {
+      setAddreses([...addressData, resp.data]);
+      setsearching(false);
+      setaddress({
+        address: "",
+        name: "",
+        phoneNumber: "",
+      });
+    }
   };
 
-  useEffect(() => {
-    console.log(dummyData);
-  }, [dummyData]);
+  const updateUserAddress = async () => {
+    setsearching(true);
+    const resp: any = await updateAddress({ ...address, id: editAddress._id });
+    if (resp.status === 200) {
+      const index: number = addressData.findIndex(
+        (item: any) => item._id === editAddress._id
+      );
+      if (index !== -1) {
+        const data: any = [...addressData];
+        data[index] = { _id: editAddress._id, ...address };
+        setAddreses(data);
+      }
+      setsearching(false);
+    }
+  };
 
   return (
     <>
@@ -67,7 +92,11 @@ const AddressModal = ({
               className="flex flex-col py-6 px-8 gap-6"
               onSubmit={(e) => {
                 e.preventDefault();
-                addAddress();
+                if (Object.keys(editAddress).length > 0) {
+                  updateUserAddress();
+                } else {
+                  addAddress();
+                }
                 setaddressModal(false);
               }}
             >
@@ -81,6 +110,7 @@ const AddressModal = ({
                   id="address"
                   name="address"
                   rows={3}
+                  value={address.address}
                   onChange={(e) => handleChange(e)}
                 />
               </div>
@@ -93,10 +123,11 @@ const AddressModal = ({
                   Receiver's Name
                 </label>
                 <input
-                  id="recieverName"
-                  name="recieverName"
+                  id="name"
+                  name="name"
                   type="text"
                   className="border border-[#d2d4d3] w-full shadow-sm p-[0.4rem] text-[#656565] outline-[#4DBD7A] rounded"
+                  value={address.name}
                   onChange={(e) => handleChange(e)}
                 />
               </div>
@@ -109,9 +140,10 @@ const AddressModal = ({
                   Contact Number{" "}
                 </label>
                 <input
-                  id="contactNumber"
-                  name="contactNumber"
+                  id="phoneNumber"
+                  name="phoneNumber"
                   type="text"
+                  value={address.phoneNumber}
                   className="border border-[#d2d4d3] w-full shadow-sm p-[0.4rem] text-[#656565] outline-[#4DBD7A] rounded"
                   onChange={(e) => handleChange(e)}
                 />
@@ -121,7 +153,7 @@ const AddressModal = ({
                   type="submit"
                   className="w-1/4 py-1 font-medium bg-[#4DBD7A] text-white rounded-lg gap-2"
                 >
-                  Save Address
+                  {searching ? <LoaderRing /> : <p>Save Address</p>}
                 </button>
               </div>
             </form>

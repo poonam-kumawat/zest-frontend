@@ -153,7 +153,7 @@ const HomePage: React.FC = () => {
                   navigate({
                     pathname: "category",
                     search: createSearchParams({
-                      categories: "Vegetables",
+                      categories: "Fruits",
                     }).toString(),
                   });
                 }}
@@ -166,7 +166,7 @@ const HomePage: React.FC = () => {
                   navigate({
                     pathname: "category",
                     search: createSearchParams({
-                      categories: "Fruits",
+                      categories: "Vegetables",
                     }).toString(),
                   });
                 }}

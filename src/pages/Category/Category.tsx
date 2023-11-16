@@ -54,18 +54,18 @@ const Category = () => {
     const res = await getProducts(searchFilter);
     setProducts(res.data);
     setIsActive({
-      id: res.data[0].categoryIds[0],
-      name: res.data[0].categories,
+      id: res.data[0]?.categoryIds[0],
+      name: res.data[0]?.categories,
     });
     setLoading(false);
   };
 
   const getHomeProducts = async () => {
     const fruitsFilter = {
-      categories: { $regex: "Fruits", $options: "i" },
+      categories: { $regex: "Vegetables", $options: "i" },
     };
     setLoading(true);
-    const response = await Promise.all([getProducts(fruitsFilter)]);
+    const response: any = await Promise.all([getProducts(fruitsFilter)]);
     setLoading(false);
     setProducts(response[0].data.slice(0, 8));
   };
