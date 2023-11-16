@@ -167,7 +167,11 @@ const Cart = ({
           </div>
         </div>
         <button
-          onClick={() => navigate("/checkout")}
+          onClick={() => {
+            setShowCart(false);
+            setVisible();
+            navigate("/checkout");
+          }}
           className="w-5/6 rounded-lg bg-[#4DBD7A] h-10 mx-8 font-semibold text-white text-lg mb-20"
         >
           Proceed to Payment

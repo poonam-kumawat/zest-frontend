@@ -216,6 +216,25 @@ const Header = () => {
               >
                 Location
               </li>
+              <li
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
+                onClick={() => {
+                  if (show) setShow(false);
+                  setShowCart(!showCart);
+                  if (show) setShow(false);
+                }}
+              >
+                Cart
+              </li>
+              <li
+                onClick={() => {
+                  setshowSignIn(!showSignIn);
+                  if (show) setShow(false);
+                }}
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
+              >
+                Login
+              </li>
             </ul>
           </nav>
         </div>
