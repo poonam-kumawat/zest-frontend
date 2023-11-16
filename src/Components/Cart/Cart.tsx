@@ -25,13 +25,21 @@ const Cart = ({
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[#333333]  bg-opacity-70 h-full fixed z-50 w-full grid place-content-end">
-      <div className="bg-[#F6F6F6] text-[#000]  h-screen  overflow-scroll">
-        <div className="flex justify-between border-b border-slate-400 ">
+    <div className="bg-[#333333]  bg-opacity-70 h-full fixed z-50 w-full  grid sm:grid-cols-3 grid-flow-col">
+      <div className="bg-[#F6F6F6] text-[#000]  h-screen  overflow-scroll col-start-1 sm:col-start-3  ">
+        <div className="flex border-b border-slate-400 ">
+          <img
+            className="cursor-pointer block sm:hidden"
+            width={30}
+            height={30}
+            src="/assets/icons/back-icon.svg"
+            alt="back"
+          />
+
           <div className="text-[#1F2937] text-2xl font-semibold my-2 mx-6">
             My Cart
           </div>
-          <div className="text-[#656565] text-sm m-4 ">
+          <div className="text-[#656565] text-sm m-4">
             Item Count : {cartTotalCount}
           </div>
         </div>
@@ -43,7 +51,7 @@ const Cart = ({
           }}
         >
           <img
-            className="cursor-pointer"
+            className="cursor-pointer hidden sm:block"
             width={50}
             height={50}
             src="/assets/icons/close-button.svg"
@@ -150,11 +158,11 @@ const Cart = ({
             src="/assets/icons/info-icon.svg"
             alt="info"
           />
-          <div className="text-left text-sm">
+          <div className="text-wrap text-sm ">
             Orders cancelled within 24 hrs of delivery won’t
-            <br />
+            {/* <br /> */}
             be applicable for refund.In case of unexpected
-            <br />
+            {/* <br /> */}
             delays, a refund will be provided, if applicable.
           </div>
         </div>
