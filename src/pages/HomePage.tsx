@@ -99,6 +99,8 @@ const HomePage: React.FC = () => {
             style={{
               backgroundImage: "url(/assets/images/homePage.svg)",
               height: "590px",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
             }}
           >
             {/* <img
