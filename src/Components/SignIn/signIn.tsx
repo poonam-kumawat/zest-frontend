@@ -197,7 +197,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
                   </div>
                   <input
                     type="text"
-                    className="py-2 px-2 text-center text-xl font-semibold rounded-md focus:ring-0 outline-none placeholder:font-semibold placeholder:text-lg"
+                    className="py-2 px-2 w-[100%] text-center text-xl font-semibold rounded-md focus:ring-0 outline-none placeholder:font-semibold placeholder:text-lg"
                     placeholder="Enter Email"
                     required
                     onChange={(e) => setEmail(e.target.value)}

@@ -54,13 +54,13 @@ const Location = ({
             or not
           </div>
           <form
-            className="block justify-center lg:flex"
+            className="grid gap-2 justify-center lg:flex"
             onSubmit={(e) => {
               e.preventDefault();
               checkLocation();
             }}
           >
-            <div className="relative me-4 ">
+            <div className="relative md:me-4 ">
               <input
                 type="text"
                 className="border border-[#B8C6C3] py-2 w-full lg:w-96 shadow-sm  px-5 outline-[#B8C6C3] rounded"
@@ -77,7 +77,7 @@ const Location = ({
                 height={20}
               />
             </div>
-            <div className="ps-4 relative">
+            <div className="md:ps-4 relative">
               <button
                 type="submit"
                 className={`bg-[#4DBD7A] text-[#ffffff text-sm rounded-lg ${

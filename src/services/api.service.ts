@@ -1,7 +1,7 @@
 import { globalaxiosInstance, protectedaxiosInstance } from "./axiosSetup";
 
 export const getProducts = (filter: any) => {
-  return globalaxiosInstance.post(`/api/product`, filter);
+    return globalaxiosInstance.post(`/api/product`, filter);
 };
 
 export const getCategories = () => {

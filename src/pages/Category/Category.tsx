@@ -104,15 +104,15 @@ const Category = () => {
   return (
     <div className="categortWrap min-h-screen w-full h-full">
       {!loading ? (
-        <div className="grid grid-cols-4 gap-1">
-          <div className="col-start-1 col-end-2 p-6 pl-12">
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-1">
+          <div className="col-span-1 md:col-start-1 md:col-end-2 md:p-6 md:pl-12">
             <div className="box border-2 border-b-0 border-[#ddd]">
               {categories.map((category: any) => (
                 <div
                   key={category._id}
                   className={`${
                     isActive.id === category._id ? "activeCategory " : ""
-                  }" border-[#ddd] border-b-2 p-5 flex align-middle hover:bg-[#F2FFF3] active hover:border-r-0 hover:cursor-pointer`}
+                  }" border-[#ddd] border-b-2 p-5 md:flex align-middle hover:bg-[#F2FFF3] active hover:border-r-0 hover:cursor-pointer`}
                   onClick={() => {
                     handleCategoryClick(category._id);
                     setIsActive({
@@ -132,14 +132,14 @@ const Category = () => {
               ))}
             </div>
           </div>
-          <div className="col-start-2 col-end-5 p-6 pr-12">
+          <div className="col-span-2 md:col-start-2 md:col-end-5 p-6 md:pr-12">
             <p className="mb-5 font-semibold text-2xl">{isActive.name}</p>
             {products.length > 0 ? (
               <div
                 onClick={() => {
                   scrollToTop();
                 }}
-                className="grid grid-cols-4 grid-rows-auto gap-4"
+                className="grid md:grid-cols-4 md:grid-rows-auto gap-4"
               >
                 {products.map((cardData: CardProps) => {
                   return <Card key={cardData._id} cardData={cardData} />;
