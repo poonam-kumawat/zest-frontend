@@ -62,20 +62,20 @@ const Header = () => {
   }, [showLocation]);
 
   return (
-    <div className="sticky top-0 z-50 bg-[#ffffff]">
-      <div className=" p-4 flex gap-5 shadow-lg grid-rows-3 justify-between mx-auto flex-wrap md:flex lg:flex">
+    <div className="sticky top-0 z-50 bg-[#ffffff] min-w-[275px]">
+      <div className="grid grid-cols-2 md:grid-cols-3  p-4 mx-auto shadow-lg">
         <div className="flex">
           <div
             onClick={() => {
               navigate(`/`);
             }}
-            className="text-2xl font-semibold text-[#4DBD7A] px-10 cursor-pointer"
+            className="text-2xl font-semibold text-[#4DBD7A] px-1 sm:px-8 cursor-pointer"
           >
             Zest
           </div>
 
           <div
-            className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex md:flex cursor-pointer"
+            className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex  cursor-pointer"
             onClick={() => {
               if (showCart) setShowCart(false);
               setShowLocation(!showLocation);
@@ -106,7 +106,7 @@ const Header = () => {
             )}
           </div>
         </div>
-        <div className="relative hidden lg:flex md:flex">
+        <div className="relative hidden lg:flex md:flex place-self-center">
           <form onSubmit={(e) => handleSubmit(e)}>
             <input
               type="text"
@@ -128,13 +128,13 @@ const Header = () => {
             height={20}
           />
         </div>
-        <div className="hidden lg:flex">
+        <div className="flex place-self-end">
           <div className="relative">
-            <p className="badge bg-[#4DBD7A] text-[#ffffff] rounded-[50px] absolute right-9 top-0 text-[10px] m-0 px-[5px] text-center ">
+            <p className="badge bg-[#4DBD7A] text-[#ffffff] rounded-[50px] absolute right-9 top-0 text-[10px] m-0 px-[5px] ">
               {cartTotalCount}
             </p>
             <img
-              className="mx-10 my-1 cursor-pointer "
+              className="mx-2 lg:mx-10 my-1 cursor-pointer "
               src="/assets/icons/cart-icon.svg"
               alt="cart"
               width={30}
@@ -149,7 +149,7 @@ const Header = () => {
           {!accessToken ? (
             <button
               onClick={() => setshowSignIn(!showSignIn)}
-              className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer"
+              className="bg-[#4DBD7A] text-[#ffffff] font-medium text-lg rounded-lg py-1 px-8 cursor-pointer hidden md:block"
             >
               Login
             </button>
@@ -158,7 +158,6 @@ const Header = () => {
               onClick={() => {
                 navigate("/profile");
               }}
-              className="flex"
             >
               <img
                 className="cursor-pointer"
@@ -169,18 +168,18 @@ const Header = () => {
               />
             </button>
           )}
-        </div>
-        <div className="lg:hidden cursor-pointer">
-          <img
-            src="/assets/icons/menu-icon.svg"
-            alt="menu"
-            width={30}
-            height={30}
-            onClick={() => {
-              if (showCart) setShowCart(false);
-              setShow(!show);
-            }}
-          />
+          <div className="lg:hidden cursor-pointer my-auto px-2">
+            <img
+              src="/assets/icons/menu-icon.svg"
+              alt="menu"
+              width={30}
+              height={30}
+              onClick={() => {
+                if (showCart) setShowCart(false);
+                setShow(!show);
+              }}
+            />
+          </div>
         </div>
       </div>
       {/* Mobile navbar */}
@@ -188,11 +187,11 @@ const Header = () => {
         <div className="lg:hidden bg-[#ffffff] border-t">
           <nav className="p-2">
             <ul className="text-[#ffffff]">
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] p-2 rounded text-center m-2 md:hidden lg:hidden hover:text-[#4DBD7A]">
+              <li className="border-0 text-lg font-medium text-[#B8C6C3] p-1 rounded text-center md:m-2 md:hidden lg:hidden hover:text-[#4DBD7A]">
                 <div className="relative lg:flex md:flex">
                   <input
                     type="text"
-                    className="border border-[#B8C6C3] p-1 shadow-sm px-5 outline-[#4DBD7A] rounded w-full "
+                    className="border border-[#B8C6C3] p-1 shadow-sm px-5 outline-[#4DBD7A] rounded w-full hover:border-[#4DBD7A] hover:border-2"
                     placeholder="Search Vegetables and Fruits"
                   ></input>
                   <img
@@ -205,7 +204,7 @@ const Header = () => {
                 </div>
               </li>
               <li
-                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 md:hidden lg:hidden cursor-pointer"
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] rounded text-center p-1 lg:p-2 m-1 lg:m-2 lg:hidden cursor-pointer"
                 onClick={() => {
                   if (show) setShow(false);
                   setShowLocation(!showLocation);
@@ -223,7 +222,13 @@ const Header = () => {
               >
                 Cart
               </li>
-              <li className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer">
+              <li
+                onClick={() => {
+                  setshowSignIn(!showSignIn);
+                  if (show) setShow(false);
+                }}
+                className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer  md:hidden"
+              >
                 Login
               </li>
             </ul>
