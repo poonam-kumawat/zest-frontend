@@ -75,7 +75,7 @@ const Header = () => {
           </div>
 
           <div
-            className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex  cursor-pointer"
+            className="text-lg font-medium text-[#1F2937] px-5 py-1  verticalLine hidden lg:flex  cursor-pointer"
             onClick={() => {
               if (showCart) setShowCart(false);
               setShowLocation(!showLocation);
@@ -212,7 +212,7 @@ const Header = () => {
               >
                 Location
               </li>
-              <li
+              {/* <li
                 className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
                 onClick={() => {
                   if (show) setShow(false);
@@ -221,7 +221,7 @@ const Header = () => {
                 }}
               >
                 Cart
-              </li>
+              </li> */}
               <li
                 onClick={() => {
                   setshowSignIn(!showSignIn);
