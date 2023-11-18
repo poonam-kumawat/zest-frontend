@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { LoaderRing } from "../Common/Loader";
-import {
-  createAddress,
-  updateAddress,
-} from "../../services/api.service";
+import { createAddress, updateAddress } from "../../services/api.service";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { rootType } from "../../Redux/rootReducer";
+import { showErrorToast } from "../../utils/helper";
 
 const AddressModal = ({
   setaddressModal,
@@ -37,33 +35,43 @@ const AddressModal = ({
   };
 
   const addAddress = async () => {
-    setsearching(true);
-    const resp: any = await createAddress({ ...address, email });
-    console.log("addedAdress :>> ", resp);
-    if (resp.status === 201) {
-      setAddreses([...addressData, resp.data]);
-      setsearching(false);
-      setaddress({
-        address: "",
-        name: "",
-        phoneNumber: "",
-      });
+    try {
+      setsearching(true);
+      const resp: any = await createAddress({ ...address, email });
+      if (resp.status === 201) {
+        setAddreses([...addressData, resp.data]);
+        setsearching(false);
+        setaddress({
+          address: "",
+          name: "",
+          phoneNumber: "",
+        });
+      }
+    } catch (error: any) {
+      showErrorToast(error.message);
     }
   };
 
   const updateUserAddress = async () => {
-    setsearching(true);
-    const resp: any = await updateAddress({ ...address, id: editAddress._id });
-    if (resp.status === 200) {
-      const index: number = addressData.findIndex(
-        (item: any) => item._id === editAddress._id
-      );
-      if (index !== -1) {
-        const data: any = [...addressData];
-        data[index] = { _id: editAddress._id, ...address };
-        setAddreses(data);
+    try {
+      setsearching(true);
+      const resp: any = await updateAddress({
+        ...address,
+        id: editAddress._id,
+      });
+      if (resp.status === 200) {
+        const index: number = addressData.findIndex(
+          (item: any) => item._id === editAddress._id
+        );
+        if (index !== -1) {
+          const data: any = [...addressData];
+          data[index] = { _id: editAddress._id, ...address };
+          setAddreses(data);
+        }
+        setsearching(false);
       }
-      setsearching(false);
+    } catch (error: any) {
+      showErrorToast(error.message);
     }
   };
 
@@ -110,6 +118,8 @@ const AddressModal = ({
                   id="address"
                   name="address"
                   rows={3}
+                  required
+                  maxLength={200}
                   value={address.address}
                   onChange={(e) => handleChange(e)}
                 />
@@ -126,6 +136,8 @@ const AddressModal = ({
                   id="name"
                   name="name"
                   type="text"
+                  required
+                  maxLength={50}
                   className="border border-[#d2d4d3] w-full shadow-sm p-[0.4rem] text-[#656565] outline-[#4DBD7A] rounded"
                   value={address.name}
                   onChange={(e) => handleChange(e)}
@@ -142,7 +154,11 @@ const AddressModal = ({
                 <input
                   id="phoneNumber"
                   name="phoneNumber"
-                  type="text"
+                  type="tel"
+                  maxLength={10}
+                  pattern="[0-9]{10}"
+                  title="Enter Valid Input"
+                  required
                   value={address.phoneNumber}
                   className="border border-[#d2d4d3] w-full shadow-sm p-[0.4rem] text-[#656565] outline-[#4DBD7A] rounded"
                   onChange={(e) => handleChange(e)}
