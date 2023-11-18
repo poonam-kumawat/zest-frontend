@@ -3,8 +3,9 @@ import { sendOTP, verifyOTP } from "../../services/api.service";
 import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import { userLogin, userLogout } from "../../Redux/reducer/userReducer";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { showErrorToast } from "../../utils/helper";
 
 const SignIn = ({ SignInRef, setshowSignIn }: any) => {
   const [showOTP, setshowOTP] = useState(false);
@@ -47,11 +48,6 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     };
   }, [inputValues, seconds]);
 
-  const showToastMessage = () => {
-    toast.error("Something Went Wrong !", {
-      position: toast.POSITION.TOP_CENTER,
-    });
-  };
   const handleSendOTP = async (e: any) => {
     try {
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -64,7 +60,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
         await sendOTP(email);
       }
     } catch (error) {
-      showToastMessage();
+      showErrorToast();
     }
   };
   const handleVerifyOtp = async (email: string, otp: any) => {

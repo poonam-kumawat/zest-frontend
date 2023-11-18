@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../Redux/rootReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +11,10 @@ import {
   verifyPayment,
 } from "../services/api.service";
 import { LoaderHome } from "../Components/Common/Loader";
-import { protectedaxiosInstance } from "../services/axiosSetup";
 import { useNavigate } from "react-router-dom";
+import { emptyCart } from "../Redux/reducer/cartReducer";
+import { showErrorToast } from "../utils/helper";
+import { ToastContainer } from "react-toastify";
 
 const Checkout = () => {
   const [addresses, setAddreses] = useState<any>([]);
@@ -28,10 +30,15 @@ const Checkout = () => {
   const { cartTotalCount } = useSelector((state: rootType) => state.cart);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const getUserAddress = async () => {
-    const resp: any = await getAddresses({ email });
-    setAddreses(resp.data);
+    try {
+      const resp: any = await getAddresses({ email });
+      setAddreses(resp.data);
+    } catch (error: any) {
+      showErrorToast(error.message);
+    }
   };
 
   const createOrder = (addressDetails: any) => {
@@ -46,10 +53,6 @@ const Checkout = () => {
       items: productList.map((item: any) => {
         return {
           itemId: item._id,
-          productName: item.productName,
-          price: item.price,
-          seller: item.seller,
-          quantity: item.quantity,
           itemCount: countList[item._id],
         };
       }),
@@ -110,6 +113,8 @@ const Checkout = () => {
 
         if (resp.status === 200) {
           navigate("/");
+          window.scrollTo(0, 0);
+          dispatch(emptyCart());
         }
       },
       prefill: {
@@ -130,13 +135,17 @@ const Checkout = () => {
   }
 
   const deleteUserAddress = async (id: string) => {
-    setLoading(true);
-    const resp: any = await deleteAddress({ id });
-    if (resp.status === 200) {
-      const data = addresses.filter((item: any) => item._id !== id);
-      setAddreses(data);
+    try {
+      setLoading(true);
+      const resp: any = await deleteAddress({ id });
+      if (resp.status === 200) {
+        const data = addresses.filter((item: any) => item._id !== id);
+        setAddreses(data);
+      }
+      setLoading(false);
+    } catch (error: any) {
+      showErrorToast(error.message);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -166,7 +175,10 @@ const Checkout = () => {
                       className={`${
                         addresses.length >= 3 ? "bg-[#96e4b5]" : "bg-[#4DBD7A]"
                       } px-2 py-2 font-medium text-white rounded-lg flex justify-center items-center gap-2`}
-                      onClick={() => setaddressModal(!addressModal)}
+                      onClick={() => {
+                        setEditAddress({});
+                        setaddressModal(!addressModal);
+                      }}
                     >
                       Add Address
                       <img
@@ -228,7 +240,9 @@ const Checkout = () => {
               <div className="border border-[#D9DDDC] rounded-lg">
                 <div className="p-8 flex flex-col gap-3 w-full">
                   <div className="flex gap-4">
-                    <img src="/assets/icons/payment.svg" />
+                    <div>
+                      <img src="/assets/icons/payment.svg" />
+                    </div>
                     <div className="flex flex-col gap-1">
                       <p className="text-[#656565] text-lg font-medium">
                         Select a Payment Method
@@ -302,6 +316,7 @@ const Checkout = () => {
           editAddress={editAddress}
         />
       )}
+      <ToastContainer />
     </div>
   ) : (
     <LoaderHome />
