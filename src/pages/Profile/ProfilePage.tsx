@@ -148,14 +148,21 @@ const ProfilePage = () => {
                 </button>
               </div>
             ) : isActive === "address" ? (
-              <AddressView
-                payment={false}
-                setLoading={setLoading}
-                createOrder={""}
-                order={""}
-                addresses={addresses}
-                setAddreses={setAddreses}
-              />
+              <div>
+                <div className="border-b-2 border-[#3BB77E] text-2xl font-semibold pt-16 pb-4 mx-8">
+                  Address
+                </div>
+                <div className="h-96 overflow-y-scroll">
+                  <AddressView
+                    payment={false}
+                    setLoading={setLoading}
+                    createOrder={""}
+                    order={""}
+                    addresses={addresses}
+                    setAddreses={setAddreses}
+                  />
+                </div>
+              </div>
             ) : (
               <div className=" p-6"> Order Page</div>
             )}
