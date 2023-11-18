@@ -4,22 +4,25 @@ import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import {
   fetchUserDetails,
+  getAddresses,
   updateUserDetails,
 } from "../../services/api.service";
+import AddressView from "../../Components/AddressView/AddressView";
+import { LoaderHome } from "../../Components/Common/Loader";
+import { toast } from "react-toastify";
 
 const ProfilePage = () => {
+  const [loading, setLoading] = useState(true);
   const [isActive, setIsActive] = useState("details");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [userDetails, setUserDetails] = useState<any>({});
-  const [address, setAddress] = useState({
-    name: "",
-    address: "",
-  });
-  const [addAddress, setAddAddress] = useState(false);
-  const [editAddress, setEditAddress] = useState("");
-
+  // const [userDetails, setUserDetails] = useState<any>({});
+  // const [address, setAddress] = useState({
+  //   name: "",
+  //   address: "",
+  // });
+  const [addresses, setAddreses] = useState<any>([]);
   const { email } = useSelector((state: rootType) => state.user);
 
   const getUserDetails = async () => {
@@ -29,31 +32,29 @@ const ProfilePage = () => {
       setFirstName(data?.firstName);
       setLastName(data?.lastName);
       setPhoneNumber(data?.phoneNumber);
-      setUserDetails(data);
+      const resp: any = await getAddresses({ email });
+      setAddreses(resp.data);
+      setLoading(false);
     } catch (error) {
-      console.log("error : ", error);
+      setLoading(false);
+      toast.error("Something Went Wrong !", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 
   const updateDetails = async () => {
-    //add error handling later
     try {
-      let update;
-      if (address.address === "") {
-        update = {
-          firstName: firstName,
-          lastName: lastName,
-          phoneNumber: phoneNumber,
-        };
-      } else {
-        update = {
-          name: address.name,
-          address: address.address,
-        };
-      }
+      const update = {
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+      };
       await updateUserDetails(email, update);
     } catch (error) {
-      console.log("error : ", error);
+      toast.error("Something Went Wrong !", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 
@@ -61,8 +62,8 @@ const ProfilePage = () => {
     getUserDetails();
   }, []);
 
-  return (
-    <div className=" w-full ">
+  return !loading ? (
+    <div className=" w-full px-4">
       <div className=" mx-auto  max-w-screen-xl">
         <div className=" grid grid-cols-4 gap-0  border shadow mx-32 my-7 rounded-e-2xl bg-[#fff] mx-auto ">
           <div className="rounded-r-3xl bg-[#3BB77E] text-[#ffffff] ">
@@ -103,17 +104,19 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
-          <div className="w-full col-span-3 h-[500px]">
+          <div className="w-full col-span-3 h-[550px]">
             {isActive === "details" ? (
-              <div className="ms-16 me-48 my-16 grid gap-8 ">
+              <div className="mx-8 my-16 grid gap-8 ">
                 {/* Add Validationto form fields */}
+                <div className="border-b-2 border-[#3BB77E] text-2xl font-semibold pb-4">
+                  Profile
+                </div>
                 <input
                   type="text"
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="p-2 outline-[#747875] text-[#656565] 
-               border rounded "
+                  className="p-2 outline-[#747875] text-[#656565] border rounded "
                 ></input>
                 <input
                   type="text"
@@ -145,143 +148,14 @@ const ProfilePage = () => {
                 </button>
               </div>
             ) : isActive === "address" ? (
-              <div className="m-16 grid gap-8 overflow-y-scroll max-h-96 ">
-                {userDetails?.address?.map((item: any, index: number) => {
-                  return (
-                    <div className="border-2 rounded p-2 grid border-[#cdd4d1]">
-                      <div className="grid grid-flow-row auto-rows-max">
-                        {editAddress !== item.name ? (
-                          <div>
-                            <div className=" font-semibold inline-flex items-center justify-between w-full">
-                              {item.name}
-                              <button
-                                className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded-3xl m-1 px-1"
-                                onClick={() => {
-                                  setEditAddress(item.name);
-                                }}
-                              >
-                                <img
-                                  width={20}
-                                  height={20}
-                                  src="/assets/icons/edit-icon.svg"
-                                  alt="edit"
-                                />
-                              </button>
-                            </div>
-                            <div>{item.address}</div>
-                          </div>
-                        ) : (
-                          <div>
-                            <div className=" font-semibold inline-flex items-center justify-between w-full">
-                              <input
-                                type="text"
-                                value={item.name}
-                                className="border p-1 mb-2"
-                              />
-
-                              <button
-                                className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded-3xl p-1.5 "
-                                onClick={() => {
-                                  setEditAddress("");
-                                }}
-                              >
-                                <img
-                                  width={15}
-                                  height={15}
-                                  src="/assets/icons/close-icon.svg"
-                                  alt="close"
-                                />
-                              </button>
-                            </div>
-                            <textarea
-                              value={item.address}
-                              rows={3}
-                              className="w-full border p-1 rounded"
-                            ></textarea>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-                {addAddress ? (
-                  <div className="border-2 rounded p-2 grid border-[#cdd4d1]">
-                    <form className="grid grid-flow-row auto-rows-max">
-                      <div className="inline-flex items-center justify-between w-full">
-                        <input
-                          required
-                          type="text"
-                          placeholder="Address Name"
-                          className="border p-1 w-1/4 mb-2 outline-[#747875] "
-                          value={address.name}
-                          onChange={(e: any) => {
-                            setAddress({
-                              ...address,
-                              name: e.target.value,
-                            });
-                          }}
-                        ></input>
-                        <button
-                          className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded-3xl p-1.5 "
-                          onClick={() => {
-                            setAddAddress(false);
-                          }}
-                        >
-                          <img
-                            width={15}
-                            height={15}
-                            src="/assets/icons/close-icon.svg"
-                            alt="close"
-                          />
-                        </button>
-                      </div>
-                      <textarea
-                        required
-                        rows={3}
-                        className="border outline-[#747875] "
-                        value={address.address}
-                        onChange={(e: any) => {
-                          setAddress({
-                            ...address,
-                            address: e.target.value,
-                          });
-                        }}
-                      ></textarea>
-
-                      <div className="flex place-self-end">
-                        <button
-                          onClick={() => {
-                            if (address.name !== "" && address.address !== "") {
-                              updateDetails();
-                              setAddAddress(false);
-                            }
-                          }}
-                          className="w-[70px] h-6 bg-[#3BB77E] rounded text-[#fff] place-self-end mt-2"
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                ) : (
-                  <div
-                    onClick={() => {
-                      setAddAddress(true);
-                    }}
-                  >
-                    <button className="border-2 w-2/6 p-2 flex text-[#656565] rounded hover:border-[#747875] ">
-                      <img
-                        width={15}
-                        height={15}
-                        src="/assets/icons/gray-plus-icon.svg"
-                        alt="plus"
-                        className="my-auto ms-1 me-3"
-                      />
-                      Add Address
-                    </button>
-                  </div>
-                )}
-              </div>
+              <AddressView
+                payment={false}
+                setLoading={setLoading}
+                createOrder={""}
+                order={""}
+                addresses={addresses}
+                setAddreses={setAddreses}
+              />
             ) : (
               <div className=" p-6"> Order Page</div>
             )}
@@ -289,6 +163,8 @@ const ProfilePage = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <LoaderHome />
   );
 };
 
