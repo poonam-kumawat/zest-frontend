@@ -61,3 +61,7 @@ export const generateOrder = (order: any) => {
 export const verifyPayment = (data: any) => {
   return protectedaxiosInstance.post(`/api/payment/verify`, data);
 };
+
+export const orderDetails = (data: any) => {
+  return protectedaxiosInstance.post(`/api/payment/orders-details`, data);
+};

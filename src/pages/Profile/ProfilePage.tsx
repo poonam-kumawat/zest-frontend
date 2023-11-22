@@ -5,6 +5,7 @@ import { rootType } from "../../Redux/rootReducer";
 import {
   fetchUserDetails,
   getAddresses,
+  orderDetails,
   updateUserDetails,
 } from "../../services/api.service";
 import AddressView from "../../Components/AddressView/AddressView";
@@ -17,12 +18,8 @@ const ProfilePage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  // const [userDetails, setUserDetails] = useState<any>({});
-  // const [address, setAddress] = useState({
-  //   name: "",
-  //   address: "",
-  // });
   const [addresses, setAddreses] = useState<any>([]);
+  const [orders, setOrders] = useState<any>([]);
   const { email } = useSelector((state: rootType) => state.user);
 
   const getUserDetails = async () => {
@@ -34,6 +31,8 @@ const ProfilePage = () => {
       setPhoneNumber(data?.phoneNumber);
       const resp: any = await getAddresses({ email });
       setAddreses(resp.data);
+      const orders: any = await orderDetails({ email });
+      setOrders(orders.data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -164,7 +163,33 @@ const ProfilePage = () => {
                 </div>
               </div>
             ) : (
-              <div className=" p-6"> Order Page</div>
+              <div>
+                <div className="border-b-2 border-[#3BB77E] text-2xl font-semibold pt-16 pb-4 mx-8">
+                  Orders
+                </div>
+                {orders.map}
+
+                <div className="border rounded mx-8 my-4 hover:shadow p-4">
+                  order id : 6557a08642bb60404ede61b0
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="border-e">
+                      <div>Total Items: 5</div>
+                      <div>Delivery Charges: Rs.40</div>
+                      <div>Total Amount: Rs.1000</div>
+                    </div>
+                    <div>
+                      <div>created at : 19-11-23, 10:31</div>
+                      <div>
+                        address : Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Amet mattis vulputate
+                        enim nulla aliquet porttitor lacus. Nisl pretium fusce
+                        id velit ut tortor pretium viverra suspendisse.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
