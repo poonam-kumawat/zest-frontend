@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../Redux/rootReducer";
 import {
   generateOrder,
@@ -9,6 +9,8 @@ import {
 import { LoaderHome } from "../Components/Common/Loader";
 import { useNavigate } from "react-router-dom";
 import AddressView from "../Components/AddressView/AddressView";
+import { emptyCart } from "../Redux/reducer/cartReducer";
+import { showErrorToast } from "../utils/helper";
 
 const Checkout = () => {
   const [loading, setLoading] = useState(true);
@@ -22,6 +24,18 @@ const Checkout = () => {
   const { cartTotalCount } = useSelector((state: rootType) => state.cart);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const getUserAddress = async () => {
+    try {
+      const resp: any = await getAddresses({ email });
+      setAddreses(resp.data);
+      setLoading(false);
+    } catch (error: any) {
+      showErrorToast(error.message);
+      setLoading(false);
+    }
+  };
 
   const createOrder = (addressDetails: any) => {
     const userAddress = {
@@ -35,10 +49,6 @@ const Checkout = () => {
       items: productList.map((item: any) => {
         return {
           itemId: item._id,
-          productName: item.productName,
-          price: item.price,
-          seller: item.seller,
-          quantity: item.quantity,
           itemCount: countList[item._id],
         };
       }),
@@ -81,7 +91,7 @@ const Checkout = () => {
     // Getting the order details back
     const { amount, id: order_id, currency } = result.data;
     const options = {
-      key: "rzp_test_INymvkMXgx0K7V", // Enter the Key ID generated from the Dashboard
+      key: process.env.REACT_APP_RAZORPAY_KEY as string, // Enter the Key ID generated from the Dashboard
       amount: amount,
       name: order.name,
       description: "Zest Order Payment",
@@ -99,6 +109,8 @@ const Checkout = () => {
 
         if (resp.status === 200) {
           navigate("/");
+          window.scrollTo(0, 0);
+          dispatch(emptyCart());
         }
       },
       prefill: {
@@ -117,12 +129,6 @@ const Checkout = () => {
     const paymentObject = new (window as any).Razorpay(options);
     paymentObject.open();
   }
-
-  const getUserAddress = async () => {
-    const resp: any = await getAddresses({ email });
-    setAddreses(resp.data);
-    setLoading(false);
-  };
 
   useEffect(() => {
     getUserAddress();

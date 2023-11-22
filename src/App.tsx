@@ -6,6 +6,7 @@ import Category from "./pages/Category/Category";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Checkout from "./pages/Checkout";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
@@ -16,8 +17,22 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/category" element={<Category />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </Layout>
       </Router>
