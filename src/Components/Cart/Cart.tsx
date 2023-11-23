@@ -63,11 +63,6 @@ const Cart = ({
             alt="close"
           />
         </div>
-        {/* Empty Cart message */}
-        {/* <div className=" pt-60 font-semibold text-lg mx-8">
-          No item added to cart. Add now
-        </div> */}
-        {/* Product Cart */}
         {productList.length > 0 ? (
           <div>
             {productList.map((cartitem: any) => {
