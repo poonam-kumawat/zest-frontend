@@ -130,7 +130,7 @@ const Header = () => {
             height={20}
           />
         </div>
-        <div className="flex place-self-end">
+        <div className="flex md:place-self-end md:gap-0 gap-6">
           <div className="relative">
             <p className="badge bg-[#4DBD7A] text-[#ffffff] rounded-[50px] absolute right-9 top-0 text-[10px] m-0 px-[5px] ">
               {cartTotalCount}
@@ -193,12 +193,26 @@ const Header = () => {
             <ul className="text-[#ffffff]">
               <li className="border-0 text-lg font-medium text-[#B8C6C3] p-1 rounded text-center md:m-2 md:hidden lg:hidden hover:text-[#4DBD7A]">
                 <div className="relative lg:flex md:flex">
-                  <input
-                    type="text"
-                    className="border border-[#B8C6C3] p-1 shadow-sm px-5 outline-[#4DBD7A] rounded w-full hover:border-[#4DBD7A] hover:border-2"
-                    placeholder="Search Vegetables and Fruits"
-                  ></input>
+                  <form
+                    onSubmit={(e) => {
+                      handleSubmit(e);
+                      setShow(!show);
+                    }}
+                  >
+                    <input
+                      type="text"
+                      className="border border-[#B8C6C3] p-1 shadow-sm px-5 outline-[#4DBD7A] rounded w-full hover:border-[#4DBD7A] hover:border-2"
+                      placeholder="Search Vegetables and Fruits"
+                      value={searchQuery}
+                      onChange={(e) => {
+                        handleChange(e);
+                      }}
+                    ></input>
+                  </form>
                   <img
+                    onClick={(e) => {
+                      handleSubmit(e);
+                    }}
                     className="mx-4 my-1 absolute right-0 top-0 mt-2 cursor-pointer"
                     src="/assets/icons/search-icon.svg"
                     alt="search"

@@ -79,7 +79,7 @@ const AddressModal = ({
     <>
       <div
         id="defaultModal"
-        className="overflow-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex bg-gray-900/40"
+        className="transition-all duration-1000 ease-in-out overflow-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex bg-gray-900/40"
       >
         <div className="relative w-full max-w-2xl h-full md:h-auto">
           <div className="relative bg-white rounded-lg shadow overflow-hidden">

@@ -68,11 +68,39 @@ const ProductDetailsPage: React.FC = () => {
                     <div className="pb-1">MRP : {details?.price}</div>
                     <div className="pb-1">In Stock</div>
                     <div className="w-4/5 flex flex-row p-1.5 rounded bg-[#4DBD7A] mt-5 cursor-pointer">
-                      <p className="middle m-auto  text-white text-center">
-                        Add
+                      {countList[`${details?._id}`] >= 1 && (
+                        <button
+                          className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded"
+                          onClick={() => {
+                            dispatch(removeProduct(details));
+                          }}
+                        >
+                          <img
+                            width={15}
+                            height={15}
+                            src="/assets/icons/minus-icon.svg"
+                            alt="plus"
+                          />
+                        </button>
+                      )}
+                      <p className="middle m-auto font-semibold text-white text-center">
+                        {countList[`${details?._id}`] !== undefined &&
+                        countList[`${details?._id}`] !== 0
+                          ? countList[`${details?._id}`]
+                          : "Add"}
                       </p>
-                      <button className="w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto ">
-                        <img src="/assets/icons/plus-icon.svg" alt="add" />
+                      <button
+                        onClick={() => {
+                          dispatch(addProduct(details));
+                        }}
+                        className="end float-right w-6 h-6 flex items-center justify-center bg-[#268462] rounded my-auto"
+                      >
+                        <img
+                          width={15}
+                          height={15}
+                          src="/assets/icons/plus-icon.svg"
+                          alt="add"
+                        />
                       </button>
                     </div>
                   </div>
