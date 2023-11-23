@@ -4,7 +4,7 @@ import Layout from "./Components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import Category from "./pages/Category/Category";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
-import SignIn from "./Components/SignIn/signIn";
+import ProfilePage from "./pages/Profile/ProfilePage";
 import Checkout from "./pages/Checkout";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 
@@ -22,6 +22,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Checkout />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
                 </ProtectedRoute>
               }
             />

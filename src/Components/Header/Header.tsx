@@ -5,8 +5,7 @@ import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import SignIn from "../SignIn/signIn";
-import Profile from "../Profile/Profile";
-import { access } from "fs";
+
 import Location from "../Location/Location";
 
 const Header = () => {
@@ -21,7 +20,7 @@ const Header = () => {
   const SignInRef = useRef<HTMLInputElement>(null);
   const [showSignIn, setshowSignIn] = useState(false);
   const { accessToken } = useSelector((state: rootType) => state.user);
-  const [showProfile, setShowProfile] = useState(false);
+  const { cartTotalCount } = useSelector((state: rootType) => state.cart);
   const navigate = useNavigate();
   const { deliveryLocation } = useSelector((state: rootType) => state.location);
   const handleClickOutside = (event: any) => {
@@ -61,7 +60,6 @@ const Header = () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, [showLocation]);
-  const { cartTotalCount } = useSelector((state: rootType) => state.cart);
 
   return (
     <div className="sticky top-0 z-50 bg-[#ffffff] min-w-[275px]">
@@ -77,7 +75,7 @@ const Header = () => {
           </div>
 
           <div
-            className="text-lg font-medium text-[#1F2937] px-10 py-1  verticalLine hidden lg:flex  cursor-pointer"
+            className="text-lg font-medium text-[#1F2937] px-5 py-1  verticalLine hidden lg:flex  cursor-pointer"
             onClick={() => {
               if (showCart) setShowCart(false);
               setShowLocation(!showLocation);
@@ -158,9 +156,7 @@ const Header = () => {
           ) : (
             <button
               onClick={() => {
-                if (showProfile) setShowProfile(false);
-                setShowProfile(!showProfile);
-                setHidden();
+                navigate("/profile");
               }}
             >
               <img
@@ -216,7 +212,7 @@ const Header = () => {
               >
                 Location
               </li>
-              <li
+              {/* <li
                 className="border-2 text-lg font-medium text-[#B8C6C3] hover:border-[#4DBD7A] hover:text-[#4DBD7A] p-2 rounded text-center m-2 cursor-pointer"
                 onClick={() => {
                   if (show) setShow(false);
@@ -225,7 +221,7 @@ const Header = () => {
                 }}
               >
                 Cart
-              </li>
+              </li> */}
               <li
                 onClick={() => {
                   setshowSignIn(!showSignIn);
@@ -247,10 +243,6 @@ const Header = () => {
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
       {showSignIn && (
         <SignIn SignInRef={SignInRef} setshowSignIn={setshowSignIn} />
-      )}
-      {/* Profile Popover */}
-      {showProfile && (
-        <Profile setShowProfile={setShowProfile} showProfile={showProfile} />
       )}
     </div>
   );

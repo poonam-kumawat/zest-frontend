@@ -1,7 +1,7 @@
 import { globalaxiosInstance, protectedaxiosInstance } from "./axiosSetup";
 
 export const getProducts = (filter: any) => {
-    return globalaxiosInstance.post(`/api/product`, filter);
+  return globalaxiosInstance.post(`/api/product`, filter);
 };
 
 export const getCategories = () => {
@@ -20,6 +20,17 @@ export const getRefreshToken = (email: any, refreshToken: any) => {
   return protectedaxiosInstance.post("/api/user/refresh", {
     email,
     refreshToken,
+  });
+};
+
+export const fetchUserDetails = (email: string) => {
+  return protectedaxiosInstance.post("/api/user/get-details", { email });
+};
+
+export const updateUserDetails = (email: string, update: object) => {
+  return protectedaxiosInstance.post("/api/user/update-details", {
+    email,
+    update,
   });
 };
 
@@ -49,4 +60,8 @@ export const generateOrder = (order: any) => {
 
 export const verifyPayment = (data: any) => {
   return protectedaxiosInstance.post(`/api/payment/verify`, data);
+};
+
+export const orderDetails = (data: any) => {
+  return protectedaxiosInstance.post(`/api/payment/orders-details`, data);
 };
