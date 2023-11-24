@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { rootType } from "../Redux/rootReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,7 @@ import {
   verifyPayment,
 } from "../services/api.service";
 import { LoaderHome } from "../Components/Common/Loader";
+import { protectedaxiosInstance } from "../services/axiosSetup";
 import { useNavigate } from "react-router-dom";
 import { emptyCart } from "../Redux/reducer/cartReducer";
 import { showErrorToast } from "../utils/helper";
@@ -30,7 +31,6 @@ const Checkout = () => {
   const { cartTotalCount } = useSelector((state: rootType) => state.cart);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const getUserAddress = async () => {
     try {
@@ -53,6 +53,10 @@ const Checkout = () => {
       items: productList.map((item: any) => {
         return {
           itemId: item._id,
+          productName: item.productName,
+          price: item.price,
+          seller: item.seller,
+          quantity: item.quantity,
           itemCount: countList[item._id],
         };
       }),
@@ -113,8 +117,6 @@ const Checkout = () => {
 
         if (resp.status === 200) {
           navigate("/");
-          window.scrollTo(0, 0);
-          dispatch(emptyCart());
         }
       },
       prefill: {
