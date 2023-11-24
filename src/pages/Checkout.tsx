@@ -158,25 +158,27 @@ const Checkout = () => {
 
   return !loading ? (
     <div>
-      <div className="w-full h-full min-h-screen flex flex-col px-28 pt-16 gap-2">
+      <div className="w-full h-full min-h-screen flex flex-col lg:px-28 pt-16 md:px-14 px-8 gap-2">
         <div className="max-w-screen-2xl mx-auto">
           <p className="text-3xl font-medium text-[#656565] mb-2">
             Enter Address
           </p>
-          <div className="flex gap-6">
-            <div className="w-[60%] flex flex-col">
+          <div className="flex gap-6 md:flex-row flex-col">
+            <div className="md:w-[60%] w-full flex flex-col">
               <div className="border border-[#D9DDDC] rounded-lg">
                 <div className="p-8 flex flex-col gap-3 w-full">
-                  <div className="flex justify-between">
-                    <p className="text-[#656565] text-lg font-normal">
-                      Use a saved address or a new address
-                    </p>
+                  <div className="flex justify-between gap-2">
+                    <div>
+                      <p className="text-[#656565] md:text-base lg:text-lg font-normal">
+                        Use a saved address or a new address
+                      </p>
+                    </div>
                     <button
                       type="submit"
                       disabled={addresses.length >= 3}
                       className={`${
                         addresses.length >= 3 ? "bg-[#96e4b5]" : "bg-[#4DBD7A]"
-                      } px-2 py-2 font-medium text-white rounded-lg flex justify-center items-center gap-2`}
+                      } px-2 py-2 h-10 xl:text-base lg:text-sm md:text-xs sm:text-sm text-xs font-medium text-white rounded-lg flex justify-center items-center gap-2`}
                       onClick={() => {
                         setEditAddress({});
                         setaddressModal(!addressModal);
@@ -184,6 +186,7 @@ const Checkout = () => {
                     >
                       Add Address
                       <img
+                        className="sm:block hidden"
                         width={15}
                         height={15}
                         src="/assets/icons/plus-icon.svg"
@@ -240,7 +243,7 @@ const Checkout = () => {
               </div>
               <div className="bg-[#F4FBF7] p-3" />
               <div className="border border-[#D9DDDC] rounded-lg">
-                <div className="p-8 flex flex-col gap-3 w-full">
+                <div className="p-4 md:p-8 flex flex-col gap-3 w-full">
                   <div className="flex gap-4">
                     <div>
                       <img src="/assets/icons/payment.svg" />
@@ -262,7 +265,7 @@ const Checkout = () => {
                           />
                           <button
                             type="submit"
-                            className="w-1/2 text-lg py-1 font-medium bg-[#4DBD7A] text-white rounded-lg gap-2"
+                            className="sm:w-1/2 w-3/4 text-lg py-1 font-medium bg-[#4DBD7A] text-white rounded-lg gap-2"
                             onClick={() => {
                               displayRazorpay();
                             }}
@@ -277,7 +280,7 @@ const Checkout = () => {
               </div>
             </div>
 
-            <div className="w-[40%]">
+            <div className="md:w-[40%] w-full">
               <div className="card mx-3 rounded px-4 py-2 border border-[#D9DDDC] bg-[#ffffff] text-[#1F2937] font-medium shadow">
                 <p className="text-xl font-normal my-2 mx-6 ">Price Summary</p>
                 <div className="flex w-full flex-row justify-between px-8 py-2 border-t border-slate-400 text-sm ">
