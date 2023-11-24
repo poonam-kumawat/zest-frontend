@@ -41,7 +41,9 @@ const Header = () => {
       pathname: "category",
       search: createSearchParams({
         search: searchQuery,
-      }).toString(),
+      })
+        .toString()
+        .trim(),
     });
   };
   const setHidden = () => {
