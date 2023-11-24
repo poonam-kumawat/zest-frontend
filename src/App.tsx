@@ -7,6 +7,8 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Checkout from "./pages/Checkout";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
+import MobileProfile from "./Components/MobileProfile/MobileProfile";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/mobile" element={<MobileProfile />} />
           </Routes>
         </Layout>
       </Router>
