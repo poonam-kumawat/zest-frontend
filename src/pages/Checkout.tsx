@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../Redux/rootReducer";
 import {
-  deleteAddress,
   generateOrder,
   getAddresses,
   verifyPayment,
@@ -96,7 +95,7 @@ const Checkout = () => {
     // Getting the order details back
     const { amount, id: order_id, currency } = result.data;
     const options = {
-      key: "rzp_test_INymvkMXgx0K7V", // Enter the Key ID generated from the Dashboard
+      key: process.env.REACT_APP_RAZORPAY_KEY as string, // Enter the Key ID generated from the Dashboard
       amount: amount,
       name: order.name,
       description: "Zest Order Payment",
