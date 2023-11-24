@@ -19,7 +19,7 @@ const AddressView = ({
   addresses: any;
   setAddreses: Function;
 }) => {
-  const [editAddress, setEditAddress] = useState("");
+  const [editAddress, setEditAddress] = useState({});
   const [addressModal, setaddressModal] = useState(false);
 
   const deleteUserAddress = async (id: string) => {
@@ -34,20 +34,26 @@ const AddressView = ({
 
   return (
     <div className="p-8 flex flex-col gap-3 w-full">
-      <div className="flex justify-between">
-        <p className="text-[#656565] text-lg font-normal">
-          {payment ? "Use a saved address or a new address" : ""}
-        </p>
+      <div className="flex justify-between gap-2">
+        <div>
+          <p className="text-[#656565] md:text-base lg:text-lg font-normal">
+            {payment ? "Use a saved address or a new address" : ""}
+          </p>
+        </div>
         <button
           type="submit"
           disabled={addresses.length >= 3}
           className={`${
             addresses.length >= 3 ? "bg-[#96e4b5]" : "bg-[#4DBD7A]"
-          } px-2 py-2 font-medium text-white rounded-lg flex justify-center items-center gap-2`}
-          onClick={() => setaddressModal(!addressModal)}
+          } px-2 py-2 h-10 xl:text-base lg:text-sm md:text-xs sm:text-sm text-xs font-medium text-white rounded-lg flex justify-center items-center gap-2`}
+          onClick={() => {
+            setEditAddress({});
+            setaddressModal(!addressModal);
+          }}
         >
           Add Address
           <img
+            className="sm:block hidden"
             width={15}
             height={15}
             src="/assets/icons/plus-icon.svg"
@@ -60,15 +66,11 @@ const AddressView = ({
           addresses.map((addr: any) => (
             <div
               key={addr._id}
-              onClick={() => {
-                if (payment) {
-                  createOrder(addr);
-                }
-              }}
+              onClick={() => (payment ? createOrder(addr) : null)}
               className={`${
                 order.addressId === addr._id
-                  ? "border-2 border-[#4DBD7A] "
-                  : "border-dashed border-[#babdbc] hover:border-[#4DBD7A] hover:border-2 hover:border-solid"
+                  ? "border-2 border-[#4DBD7A]"
+                  : "border-dashed border-[#babdbc]"
               } cursor-pointer relative w-full border p-5 gap-3 rounded-lg flex flex-col`}
             >
               <FontAwesomeIcon
