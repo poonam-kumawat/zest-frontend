@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../Redux/rootReducer";
 import { addProduct, removeProduct } from "../Redux/reducer/cartReducer";
-import {LoaderHome} from "../Components/Common/Loader";
+import { LoaderHome } from "../Components/Common/Loader";
 
 type ProductDetails = {
   availability: string;
@@ -48,8 +48,8 @@ const ProductDetailsPage: React.FC = () => {
           <LoaderHome />
         </div>
       ) : (
-        <div>
-          <div className="md:flex md:gap-2 my-5 md:my-10 lg:w-4/5 mx-auto ">
+        <div className="w-full h-full min-h-screen">
+          <div className="max-w-screen-2xl md:flex md:gap-2 my-5 md:my-10 lg:w-4/5 mx-auto ">
             <div className="w-full h-full grid-rows-2 md:border-e">
               <div className="w-2/3 p-10 m-auto border max-w-sm">
                 <img

@@ -113,7 +113,7 @@ const HomePage: React.FC = () => {
             /> */}
             <div className="flex flex-col justify-center items-center absolute md:top-44 gap-8 px-4 md:px-0">
               <div className="text-4xl md:text-6xl text-[#1F2937] font-bold text-center">
-                Fresh Food that deserve to eat
+                Savor the simplicity tap, order, taste the freshness
               </div>
               <div className="text-xl text-[#1F2937] text-center">
                 Get your healthy foods & snacks delivered at your doorsteps all
