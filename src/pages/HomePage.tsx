@@ -103,6 +103,7 @@ const HomePage: React.FC = () => {
               height: "590px",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           >
             {/* <img
@@ -110,11 +111,11 @@ const HomePage: React.FC = () => {
               src="/assets/images/homePage.svg"
               alt="home"
             /> */}
-            <div className="md:flex md:flex-col justify-center items-center absolute md:top-44 gap-8 px-4 md:px-0">
-              <div className="text-2xl md:text-6xl text-[#1F2937] font-bold">
+            <div className="flex flex-col justify-center items-center absolute md:top-44 gap-8 px-4 md:px-0">
+              <div className="text-4xl md:text-6xl text-[#1F2937] font-bold text-center">
                 Fresh Food that deserve to eat
               </div>
-              <div className="text-xl text-[#1F2937]">
+              <div className="text-xl text-[#1F2937] text-center">
                 Get your healthy foods & snacks delivered at your doorsteps all
                 day everyday
               </div>
@@ -148,7 +149,7 @@ const HomePage: React.FC = () => {
           </section>
 
           <div className="px-5 md:px-10 max-w-screen-2xl mx-auto">
-            <section className="w-full fresh-products mt-14 grid md:grid-cols-3 md:grid-rows-auto gap-6 justify-items-center">
+            <section className="w-full fresh-products mt-5 md:mt-14 grid md:grid-cols-3 md:grid-rows-auto gap-6 justify-items-center">
               <img
                 src="/assets/images/FruitCard1.svg"
                 alt="fruit1"

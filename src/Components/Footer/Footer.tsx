@@ -1,6 +1,9 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const { pathname } = useLocation();
+  if (pathname === "/mobile") return null;
   return (
     <div className="footerWrap  py-10 mt-20 bg-[#F9F9F9]">
       <div className="md:grid md:grid-cols-3">

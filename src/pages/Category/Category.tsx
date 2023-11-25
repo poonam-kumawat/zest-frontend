@@ -104,15 +104,15 @@ const Category = () => {
   return (
     <div className="categortWrap min-h-screen w-full h-full">
       {!loading ? (
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-1">
-          <div className="col-span-1 md:col-start-1 md:col-end-2 md:p-6 md:pl-12">
-            <div className="box border-2 border-b-0 border-[#ddd]">
+        <div className="md:grid  md:grid-cols-4 gap-1">
+          <div className="md:col-span-1 md:col-start-1 md:col-end-2 md:p-6 md:pl-12">
+            <div className="fixed w-full bg-white z-50 md:z-0 md:static -mt-1 md:mt-0 flex  overflow-y-scroll md:grid  md:overflow-y-hidden md:box md:border-2 md:border-b-0 border-[#ddd]">
               {categories.map((category: any) => (
                 <div
                   key={category._id}
                   className={`${
                     isActive.id === category._id ? "activeCategory " : ""
-                  }" border-[#ddd] border-b-2 p-5 md:flex align-middle hover:bg-[#F2FFF3] active hover:border-r-0 hover:cursor-pointer`}
+                  }" border-[#ddd] border-b-2 md:p-5 flex align-middle hover:bg-[#F2FFF3] active hover:border-r-0 hover:cursor-pointer px-5 pt-5 pb-1 md:flex-row flex-col items-center md:items-start`}
                   onClick={() => {
                     handleCategoryClick(category._id);
                     setIsActive({
@@ -124,15 +124,15 @@ const Category = () => {
                   <img
                     // src="/assets/images/karela.svg"
                     src={category.imgUrl}
-                    className="w-12 pr-4 mix-blend-multiply scale-[1.5]"
+                    className="md:w-12 w-8 md:pr-4 pr-0 mb-5 md:mb-0 mix-blend-multiply scale-[1.5]"
                     alt="img"
                   />
-                  <p>{category.catergories}</p>
+                  <p className="whitespace-nowrap">{category.catergories}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="col-span-2 md:col-start-2 md:col-end-5 p-6 md:pr-12">
+          <div className="md:col-span-2 md:col-start-2 md:col-end-5 p-6 md:pr-12 pt-32 md:pt-6">
             <p className="mb-5 font-semibold text-2xl">{isActive.name}</p>
             {products.length > 0 ? (
               <div

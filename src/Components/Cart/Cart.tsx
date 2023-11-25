@@ -31,6 +31,9 @@ const Cart = ({
       <div className="bg-[#F6F6F6] text-[#000]  h-screen  overflow-scroll col-start-1 sm:col-start-3  ">
         <div className="flex border-b border-slate-400 ">
           <img
+            onClick={() => {
+              setShowCart(!showCart);
+            }}
             className="cursor-pointer block sm:hidden"
             width={30}
             height={30}

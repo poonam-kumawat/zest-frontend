@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { sendOTP, verifyOTP } from "../../services/api.service";
 import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
-import { userLogin, userLogout } from "../../Redux/reducer/userReducer";
+import { userLogin } from "../../Redux/reducer/userReducer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { showErrorToast } from "../../utils/helper";
