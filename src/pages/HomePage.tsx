@@ -27,7 +27,9 @@ const HomePage: React.FC = () => {
       pathname: "category",
       search: createSearchParams({
         search: searchQuery,
-      }).toString(),
+      })
+        .toString()
+        .trim(),
     });
   };
 
