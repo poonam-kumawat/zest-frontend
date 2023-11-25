@@ -79,9 +79,9 @@ const AddressModal = ({
     <>
       <div
         id="defaultModal"
-        className="transition-all duration-1000 ease-in-out overflow-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex bg-gray-900/40"
+        className="overflow-hidden fixed top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center flex bg-gray-900/40"
       >
-        <div className="relative w-full max-w-2xl h-full md:h-auto">
+        <div className="relative w-full max-w-2xl h-auto px-3">
           <div className="relative bg-white rounded-lg shadow overflow-hidden">
             <div className="flex justify-between items-center px-4 py-3 rounded-t border-b">
               <h4 className="text-xl font-medium text-[#4DBD7A]">
@@ -97,7 +97,7 @@ const AddressModal = ({
             </div>
             <hr />
             <form
-              className="flex flex-col py-6 px-8 gap-6"
+              className="flex flex-col py-6 px-4 md:px-8 gap-6"
               onSubmit={(e) => {
                 e.preventDefault();
                 if (Object.keys(editAddress).length > 0) {
@@ -167,7 +167,7 @@ const AddressModal = ({
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="w-1/4 py-1 font-medium bg-[#4DBD7A] text-white rounded-lg gap-2"
+                  className="w-1/2 md:w-1/4 py-1 font-medium bg-[#4DBD7A] text-white rounded-lg gap-2"
                 >
                   {searching ? <LoaderRing /> : <p>Save Address</p>}
                 </button>
