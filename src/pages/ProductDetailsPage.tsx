@@ -105,7 +105,7 @@ const ProductDetailsPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="ps-8">
+                <div className="ps-0 md:ps-8">
                   <div className="text-2xl text-[#5C625E] ">Details</div>
                   <div className="text-[#747875] mt-5 text-lg">
                     {details?.product_description}
