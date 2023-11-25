@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import "./Header.css";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import SignIn from "../SignIn/signIn";
+import { userLogout } from "../../Redux/reducer/userReducer";
 
 import Location from "../Location/Location";
 
@@ -18,23 +19,36 @@ const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const locationRef = useRef<HTMLInputElement>(null);
   const SignInRef = useRef<HTMLInputElement>(null);
+  const SignoutRef = useRef<HTMLInputElement>(null);
   const [showSignIn, setshowSignIn] = useState(false);
+  const [showAccount, setshowAccount] = useState(false);
   const { accessToken } = useSelector((state: rootType) => state.user);
   const { cartTotalCount } = useSelector((state: rootType) => state.cart);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { deliveryLocation } = useSelector((state: rootType) => state.location);
   const handleClickOutside = (event: any) => {
     if (locationRef.current && !locationRef.current.contains(event.target)) {
       setShowLocation(!showLocation);
     } else if (SignInRef.current && !SignInRef.current.contains(event.target)) {
       setshowSignIn(!showSignIn);
+    } else if (
+      SignoutRef.current &&
+      !SignoutRef.current.contains(event.target)
+    ) {
+      setshowAccount(!showAccount);
     }
   };
 
+  const handleAccount = () => {
+    setshowAccount(!showAccount);
+  };
   const handleChange = (e: any) => {
     setSearchQuery(e.target.value);
   };
-
+  const handleSignOut = () => {
+    dispatch(userLogout());
+  };
   const handleSubmit = (e: any) => {
     e.preventDefault();
     navigate({
@@ -62,6 +76,22 @@ const Header = () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, [showLocation]);
+  useEffect(() => {
+    if (showAccount) {
+      document.addEventListener("click", handleClickOutside, true);
+    }
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+  useEffect(() => {
+    if (showSignIn) {
+      document.addEventListener("click", handleClickOutside, true);
+    }
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
 
   return (
     <div className="sticky top-0 z-50 bg-[#ffffff] min-w-[275px]">
@@ -156,19 +186,44 @@ const Header = () => {
               Login
             </button>
           ) : (
-            <button
-              onClick={() => {
-                navigate("/profile");
-              }}
-            >
-              <img
-                className="cursor-pointer"
-                src="/assets/icons/profile-icon.svg"
-                alt="profile"
-                width={35}
-                height={35}
-              />
-            </button>
+            <div className="relative" ref={SignoutRef}>
+              <button
+                onClick={() => {
+                  handleAccount();
+                  // navigate("/profile");
+                }}
+              >
+                <img
+                  className="cursor-pointer"
+                  src="/assets/icons/profile-icon.svg"
+                  alt="profile"
+                  width={35}
+                  height={35}
+                />
+              </button>
+              {showAccount ? (
+                <div className="absolute top-10 right-0 bg-white  rounded-md shadow-md">
+                  <p
+                    onClick={() => {
+                      navigate("/profile");
+                      setshowAccount(!showAccount);
+                    }}
+                    className="p-3 cursor-pointer whitespace-nowrap hover:bg-[#ebebeb]"
+                  >
+                    My Account
+                  </p>
+                  <p
+                    onClick={() => {
+                      handleSignOut();
+                      setshowAccount(!showAccount);
+                    }}
+                    className="p-3 cursor-pointer hover:bg-[#ebebeb] "
+                  >
+                    LogOut
+                  </p>
+                </div>
+              ) : null}
+            </div>
           )}
           <div className="lg:hidden cursor-pointer my-auto px-2">
             <img
