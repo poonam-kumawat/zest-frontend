@@ -37,6 +37,18 @@ const Checkout = () => {
     }
   };
 
+  const verifyRazorpayPayment = async (data: any) => {
+    try {
+      const resp = await verifyPayment(data);
+      if (resp.status === 200) {
+        navigate("/");
+        dispatch(emptyCart());
+      }
+    } catch (error: any) {
+      showErrorToast(error.message);
+    }
+  };
+
   const createOrder = (addressDetails: any) => {
     const userAddress = {
       ...addressDetails,
@@ -109,12 +121,7 @@ const Checkout = () => {
           razorpaySignature: response.razorpay_signature,
           orderDetails: order,
         };
-        const resp = await verifyPayment(data);
-
-        if (resp.status === 200) {
-          navigate("/");
-          dispatch(emptyCart());
-        }
+        verifyRazorpayPayment(data);
       },
       prefill: {
         name: order.name,

@@ -58,6 +58,7 @@ const AddressModal = ({
       const resp: any = await updateAddress({
         ...address,
         id: editAddress._id,
+        email : email
       });
       if (resp.status === 200) {
         const index: number = addressData.findIndex(
