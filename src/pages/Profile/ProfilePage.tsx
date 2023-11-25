@@ -11,6 +11,7 @@ import {
 import AddressView from "../../Components/AddressView/AddressView";
 import { LoaderHome } from "../../Components/Common/Loader";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
@@ -20,6 +21,7 @@ const ProfilePage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [addresses, setAddreses] = useState<any>([]);
   const [orders, setOrders] = useState<any>([]);
+  const [activeOrder, setActiveOrder] = useState("");
   const { email } = useSelector((state: rootType) => state.user);
 
   const getUserDetails = async () => {
@@ -106,7 +108,7 @@ const ProfilePage = () => {
           <div className="w-full col-span-3 h-[550px]">
             {isActive === "details" ? (
               <div className="mx-8 my-16 grid gap-8 ">
-                {/* Add Validationto form fields */}
+                {/* Add Validation to form fields */}
                 <div className="border-b-2 border-[#3BB77E] text-2xl font-semibold pb-4">
                   Profile
                 </div>
@@ -164,30 +166,98 @@ const ProfilePage = () => {
               </div>
             ) : (
               <div>
-                <div className="border-b-2 border-[#3BB77E] text-2xl font-semibold pt-16 pb-4 mx-8">
+                <div className="border-b-2 border-[#3BB77E] text-2xl font-semibold pt-16 pb-4 mx-8 ">
                   Orders
                 </div>
-                {orders.map}
-
-                <div className="border rounded mx-8 my-4 hover:shadow p-4">
-                  order id : 6557a08642bb60404ede61b0
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="border-e">
-                      <div>Total Items: 5</div>
-                      <div>Delivery Charges: Rs.40</div>
-                      <div>Total Amount: Rs.1000</div>
-                    </div>
-                    <div>
-                      <div>created at : 19-11-23, 10:31</div>
+                <div className="h-96 overflow-y-scroll text-[#828282]">
+                  {orders.map((order: any) => {
+                    return (
                       <div>
-                        address : Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Amet mattis vulputate
-                        enim nulla aliquet porttitor lacus. Nisl pretium fusce
-                        id velit ut tortor pretium viverra suspendisse.
+                        <div className="border rounded mx-8 mt-4 hover:shadow p-4">
+                          <div className="flex ">
+                            <div className="flex-1">
+                              Order Id :{" "}
+                              <span>
+                                {new Date(order.timeStamp)
+                                  .getTime()
+                                  .toString()
+                                  .slice(5)}
+                              </span>
+                            </div>
+                            <div className="flex-1 grid place-content-end">
+                              <img
+                                src="/assets/icons/dropdown-arrow-icon.svg"
+                                alt="dropdown-arrow"
+                                onClick={() => {
+                                  if (activeOrder !== order._id.toString())
+                                    setActiveOrder(order._id);
+                                  else setActiveOrder("");
+                                }}
+                              />
+                            </div>
+                          </div>
+                          <div>Total Items : {order.totalItemCount}</div>
+                          <div>
+                            Orded Date :{" "}
+                            {moment(order.timeStamp)
+                              .format("DD-MM-YYYY")
+                              .toString()}
+                          </div>
+                          <div>Delivery Charges : Rs.40</div>
+                          <div>Total Amount : Rs.{order.totalAmount}</div>
+                          <div>
+                            Address :{" "}
+                            {order?.address.length > 300
+                              ? order?.address.slice(0, 200) + "..."
+                              : order?.address}
+                          </div>
+                        </div>
+                        {order._id.toString() === activeOrder ? (
+                          <div className="bg-[#edf2f0] border rounded-b-lg  mx-8 ">
+                            {order?.itemDetails?.map((item: any) => {
+                              return (
+                                <div
+                                  key={item._id}
+                                  className="flex card cursor-pointer m-4 gap-4 rounded  p-2 flex justify-center bg-[#ffffff] shadow"
+                                >
+                                  <img
+                                    className="mx-4 my-auto"
+                                    src={item.imgUrl}
+                                    alt="fruit"
+                                    width={80}
+                                    height={80}
+                                  />
+                                  <div className="pr-14">
+                                    <div className="name">
+                                      <p className="text-base font-semibold my-2">
+                                        {item.productName} ({item.quantity})
+                                      </p>
+                                      <p className="text-sm text-[#656565] pr-12">
+                                        No. of Items : {""}
+                                        {
+                                          order?.items?.find(
+                                            (ele: any) =>
+                                              ele._id === order.items._id
+                                          )?.itemCount
+                                        }
+                                      </p>
+                                    </div>
+                                    <div className="flex w-full flex-row justify-between py-2">
+                                      <p className="text-sm text-[#656565] pr-12">
+                                        Price: {item.price}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </div>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
