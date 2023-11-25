@@ -101,7 +101,7 @@ const Cart = ({
                           }}
                           className="flex items-center justify-center bg-[#268462] rounded"
                         >
-                          <img src="/assets/icons/minus-icon.svg" alt="add" />
+                          <img src="/assets/icons/minus-icon.svg" alt="minus" />
                         </button>
                       )}
                       <p className="mx-auto -my-0.5 font-semibold text-white text-center ">
