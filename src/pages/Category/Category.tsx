@@ -104,7 +104,7 @@ const Category = () => {
   return (
     <div className="categortWrap min-h-screen w-full h-full">
       {!loading ? (
-        <div className="md:grid  md:grid-cols-4 gap-1">
+        <div className="max-w-screen-2xl mx-auto md:grid  md:grid-cols-4 gap-1">
           <div className="md:col-span-1 md:col-start-1 md:col-end-2 md:p-6 md:pl-12">
             <div className="fixed w-full bg-white z-50 md:z-0 md:static -mt-1 md:mt-0 flex  overflow-y-scroll md:grid  md:overflow-y-hidden md:box md:border-2 md:border-b-0 border-[#ddd]">
               {categories.map((category: any) => (

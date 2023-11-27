@@ -62,8 +62,8 @@ const ProfilePage = () => {
   }, []);
 
   return !loading ? (
-    <div className=" w-full px-4">
-      <div className=" mx-auto  max-w-screen-xl">
+    <div className="h-full w-full min-h-screen px-4">
+      <div className="mx-auto  max-w-screen-2xl">
         <div className=" grid grid-cols-4 gap-0  border shadow mx-32 my-7 rounded-e-2xl bg-[#fff] mx-auto ">
           <div className="rounded-r-3xl bg-[#3BB77E] text-[#ffffff] ">
             <div className=" border-b-2 border-[#ffffff] m-5 text-3xl p-6 pb-8 font-semibold">
