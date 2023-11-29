@@ -24,6 +24,12 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
     setInputValues(newInputValues);
+     if (value.length === 1 && index < inputValues.length - 1) {
+       const nextInput = document.getElementById(`input-${index + 1}`);
+       if (nextInput) {
+         nextInput.focus();
+       }
+     }
   };
 
   useEffect(() => {
@@ -84,6 +90,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     sendOTP(email);
   };
 
+ 
   return (
     <>
       <div className="bg-[#333333] p-[1rem] flex bg-opacity-70 pt-8 justify-center h-full fixed z-50 w-full">
@@ -100,13 +107,13 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
           </div>
 
           <div
-            className={`w-full sm:w-[70%] p-2 gap-${
+            className={`w-full sm:w-[70%] p-6 md:p-2 gap-${
               showOTP ? "6" : "8"
             }  flex flex-col justify-center items-center`}
           >
             <p
               className={`text-${
-                showOTP ? "4xl" : "6xl"
+                showOTP ? "4xl" : "4xl"
               } font-semibold text-[#4DBD7A]`}
             >
               {showOTP ? "OTP Verification" : "Zest"}
@@ -127,6 +134,7 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
                     return (
                       <input
                         key={index}
+                        id={`input-${index}`}
                         className="m-2 border border-[#87908F] h-10 w-10 text-center rounded"
                         type="text"
                         maxLength={1}
