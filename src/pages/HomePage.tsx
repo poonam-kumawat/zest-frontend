@@ -7,10 +7,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const HomePage: React.FC = () => {
+interface HomePageProps {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ loading, setLoading }) => {
   const [vegetables, setVegetables] = useState([]);
   const [fruits, setFruits] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState<any>("");
   const navigate = useNavigate();
   useEffect(() => {

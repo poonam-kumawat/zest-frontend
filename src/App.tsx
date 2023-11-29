@@ -19,14 +19,25 @@ function App() {
       <Router>
         <Layout loading={loading} setLoading={setLoading}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/category" element={<Category />} />
-            <Route path="/product/:id" element={<ProductDetailsPage />} />
+            <Route
+              path="/"
+              element={<HomePage loading={loading} setLoading={setLoading} />}
+            />
+            <Route
+              path="/category"
+              element={<Category loading={loading} setLoading={setLoading} />}
+            />
+            <Route
+              path="/product/:id"
+              element={
+                <ProductDetailsPage loading={loading} setLoading={setLoading} />
+              }
+            />
             <Route
               path="/checkout"
               element={
                 <ProtectedRoute>
-                  <Checkout />
+                  <Checkout loading={loading} setLoading={setLoading} />
                 </ProtectedRoute>
               }
             />

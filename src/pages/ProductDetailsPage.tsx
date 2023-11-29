@@ -20,10 +20,17 @@ type ProductDetails = {
   _id: string;
 };
 
-const ProductDetailsPage: React.FC = () => {
+interface ProductPageProps {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ProductDetailsPage: React.FC<ProductPageProps> = ({
+  loading,
+  setLoading,
+}) => {
   const params = useParams();
   const [details, setDetails] = useState<ProductDetails>();
-  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const { countList } = useSelector((state: rootType) => state.cart);

@@ -13,11 +13,15 @@ import { showErrorToast } from "../utils/helper";
 import { ToastContainer } from "react-toastify";
 import AddressView from "../Components/AddressView/AddressView";
 
-const Checkout = () => {
+interface CheckoutProps {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Checkout: React.FC<CheckoutProps> = ({ loading, setLoading }) => {
   const dispatch = useDispatch();
 
   const [addresses, setAddreses] = useState<any>([]);
-  const [loading, setLoading] = useState(true);
   const [order, setorder] = useState<any>({});
 
   const { email } = useSelector((state: rootType) => state.user);
