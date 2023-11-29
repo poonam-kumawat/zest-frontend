@@ -9,12 +9,15 @@ import Checkout from "./pages/Checkout";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import MobileProfile from "./Components/MobileProfile/MobileProfile";
 import Footer from "./Components/Footer/Footer";
+import { useState } from "react";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <div>
       <Router>
-        <Layout>
+        <Layout loading={loading} setLoading={setLoading}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/category" element={<Category />} />
