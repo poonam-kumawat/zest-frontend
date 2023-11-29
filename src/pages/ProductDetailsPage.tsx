@@ -56,9 +56,9 @@ const ProductDetailsPage: React.FC<ProductPageProps> = ({
         </div>
       ) : (
         <div className="w-full h-full min-h-screen">
-          <div className="max-w-screen-2xl md:flex md:gap-2 my-5 md:my-10 lg:w-4/5 mx-auto ">
+          <div className="max-w-screen-2xl md:flex md:gap-2 my-5 md:my-10 lg:w-4/5 mx-auto">
             <div className="w-full h-full grid-rows-2 md:border-e">
-              <div className="w-2/3 p-10 m-auto border max-w-sm">
+              <div className="w-3/4 p-10 m-auto border max-w-sm">
                 <img
                   className="w-full mix-blend-multiply scale-[1.5]"
                   src={details?.imgUrl}

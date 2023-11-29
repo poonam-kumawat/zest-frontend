@@ -174,7 +174,7 @@ const HomePage: React.FC<HomePageProps> = ({ loading, setLoading }) => {
                 />
                 <input
                   type="text"
-                  className="m-auto w-[100%] border-0 outline-none"
+                  className="m-auto w-[100%] border-0 outline-none placeholder:text-sm md:placeholder:text-base"
                   placeholder="Search Vegetables and Fruits"
                   value={searchQuery}
                   onChange={(e) => handleChange(e)}
