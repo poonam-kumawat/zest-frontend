@@ -10,7 +10,7 @@ const OrderList = ({
   setActiveOrder: Function;
 }) => {
   return (
-    <div className="h-96 overflow-y-scroll text-[#828282]">
+    <div className="h-full md:h-96 overflow-y-scroll text-[#828282]">
       {orders.map((order: any) => {
         return (
           <div
@@ -18,7 +18,7 @@ const OrderList = ({
               activeOrder === order._id
                 ? "border-2 border-[#4DBD7A] "
                 : "border-dashed border-[#babdbc] hover:border-[#4DBD7A] hover:border-2 hover:border-solid"
-            } cursor-pointer border p-4  rounded-lg mx-8 mt-6 shadow`}
+            } cursor-pointer border p-4  rounded-lg mx-8 mt-6 mb-6 shadow`}
           >
             <div>
               <div className="flex pb-4 border-b px-8">

@@ -11,8 +11,10 @@ import {
   updateUserDetails,
 } from "../../services/api.service";
 import { toast } from "react-toastify";
+import OrderList from "../OrderList/OrderList";
+import UserDetailForm from "../UserDetailForm/UserDetailForm";
+import { useNavigate } from "react-router-dom";
 const MobileProfile = () => {
-  const [profileView, setprofileView] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isActive, setIsActive] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -21,6 +23,8 @@ const MobileProfile = () => {
   const [addresses, setAddreses] = useState<any>([]);
   const [orders, setOrders] = useState<any>([]);
   const { email } = useSelector((state: rootType) => state.user);
+  const [activeOrder, setActiveOrder] = useState("");
+  const navigate = useNavigate();
 
   const getUserDetails = async () => {
     //add error handling later
@@ -41,20 +45,6 @@ const MobileProfile = () => {
       });
     }
   };
-  const updateDetails = async () => {
-    try {
-      const update = {
-        firstName: firstName,
-        lastName: lastName,
-        phoneNumber: phoneNumber,
-      };
-      await updateUserDetails(email, update);
-    } catch (error) {
-      toast.error("Something Went Wrong !", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    }
-  };
 
   useEffect(() => {
     getUserDetails();
@@ -64,7 +54,9 @@ const MobileProfile = () => {
     <div className="MobileWrap">
       <div className="bg-white px-2 py-5 border-b-2 border-[#ebebeb] flex items-center gap-2">
         <FontAwesomeIcon
-          onClick={() => {}}
+          onClick={() => {
+            isActive !== "" ? setIsActive("") : navigate(`/`);
+          }}
           icon={faArrowLeft}
           size="lg"
           color="#828282"
@@ -123,7 +115,17 @@ const MobileProfile = () => {
       )}
 
       {isActive === "details" ? (
-        <div>poonam</div>
+        <div className="address grid gap-5 p-5">
+          <UserDetailForm
+            firstName={firstName}
+            setFirstName={setFirstName}
+            lastName={lastName}
+            setLastName={setLastName}
+            email={email}
+            phoneNumber={phoneNumber}
+            setPhoneNumber={setPhoneNumber}
+          />
+        </div>
       ) : isActive === "address" ? (
         <div className="address">
           <AddressView
@@ -136,7 +138,11 @@ const MobileProfile = () => {
           />
         </div>
       ) : isActive === "orders" ? (
-        <div>p</div>
+        <OrderList
+          orders={orders}
+          activeOrder={activeOrder}
+          setActiveOrder={setActiveOrder}
+        />
       ) : (
         <></>
       )}

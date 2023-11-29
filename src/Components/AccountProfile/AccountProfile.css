@@ -1,0 +1,13 @@
+.profile-tab-active {
+    cursor: pointer;
+    background-color: #aad7c2;
+    color: #206b62;
+    border-color: #206b62;
+}
+
+.profile-tab-hover:hover {
+    cursor: pointer;
+    background-color: #aad7c2;
+    color: #206b62;
+    border-color: #206b62;
+}
