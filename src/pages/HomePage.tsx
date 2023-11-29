@@ -55,6 +55,40 @@ const HomePage: React.FC = () => {
     window.scroll(0, 0);
   };
 
+  const SampleNextArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          color: "#828282",
+          right: "-12px",
+          width: "30px",
+          height: "30px",
+        }}
+        onClick={onClick}
+      />
+    );
+  };
+  const SamplePrevArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          color: "#828282",
+          left: "-8px",
+          width: "30px",
+          height: "30px",
+        }}
+        onClick={onClick}
+      />
+    );
+  };
   var settings = {
     dots: false,
     infinite: false,
@@ -79,6 +113,8 @@ const HomePage: React.FC = () => {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          nextArrow: <SampleNextArrow />,
+          prevArrow: <SamplePrevArrow />,
         },
       },
       {
@@ -87,6 +123,8 @@ const HomePage: React.FC = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
+          nextArrow: <SampleNextArrow />,
+          prevArrow: <SamplePrevArrow />,
         },
       },
     ],
@@ -113,7 +151,7 @@ const HomePage: React.FC = () => {
             /> */}
             <div className="flex flex-col justify-center items-center absolute md:top-44 gap-8 px-4 md:px-0">
               <div className="text-4xl md:text-6xl text-[#1F2937] font-bold text-center">
-                Savor the simplicity tap, order, taste the freshness
+                Go Organic, It's the right way
               </div>
               <div className="text-xl text-[#1F2937] text-center">
                 Get your healthy foods & snacks delivered at your doorsteps all

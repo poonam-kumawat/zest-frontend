@@ -9,6 +9,7 @@ import Checkout from "./pages/Checkout";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import MobileProfile from "./Components/MobileProfile/MobileProfile";
 import Footer from "./Components/Footer/Footer";
+import AccountProfile from "./Components/AccountProfile/AccountProfile";
 
 function App() {
   return (
@@ -35,7 +36,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/mobile" element={<MobileProfile />} />
           </Routes>
         </Layout>
       </Router>
