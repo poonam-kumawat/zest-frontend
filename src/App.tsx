@@ -10,6 +10,7 @@ import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import MobileProfile from "./Components/MobileProfile/MobileProfile";
 import Footer from "./Components/Footer/Footer";
 import { useState } from "react";
+import AccountProfile from "./Components/AccountProfile/AccountProfile";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -49,7 +50,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/mobile" element={<MobileProfile />} />
           </Routes>
         </Layout>
       </Router>
