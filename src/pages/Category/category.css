@@ -1,0 +1,14 @@
+.activeCategory{
+    background: linear-gradient(270deg,#F2FFF3 73.74%,#F2FFF3);
+    border-left: 8px solid #4DBD7A;
+}
+@media  screen and (max-width:991px) {
+    ::-webkit-scrollbar {
+            display: none;
+        }
+        .activeCategory{
+            background: linear-gradient(270deg, #F2FFF3 73.74%, #F2FFF3);
+            border-bottom: 6px solid #4DBD7A;
+            border-left: unset;
+        }
+}
