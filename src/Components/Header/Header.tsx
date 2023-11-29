@@ -41,6 +41,8 @@ const Header = () => {
   };
 
   const handleAccount = () => {
+    if (showCart) setShowCart(!showCart);
+    if (show) setShow(!show);
     setshowAccount(!showAccount);
   };
   const handleChange = (e: any) => {
@@ -233,6 +235,7 @@ const Header = () => {
               height={30}
               onClick={() => {
                 if (showCart) setShowCart(false);
+                if (showAccount) setshowAccount(!showAccount);
                 setShow(!show);
               }}
             />

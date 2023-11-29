@@ -14,9 +14,13 @@ interface CardProps {
   price: number;
 }
 
-const Category = () => {
+interface CategoryProps {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Category: React.FC<CategoryProps> = ({ loading, setLoading }) => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [isActive, setIsActive] = useState({ id: "", name: "" });
   const [categories, setCategories] = useState([]);
   const location = useLocation();
