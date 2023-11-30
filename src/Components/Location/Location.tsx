@@ -42,7 +42,7 @@ const Location = ({
           className="bg-[#FFFFFF] text-[#000] flex flex-col gap-4 items-center rounded-lg p-8 md:w-4/5 h-fit max-w-3xl lg:max-h-52"
           ref={locationRef}
         >
-          <div className="flex font-md text-lg">
+          <div className="flex font-md text-[16px] md:text-lg">
             <img
               className="mx-6"
               src="/assets/icons/location-icon.svg"
