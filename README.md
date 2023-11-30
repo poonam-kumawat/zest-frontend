@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+<h1>Zest Organic</h1>
+<p>
+    Go Organic, It's the right way
+Get your healthy foods & snacks delivered at your doorsteps all day everyday
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <a href="https://zest-organic.vercel.app">View Demo</a>
+  </p>
+  
+<!-- ABOUT THE PROJECT -->
 
-## Available Scripts
+## About The Project
 
-In the project directory, you can run:
+![zest](https://github.com/poonam-kumawat/zest-frontend/assets/103033530/42ef3d8d-f11d-4fb7-9442-bfdb7d66ebe5)
 
-### `npm start`
+🌟 Explore the journey of Zest  from the ground up, where coding budding developers came together to craft an online grocery experience. This is where curiosity turns into code, and passion transforms into innovation. 🛒💻✨
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Zest is a feature-rich ecommerce grocery website developed to provide users with a seamless shopping experience for their daily essentials. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+### Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Technology Stack
+* <b>Frontend</b>: React with TypeScript
+* Backend: Node.js with Express
+* Database: MongoDB
+* Authentication: JWT (JSON Web Tokens)
+* Payment: Razorpay Checkout Integration
+* Email: Nodemailer for user authentication emails
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
