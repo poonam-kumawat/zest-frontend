@@ -26,7 +26,7 @@ const Card: FC<CardProps> = ({ cardData }) => {
   };
 
   return (
-    <div className="card cursor-pointer border-2 border-[#C8D2D0] rounded p-4 flex flex-col justify-center">
+    <div className="card cursor-pointer border-2 border-[#C8D2D0] rounded p-3 md:p-4 flex flex-col justify-center">
       <img
         className="m-auto mix-blend-multiply scale-[1.2]"
         src={cardData.imgUrl}
@@ -50,7 +50,7 @@ const Card: FC<CardProps> = ({ cardData }) => {
           </p>
         </div>
 
-        <div className="flex w-full flex-row justify-between">
+        <div className="flex w-full flex-col md:flex-row justify-between">
           <p className="text-sm text-[#656565]">{cardData.price}</p>
           <p className="text-sm text-[#656565]">({cardData.availability})</p>
         </div>

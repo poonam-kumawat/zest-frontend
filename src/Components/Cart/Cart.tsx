@@ -33,6 +33,7 @@ const Cart = ({
           <img
             onClick={() => {
               setShowCart(!showCart);
+              setVisible();
             }}
             className="cursor-pointer block sm:hidden"
             width={30}
