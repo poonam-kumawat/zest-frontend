@@ -18,7 +18,7 @@ const OrderList = ({
               activeOrder === order._id
                 ? "border-2 border-[#4DBD7A] "
                 : "border-dashed border-[#babdbc] hover:border-[#4DBD7A] hover:border-2 hover:border-solid"
-            } cursor-pointer border p-4  rounded-lg mx-8 mt-6 mb-6 shadow`}
+            } cursor-pointer border p-4  rounded-lg mx-6 md:mx-8 mt-6 mb-6 shadow`}
           >
             <div>
               <div

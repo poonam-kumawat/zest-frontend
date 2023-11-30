@@ -78,13 +78,13 @@ const Cart = ({
                     width={80}
                     height={80}
                   />
-                  <div className="pr-14">
+                  <div className="md:pr-14">
                     <div className="name">
                       <p className="text-base font-semibold my-2">
                         {cartitem.productName}
                       </p>
                     </div>
-                    <div className="flex w-full flex-row justify-between py-2">
+                    <div className="flex w-full flex-row justify-between py-2 md:mb-0 mb-1">
                       <p className="text-sm text-[#656565] pr-12">
                         {cartitem.price}
                       </p>
@@ -130,16 +130,18 @@ const Cart = ({
             })}
             {/* Price Summary */}
             <div className="card mx-3 my-4 rounded px-4 py-2  bg-[#ffffff] text-[#1F2937] font-semibold shadow">
-              <p className="text-xl font-semibold my-2 mx-6 ">Price Summary</p>
-              <div className="flex w-full flex-row justify-between px-8 py-2 border-t border-slate-400 text-sm ">
+              <p className="text-xl font-semibold my-2 mx-2 md:mx-6 ">
+                Price Summary
+              </p>
+              <div className="flex w-full flex-row justify-between px-2 md:px-8 py-2 border-t border-slate-400 text-sm ">
                 <p>Sub Total</p>
                 <p>{totalAmount}</p>
               </div>
-              <div className="flex w-full flex-row justify-between px-8 py-2 text-sm ">
+              <div className="flex w-full flex-row justify-between px-2 md:px-8 py-2 text-sm ">
                 <p>Delivery Charges</p>
-                <p className="pr-2">+ 40</p>
+                <p>+ 40</p>
               </div>
-              <div className="flex w-full flex-row justify-between px-8 py-2 text-sm ">
+              <div className="flex w-full flex-row justify-between px-2 md:px-8 py-2 text-sm ">
                 <p> Grand Total</p>
                 <p>{totalAmount + 40}</p>
               </div>
