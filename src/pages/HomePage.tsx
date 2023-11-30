@@ -237,7 +237,7 @@ const HomePage: React.FC<HomePageProps> = ({ loading, setLoading }) => {
               <div className="">
                 <p className="text-2xl font-semibold my-4">Fresh Fruits</p>
               </div>
-              <div className="grid md:grid-cols-5 md:grid-rows-auto gap-8">
+              <div className="grid lg:grid-cols-6 sm:grid-cols-3 grid-cols-2 md:grid-rows-auto gap-4 md:gap-6">
                 {fruits.map((cardData: any) => {
                   return <Card key={cardData._id} cardData={cardData} />;
                 })}
@@ -247,7 +247,7 @@ const HomePage: React.FC<HomePageProps> = ({ loading, setLoading }) => {
               <div className="">
                 <p className="text-2xl font-semibold my-4">Fresh Vegetables</p>
               </div>
-              <div className="grid md:grid-cols-5 md:grid-rows-auto gap-8">
+              <div className="grid lg:grid-cols-6 sm:grid-cols-3 grid-cols-2 md:grid-rows-auto md:gap-6 gap-4">
                 {vegetables.map((cardData: any) => {
                   return <Card key={cardData._id} cardData={cardData} />;
                 })}
