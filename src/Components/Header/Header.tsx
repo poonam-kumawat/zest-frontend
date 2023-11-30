@@ -162,9 +162,9 @@ const Header = () => {
             height={20}
           />
         </div>
-        <div className="flex md:place-self-end md:gap-0 gap-6">
+        <div className="flex place-self-end md:gap-0 gap-6">
           <div className="relative">
-            <p className="badge bg-[#4DBD7A] text-[#ffffff] rounded-[50px] absolute right-9 top-0 text-[10px] m-0 px-[5px] ">
+            <p className="badge bg-[#4DBD7A] text-[#ffffff] rounded-[50px] absolute right-8 md:right-9 top-0 text-[10px] m-0 px-[5px] ">
               {cartTotalCount}
             </p>
             <img
@@ -188,7 +188,7 @@ const Header = () => {
               Login
             </button>
           ) : (
-            <div className="relative" ref={SignoutRef}>
+            <div className="relative top-[2px] md:top-0" ref={SignoutRef}>
               <button
                 onClick={() => {
                   handleAccount();
