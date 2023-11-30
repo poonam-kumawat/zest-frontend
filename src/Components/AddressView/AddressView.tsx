@@ -33,7 +33,7 @@ const AddressView = ({
   };
 
   return (
-    <div className="p-8 flex flex-col gap-3 w-full">
+    <div className="md:p-8 p-6 flex flex-col gap-3 w-full">
       <div className="flex justify-between gap-2">
         <div>
           <p className="text-[#656565] md:text-base lg:text-lg font-normal">

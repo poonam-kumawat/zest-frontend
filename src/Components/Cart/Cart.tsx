@@ -28,7 +28,7 @@ const Cart = ({
 
   return (
     <div className="bg-[#333333]  bg-opacity-70 h-full fixed z-50 w-full  grid sm:grid-cols-3 grid-flow-col">
-      <div className="bg-[#F6F6F6] text-[#000]  h-screen  overflow-scroll col-start-1 sm:col-start-3  ">
+      <div className="bg-[#F6F6F6] text-[#000] overflow-scroll col-start-1 sm:col-start-3  ">
         <div className="flex border-b border-slate-400 ">
           <img
             onClick={() => {
