@@ -152,7 +152,7 @@ const Checkout: React.FC<CheckoutProps> = ({ loading, setLoading }) => {
 
   return !loading ? (
     <div>
-      <div className="w-full h-full min-h-screen flex flex-col lg:px-28 pt-16 md:px-14 px-8 gap-2">
+      <div className="w-full h-full min-h-screen flex flex-col lg:px-28 pt-16 md:px-14 px-4 gap-2">
         <div className="max-w-screen-2xl mx-auto">
           <p className="text-3xl font-medium text-[#656565] mb-2">
             Enter Address
@@ -209,7 +209,7 @@ const Checkout: React.FC<CheckoutProps> = ({ loading, setLoading }) => {
             </div>
 
             <div className="md:w-[40%] w-full">
-              <div className="card mx-3 rounded px-4 py-2 border border-[#D9DDDC] bg-[#ffffff] text-[#1F2937] font-medium shadow">
+              <div className="card md:mx-3 rounded px-4 py-2 border border-[#D9DDDC] bg-[#ffffff] text-[#1F2937] font-medium shadow">
                 <p className="text-xl font-normal my-2 mx-6 ">Price Summary</p>
                 <div className="flex w-full flex-row justify-between px-8 py-2 border-t border-slate-400 text-sm ">
                   <p>Sub Total</p>

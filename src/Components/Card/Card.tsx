@@ -26,7 +26,7 @@ const Card: FC<CardProps> = ({ cardData }) => {
   };
 
   return (
-    <div className="card cursor-pointer border-2 border-[#C8D2D0] rounded p-3 md:p-4 flex flex-col justify-center">
+    <div className="card cursor-pointer border md:border-2 border-[#C8D2D0] rounded p-3 md:p-4 flex flex-col justify-center">
       <img
         className="m-auto mix-blend-multiply scale-[1.2]"
         src={cardData.imgUrl}
