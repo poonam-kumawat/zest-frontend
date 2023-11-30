@@ -51,8 +51,8 @@ const HomePage: React.FC<HomePageProps> = ({ loading, setLoading }) => {
     ]);
     setLoading(false);
 
-    setVegetables(response[0].data.slice(0, 5));
-    setFruits(response[1].data.slice(0, 5));
+    setVegetables(response[0].data.slice(0, 6));
+    setFruits(response[1].data.slice(0, 6));
   };
 
   const scrollToTop = () => {
