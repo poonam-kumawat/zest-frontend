@@ -73,6 +73,10 @@ This command will start the development server, and you can view the application
 * Access the Zest Ecommerce Grocery Website at http://localhost:3000 in your web browser.
 * Explore the various features, including category pages, user authentication, and the seamless checkout process.
 
+## Backend Repository
+
+For a complete end-to-end experience, make sure to set up the <a href="https://github.com/poonam-kumawat/zest-backend">Zest Backend</a>. Follow the instructions in the backend repository to run the server and enable full functionality.
+
   
 
 
