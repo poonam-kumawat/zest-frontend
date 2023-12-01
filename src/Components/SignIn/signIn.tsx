@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { sendOTP, verifyOTP } from "../../services/api.service";
-import { useDispatch, useSelector } from "react-redux";
-import { rootType } from "../../Redux/rootReducer";
+import { useDispatch } from "react-redux";
 import { userLogin } from "../../Redux/reducer/userReducer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,41 +12,43 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
 
   const [inputValues, setInputValues] = useState(Array(6).fill(""));
   const [otp, setotpToken] = useState("");
-  const [minutes, setMinutes] = useState(1);
-  const [seconds, setSeconds] = useState(30);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
   const [emailError, setEmailError] = useState("");
   const [otpError, setOtpError] = useState("");
   const dispatch = useDispatch();
-  const { accessToken } = useSelector((state: rootType) => state.user);
 
   const handleInputChange = (index: number, value: string) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
     setInputValues(newInputValues);
-     if (value.length === 1 && index < inputValues.length - 1) {
-       const nextInput = document.getElementById(`input-${index + 1}`);
-       if (nextInput) {
-         nextInput.focus();
-       }
-     }
+    if (value.length === 1 && index < inputValues.length - 1) {
+      const nextInput = document.getElementById(`input-${index + 1}`);
+      if (nextInput) {
+        nextInput.focus();
+      }
+    }
   };
 
   useEffect(() => {
     setotpToken(inputValues.join(""));
-    const interval = setInterval(() => {
-      if (seconds > 0) {
-        setSeconds(seconds - 1);
-      }
-
-      if (seconds === 0) {
-        if (minutes === 0) {
-          clearInterval(interval);
-        } else {
-          setSeconds(59);
-          setMinutes(minutes - 1);
+    let interval: any;
+    if (seconds !== 0 && minutes !== 0) {
+      interval = setInterval(() => {
+        if (seconds > 0) {
+          setSeconds(seconds - 1);
         }
-      }
-    }, 1000);
+
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(interval);
+          } else {
+            setSeconds(59);
+            setMinutes(minutes - 1);
+          }
+        }
+      }, 1000);
+    }
 
     return () => {
       clearInterval(interval);
@@ -63,6 +64,8 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
       } else {
         setEmailError("");
         setshowOTP(!showOTP);
+        setMinutes(2);
+        setSeconds(0);
         await sendOTP(email);
       }
     } catch (error) {
@@ -85,12 +88,11 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     }
   };
   const resendOtp = () => {
-    setMinutes(1);
-    setSeconds(30);
+    setMinutes(2);
+    setSeconds(0);
     sendOTP(email);
   };
 
- 
   return (
     <>
       <div className="bg-[#333333] p-[1rem] flex bg-opacity-70 pt-8 justify-center h-full fixed z-50 w-full">
