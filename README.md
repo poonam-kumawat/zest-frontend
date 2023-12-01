@@ -17,7 +17,7 @@ Get your healthy foods & snacks delivered at your doorsteps all day everyday
 * Zest is a feature-rich ecommerce grocery website developed to provide users with a seamless shopping experience for their daily essentials. 
 
 
-### Built With
+## Built With
 
 Technology Stack
 * <b>Frontend</b>: React with TypeScript
@@ -32,14 +32,14 @@ Technology Stack
 
 Welcome to the frontend repository of Zest, your go-to Ecommerce Grocery Website! This guide will walk you through the steps to set up and run the frontend project locally.
 
-### Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:
 * Node.js
 * npm (Node Package Manager)
   
 
-### Installation
+## Installation
 
 <b>Clone the Repository:</b>
 
