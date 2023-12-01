@@ -21,7 +21,7 @@ Get your healthy foods & snacks delivered at your doorsteps all day everyday
 
 Technology Stack
 * <b>Frontend</b>: React with TypeScript
-* <b>Backend</b>: Node.js with Express
+* <b>Backend</b>: Node.js with Express TypeScript
 * <b>Database</b>: MongoDB
 * <b>Authentication</b>: JWT (JSON Web Tokens)
 * <b>Payment</b>: Razorpay Checkout Integration
