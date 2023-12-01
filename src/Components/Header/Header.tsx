@@ -38,7 +38,6 @@ const Header = () => {
       !SignoutRef.current.contains(event.target)
     ) {
       setshowAccount(!showAccount);
-      console.log(setshowAccount(!showAccount));
     }
   };
 
