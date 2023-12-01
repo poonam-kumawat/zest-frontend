@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { sendOTP, verifyOTP } from "../../services/api.service";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../Redux/reducer/userReducer";
@@ -22,38 +22,45 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
     setInputValues(newInputValues);
-    if (value.length === 1 && index < inputValues.length - 1) {
+    if (value.length === 1 && index < inputValues.length) {
       const nextInput = document.getElementById(`input-${index + 1}`);
       if (nextInput) {
         nextInput.focus();
+      }
+    } else if (value.length === 0) {
+      const lastInput = document.getElementById(`input-${index - 1}`);
+      if (lastInput) {
+        lastInput.focus();
       }
     }
   };
 
   useEffect(() => {
-    setotpToken(inputValues.join(""));
     let interval: any;
-    if (seconds !== 0 && minutes !== 0) {
-      interval = setInterval(() => {
-        if (seconds > 0) {
-          setSeconds(seconds - 1);
-        }
 
-        if (seconds === 0) {
-          if (minutes === 0) {
-            clearInterval(interval);
-          } else {
-            setSeconds(59);
-            setMinutes(minutes - 1);
-          }
+    interval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(interval);
+        } else {
+          setSeconds(59);
+          setMinutes(minutes - 1);
         }
-      }, 1000);
-    }
+      }
+    }, 1000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [inputValues, seconds]);
+  }, [seconds, minutes]);
+
+  useEffect(() => {
+    setotpToken(inputValues.join(""));
+  }, [inputValues]);
 
   const handleSendOTP = async (e: any) => {
     try {
@@ -91,6 +98,16 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
     setMinutes(2);
     setSeconds(0);
     sendOTP(email);
+  };
+  const handleKeyDown = (event: any, index: any) => {
+    if (event.key === "Backspace" && event.target.value === "") {
+      const lastInput = document.getElementById(`input-${index - 1}`);
+      if (lastInput) {
+        lastInput.focus();
+      }
+    } else if (event.key === "Enter") {
+      handleVerifyOtp(email, otp);
+    }
   };
 
   return (
@@ -141,6 +158,9 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
                         type="text"
                         maxLength={1}
                         required
+                        onKeyDown={(e) => {
+                          handleKeyDown(e, index);
+                        }}
                         onChange={(e) => {
                           handleInputChange(index, e.target.value);
                         }}
@@ -162,8 +182,6 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
                 <div className="flex flex-col items-center gap-1">
                   {seconds > 0 || minutes > 0 ? (
                     <p className="text-xl font-semibold text-[#87908F]">
-                      {/* {" "}
-                    00 : 30{" "} */}
                       {minutes < 10 ? `0${minutes}` : minutes}:
                       {seconds < 10 ? `0${seconds}` : seconds}
                     </p>
@@ -171,7 +189,6 @@ const SignIn = ({ SignInRef, setshowSignIn }: any) => {
                     <p>Didn't recieve code?</p>
                   )}
                   <div className="flex items-center gap-2">
-                    {/* <p className="text-md text-[#87908F]"> Didn't Get It ? </p> */}
                     <button
                       className="text-md cursor-pointer text-[#4DBD7A]"
                       disabled={seconds > 0 || minutes > 0}
