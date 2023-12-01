@@ -8,6 +8,7 @@ import SignIn from "../SignIn/signIn";
 import { userLogout } from "../../Redux/reducer/userReducer";
 
 import Location from "../Location/Location";
+import { isConstTypeReference } from "typescript";
 
 const Header = () => {
   // for mobile menu bar
@@ -37,6 +38,7 @@ const Header = () => {
       !SignoutRef.current.contains(event.target)
     ) {
       setshowAccount(!showAccount);
+      console.log(setshowAccount(!showAccount));
     }
   };
 
@@ -85,7 +87,7 @@ const Header = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  }, [showAccount]);
   useEffect(() => {
     if (showSignIn) {
       document.addEventListener("click", handleClickOutside, true);
@@ -93,7 +95,7 @@ const Header = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  }, [showSignIn]);
 
   return (
     <div className="sticky top-0 z-50 bg-[#ffffff] min-w-[275px]">
@@ -188,11 +190,10 @@ const Header = () => {
               Login
             </button>
           ) : (
-            <div className="relative top-[2px] md:top-0" ref={SignoutRef}>
+            <div className="relative top-[2px] md:top-0">
               <button
                 onClick={() => {
                   handleAccount();
-                  // navigate("/profile");
                 }}
               >
                 <img
@@ -204,7 +205,10 @@ const Header = () => {
                 />
               </button>
               {showAccount ? (
-                <div className="absolute top-10 right-0 bg-white  rounded-md shadow-md">
+                <div
+                  ref={SignoutRef}
+                  className="absolute top-10 right-0 bg-white  rounded-md shadow-md"
+                >
                   <p
                     onClick={() => {
                       navigate("/profile");
@@ -316,7 +320,13 @@ const Header = () => {
         <Location locationRef={locationRef} setShowLocation={setShowLocation} />
       )}
       {/* Cart Popover */}
-      {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
+      {showCart && (
+        <Cart
+          setshowSignIn={setshowSignIn}
+          setShowCart={setShowCart}
+          showCart={showCart}
+        />
+      )}
       {showSignIn && (
         <SignIn SignInRef={SignInRef} setshowSignIn={setshowSignIn} />
       )}

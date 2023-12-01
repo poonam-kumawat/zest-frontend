@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { rootType } from "../../Redux/rootReducer";
 import { addProduct, removeProduct } from "../../Redux/reducer/cartReducer";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import SignIn from "../SignIn/signIn";
 
 const setVisible = () => {
   if (document.body.style.overflow !== "scroll") {
@@ -11,11 +13,13 @@ const setVisible = () => {
   }
 };
 const Cart = ({
+  setshowSignIn,
   setShowCart,
   showCart,
 }: {
-  setShowCart: any;
-  showCart: any;
+  setshowSignIn: Function;
+  setShowCart: Function;
+  showCart: boolean;
 }) => {
   const dispatch = useDispatch();
   const { cartTotalCount, productList, countList, totalAmount } = useSelector(
@@ -166,7 +170,7 @@ const Cart = ({
               onClick={() => {
                 setShowCart(false);
                 setVisible();
-                navigate("/checkout");
+                accessToken ? navigate("/checkout") : setshowSignIn(true);
               }}
               className="w-5/6 rounded-lg bg-[#4DBD7A] h-10 mx-8 font-semibold text-white text-lg mb-20"
             >
