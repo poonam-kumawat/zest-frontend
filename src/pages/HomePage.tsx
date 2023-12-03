@@ -30,10 +30,8 @@ const HomePage: React.FC<HomePageProps> = ({ loading, setLoading }) => {
     navigate({
       pathname: "category",
       search: createSearchParams({
-        search: searchQuery,
-      })
-        .toString()
-        .trim(),
+        search: searchQuery.trim(),
+      }).toString(),
     });
   };
 
@@ -176,6 +174,8 @@ const HomePage: React.FC<HomePageProps> = ({ loading, setLoading }) => {
                   type="text"
                   className="m-auto w-[100%] border-0 outline-none placeholder:text-sm md:placeholder:text-base"
                   placeholder="Search Vegetables and Fruits"
+                  title="Please add only alphabets"
+                  pattern="[A-Za-z ]+"
                   value={searchQuery}
                   onChange={(e) => handleChange(e)}
                   required
