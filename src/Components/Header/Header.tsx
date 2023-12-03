@@ -8,7 +8,6 @@ import SignIn from "../SignIn/signIn";
 import { userLogout } from "../../Redux/reducer/userReducer";
 
 import Location from "../Location/Location";
-import { isConstTypeReference } from "typescript";
 
 const Header = () => {
   // for mobile menu bar
@@ -57,10 +56,8 @@ const Header = () => {
     navigate({
       pathname: "category",
       search: createSearchParams({
-        search: searchQuery,
-      })
-        .toString()
-        .trim(),
+        search: searchQuery.trim(),
+      }).toString(),
     });
   };
   const setHidden = () => {
@@ -147,9 +144,11 @@ const Header = () => {
               type="text"
               className="border border-[#B8C6C3] p-1 shadow-sm w-96 px-5 outline-[#B8C6C3] rounded"
               placeholder="Search Vegetables and Fruits"
+              title="Please add only alphabets"
+              pattern="[A-Za-z ]+"
+              required
               value={searchQuery}
               onChange={(e) => handleChange(e)}
-              required
             ></input>
           </form>
           <img
