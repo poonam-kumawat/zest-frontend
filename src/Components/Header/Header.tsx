@@ -175,9 +175,12 @@ const Header = () => {
               width={30}
               height={30}
               onClick={() => {
+                if (show) {
+                  setShow(!show);
+                  setHidden();
+                }
                 if (showLocation) setShowLocation(false);
                 setShowCart(!showCart);
-                setHidden();
               }}
             />
           </div>
@@ -237,7 +240,10 @@ const Header = () => {
               width={30}
               height={30}
               onClick={() => {
-                if (showCart) setShowCart(false);
+                if (showCart) {
+                  setShowCart(!showCart);
+                  setHidden();
+                }
                 if (showAccount) setshowAccount(!showAccount);
                 setShow(!show);
               }}
