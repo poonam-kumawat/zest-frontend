@@ -3,7 +3,7 @@
     Go Organic, It's the right way
 Get your healthy foods & snacks delivered at your doorsteps all day everyday
 
-  <a href="https://zest-organic.vercel.app">View Demo</a>
+  <a href="https://zest-organic.vercel.app">View Zest Demo</a>
   </p>
   
 <!-- ABOUT THE PROJECT -->
@@ -28,6 +28,7 @@ Technology Stack
 * <b>Email</b>: Nodemailer for user authentication emails
 
   <!-- GETTING STARTED -->
+  
 ## Getting Started
 
 Welcome to the frontend repository of Zest, your go-to Ecommerce Grocery Website! This guide will walk you through the steps to set up and run the frontend project locally.
@@ -76,6 +77,10 @@ This command will start the development server, and you can view the application
 ## Backend Repository
 
 For a complete end-to-end experience, make sure to set up the <a href="https://github.com/poonam-kumawat/zest-backend">Zest Backend</a>. Follow the instructions in the backend repository to run the server and enable full functionality.
+
+
+
+
 
   
 
